@@ -5,12 +5,19 @@
 #include "lib/scene.h"
 #include "lua.h"
 
-extern lua_State    *L; //game data
-extern lua_State    *t_data; //texture data
-extern player       p1;
-extern scene        *currentScene;
-extern scene        *tempScene;
-extern float        displayPos[3];
-extern long         frameCount;
+//for the gameState
+#define MENU        0
+#define MAP         1
+#define DIALOG      2
+#define INVENTORY   3
+
+extern lua_State    *L;         //game data
+extern lua_State    *t_data;    //texture data
+extern player       p1;         //player data
+extern scene        *currentScene;  //...
+extern scene        *tempScene;     //... to load shit
+extern float        displayPos[3];  //glTranslate vector
+extern long         frameCount;     //number of Frame
+extern int          gameState;      //general state machine for controller
 
 #endif

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="2000"
+   height="2000"
+   viewBox="0 0 2000 2000"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 (unknown)"
+   sodipodi:docname="map_soussol_v3.svg"
+   mapName="Soussol"
+   setCursor="1757 1586">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994948"
+     inkscape:cx="402.62282"
+     inkscape:cy="271.78066"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1028"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     units="px"
+     inkscape:snap-global="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <image
+       sodipodi:absref="/home/lerabot/Dreamcast/kos/game_build/reaperi_cycle/asset/map_soussol/soussol_floor.png"
+       xlink:href="soussol_floor.png"
+       width="128"
+       height="128"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image996"
+       x="-165.69131"
+       y="1545.8905" />
+    <image
+       sodipodi:absref="/home/lerabot/Dreamcast/kos/game_build/reaperi_cycle/asset/map_soussol/box2.png"
+       xlink:href="box2.png"
+       width="139"
+       height="102"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image952"
+       x="782.3927"
+       y="1789.2053" />
+    <image
+       sodipodi:absref="/home/lerabot/Dreamcast/kos/game_build/reaperi_cycle/asset/map_soussol/coupe1.png"
+       xlink:href="coupe1.png"
+       width="29"
+       height="45"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image963"
+       x="877.79877"
+       y="1770.2283" />
+    <image
+       sodipodi:absref="/home/lerabot/Dreamcast/kos/game_build/reaperi_cycle/asset/map_soussol/wallCorner.png"
+       xlink:href="wallCorner.png"
+       width="228"
+       height="210"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1051"
+       x="514.28131"
+       y="1516.2982" />
+    <image
+       sodipodi:absref="/home/lerabot/Dreamcast/kos/game_build/reaperi_cycle/asset/map_soussol/wall1.png"
+       xlink:href="wall1.png"
+       transform="scale(-1,1)"
+       width="143"
+       height="211"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1029"
+       x="-855.92212"
+       y="1572.9333" />
+    <image
+       sodipodi:absref="/home/lerabot/Dreamcast/kos/game_build/reaperi_cycle/asset/map_soussol/minibox.png"
+       xlink:href="minibox.png"
+       width="36"
+       height="41"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image974"
+       x="809.64899"
+       y="1776.2689" />
+    <image
+       sodipodi:absref="/home/lerabot/Dreamcast/kos/game_build/reaperi_cycle/asset/map_soussol/stair_close.png"
+       xlink:href="stair_close.png"
+       width="195"
+       height="113"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1018"
+       x="286.50009"
+       y="1815.5333" />
+    <image
+       sodipodi:absref="/home/lerabot/Dreamcast/kos/game_build/reaperi_cycle/asset/map_soussol/wall2.png"
+       xlink:href="wall2.png"
+       width="143"
+       height="210"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1040"
+       x="402.29977"
+       y="1571.5607" />
+    <image
+       sodipodi:absref="/home/lerabot/Dreamcast/kos/game_build/reaperi_cycle/asset/map_soussol/box1.png"
+       xlink:href="box1.png"
+       transform="scale(-1,1)"
+       width="188"
+       height="174"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image930"
+       x="-701.10175"
+       y="1642.2792" />
+    <image
+       sodipodi:absref="/home/lerabot/Dreamcast/kos/game_build/reaperi_cycle/asset/map_soussol/box1_cloth.png"
+       xlink:href="box1_cloth.png"
+       transform="scale(-1,1)"
+       width="107"
+       height="123"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image941"
+       x="-642.99811"
+       y="1701.2195" />
+    <image
+       sodipodi:absref="/home/lerabot/Dreamcast/kos/game_build/reaperi_cycle/asset/map_soussol/minibox2.png"
+       xlink:href="minibox2.png"
+       width="58"
+       height="64"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image985"
+       x="669.34949"
+       y="1748.6064" />
+  </g>
+</svg>

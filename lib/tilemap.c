@@ -14,7 +14,8 @@ int rMap = 300;
 int mapData2[300][300];
 
 void generateFloor(scene* self, int texNum) {
-  setUV(&self->obj[texNum].t, 0.25, 0.25);
+  //setUV(&self->obj[texNum].t, 0.25, 0.25);
+  //self->obj[text]
   self->floorTex = texNum;
   for (int j = 0; j < rMap; j++) {
     for (int i = 0; i < rMap; i++) {

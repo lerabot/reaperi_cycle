@@ -265,6 +265,8 @@ void setLight(texture *tex, float light){
 }
 
 void draw_textured_quad(texture *tex, float x, float y) {
+	//float texW = tex->w * tex->xScale;
+	//float texH = tex->h * tex->yScale;
 	float texW = tex->w * tex->uSize * tex->xScale;
 	float texH = tex->h * tex->vSize * tex->yScale;
 	float x0 = x - texW / 2;

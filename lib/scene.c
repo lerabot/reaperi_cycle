@@ -36,6 +36,10 @@ void drawScene(scene *s){
   }
 }
 
+void loadMapData(scene *self) {
+  
+}
+
 void setMapInfo(scene *s, int x, int y, int xStart, int yStart){
   s->mapSize[0] = x;
   s->mapSize[1] = y;

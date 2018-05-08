@@ -16,6 +16,7 @@ texture portrait;
 char *portraitFile;
 char boxText[196] = "";
 
+int textActive = 0;
 int showDialog = 0;
 int portraitX, portraitY;
 float frame;
@@ -56,27 +57,35 @@ void    renderDialog() {
   int x = 56 + margin * 2;
   int y = 100 + 64 - margin;
 
+  if(textActive != 0 && buttonPressed(CONT_B))
+    showDialog = textActive = 0;
+
+  //show dialog animation
   if(showDialog != 0 && frame < 90) {
     //portraitX = sin(frame * (3.1416 / 180)) * 320;
     portraitY = sin(frame * (3.1416 / 180)) * 240;
     frame += speed;
     box.a += aSpeed;
+    textActive = 1;
     hideController();
   }
 
+  //Remove dialog animation
   if(showDialog == 0 && frame > -90) {
     //portraitX = sin(frame * (3.1416 / 180)) * 320;
     portraitY = sin(frame * (3.1416 / 180)) * 240;
     frame -= speed;
     box.a -= aSpeed;
+
     showController();
   }
 
   blackScreen(box.a);
+
   if(strlen(portrait.path) > 1)
     draw_textured_quad(&portrait, portraitX, portraitY);
 
-  if (boxText != NULL) {
+  if (showDialog > 1) {
     draw_textured_quad(&box, 320, 100);
     if(showDialog != 0 && frame > 70) {
       if(portraitY > 200)
@@ -89,13 +98,14 @@ void    setDialog(char *s, char *filename) {
   memcpy(boxText, s, strlen(s));
   boxText[strlen(s)] = '\0';
   showDialog = strlen(s);
+  textActive = 1;
 
   if (strcmp(filename, portraitFile) != 0) {
     glDeleteTextures(1, &portrait.id);
     png_to_gl_texture(&portrait, filename);
     portraitFile = filename;
   }
-  setString(0, portraitFile);
+  //setString(0, portraitFile);
   len = 0;
 }
 

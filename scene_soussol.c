@@ -11,9 +11,68 @@ int tableau_state[3] = {0, 0, 0};
 gameObject *torche;
 float noise[TORCHE_NUM];
 
+gameObject sprite;
+
+void testJsonMap(scene *self) {
+  //loadLuaFile(t_data, "/rd/json.lua");
+  loadLuaFile(t_data, "/rd/loadMap.lua");
+
+  setMapInfo(self, 1000, 1000, 320, 240);
+  sprite = createObject("/rd/spitesheet_info.png", -1000, -1000, 1);
+
+  //get general map info - SIZE / OBJNUM / name
+  lua_getglobal(t_data, "loadXML");
+  lua_pushstring(t_data, "/rd/map_soussol_v3.svg");
+  lua_pcall(t_data, 1, 1, 0);
+  char *buf = lua_tostring(t_data, -1);
+  setParam(3, buf);
+
+  //get the data
+  lua_settop(t_data, 0);
+  lua_getglobal(t_data, "getMapInfo");
+  lua_pcall(t_data, 0, 3, 0); //x_map, y_map, obj_num
+  self->mapSize[0] = lua_tonumber(t_data, 1);
+  self->mapSize[1] = lua_tonumber(t_data, 2);
+  self->objNum = lua_tonumber(t_data, 3);
+  lua_settop(t_data, 0);
+
+  //loading the json spritesheet data
+  lua_getglobal(t_data, "loadJSON");
+  lua_pushstring(t_data, "/rd/spitesheet_info.json");
+  lua_pcall(t_data, 1, 1, 0);
+  lua_settop(t_data, 0);
+
+  int flipped = 0;
+  self->obj = malloc(sizeof(gameObject) * self->objNum);
+  for (int i = 0; i < self->objNum; i++) {
+    lua_getglobal(t_data, "createObject");
+    lua_pushnumber(t_data, i);
+    lua_pcall(t_data, 1, 9, 0);
+    self->obj[i] = createObject("", 0, 0, 1);
+    self->obj[i].t = sprite.t;
+    self->obj[i].x =        lua_tonumber(t_data, 1);
+    self->obj[i].y =        lua_tonumber(t_data, 2);
+    //self->obj[i].t.w =      lua_tonumber(t_data, 3);
+    //self->obj[i].t.h =      lua_tonumber(t_data, 4);
+    self->obj[i].t.u =      lua_tonumber(t_data, 5);
+    self->obj[i].t.v =      lua_tonumber(t_data, 6);
+    self->obj[i].t.uSize =  lua_tonumber(t_data, 7);
+    self->obj[i].t.vSize =  lua_tonumber(t_data, 8);
+    self->obj[i].t.xScale = lua_tonumber(t_data, 9);
+    if (lua_tonumber(t_data, 9) < 0)
+      flipped++;
+    lua_settop(t_data, 0);
+  }
+  setInt(0, flipped);
+}
+
 void loadSoussol(scene* self) {
   mount_romdisk("asset/rd_soussol.img.gz", "/rd");
-  loadSoussolData(self);
+  //loadSoussolData(self);
+
+  //load map via JSON+XML
+  testJsonMap(self);
+
   //for (int i = 0; i < self->objNum; i++)
     //self->obj[i].t.light = 0;
   generateFloor(self, 0);
@@ -37,18 +96,20 @@ void loadSoussol(scene* self) {
     noise[i] = 0;
 
   //music--
-  self->bgm = "/cd/music/soussol.ogg";
-  sndoggvorbis_start(self->bgm, 1);
+  //self->bgm = "/cd/music/soussol.ogg";
+  //sndoggvorbis_start(self->bgm, 1);
 
 
   self->updateScene = updateSoussol;
   self->freeScene = freeSoussol;
 }
 
+
+
 void updateEnigme(scene *self) {
-  char *buf = "";
-  snprintf(buf, 16, "x-%d y-%d", (int)p1.obj.x, (int)p1.obj.y);
-  setParam(3, buf);
+  //char *buf = "";
+  //snprintf(buf, 16, "x-%d y-%d", (int)p1.obj.x, (int)p1.obj.y);
+  //setParam(3, buf);
 
   //add torche to items
   if(clicked(&torche[0], CONT_A))
@@ -61,15 +122,14 @@ void updateEnigme(scene *self) {
       }
     }
   }
-
-
   //run script for the 3 tableau
   for (int i = 0; i < 3; i++) {
     //when clicked
     if(clicked(&self->obj[tableau[i]], CONT_A)){
       addItem(&self->obj[tableau[i]], "/cd/asset/item/tableau.png");
+      setDialog("", "/rd/tableau_1.png");
       tableau_state[i] = 1;
-      setString(i, "Tableau SET!");
+      //setString(i, "Tableau SET!");
     }
     //fade item
     if(tableau_state[i] == 1)
@@ -124,8 +184,10 @@ void updateLight(scene *self) {
 }
 
 void updateSoussol(cont_state_t *state, scene *self){
-  updateLight(self);
+  //updateLight(self);
   updateEnigme(self);
+
+  drawObject(&sprite);
 
   //TEMPLE
   if(over(&self->obj[102])){
