@@ -13,6 +13,8 @@ gameObject portrait;
 roq_callbacks_t cbs;
 
 void loadTest(scene* self) {
+  setMapInfo(self, 640, 480, 320, 240);
+  /*
   mount_romdisk("asset/rd_test.img.gz", "/rd");
   generateFloor(self, -1);
 
@@ -39,10 +41,10 @@ void loadTest(scene* self) {
   setParam(2, lua_tostring(t_data, -1));
   char *buf = lua_tostring(t_data, -1);
   setDialog(buf, "");
+  */
 
   self->objNum = 0;
   self->updateScene = updateTest;
-  //self->updateGUI = updateGUI;
   self->freeScene = freeTest;
 }
 
@@ -53,6 +55,7 @@ void _updateGUI(scene *self){
 }
 
 void updateTest(cont_state_t *state, scene *self){
+  /*
   drawObject(&portrait);
 
   char *buf = "";
@@ -61,6 +64,8 @@ void updateTest(cont_state_t *state, scene *self){
 
   //if(dreamroq_play("/rd/test_512_square.roq", ROQ_RGB565, 1, &cbs))
     //setParam(2, "Can't open ROQ file.");
+
+  */
 }
 
 void freeTest(scene *self){
