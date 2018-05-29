@@ -134,25 +134,28 @@ void renderMenu() {
   }
 }
 
-void enableTrans(){
-  glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Clear The Background Color To Black
-  glClearDepth(1.0);  // Enables Clearing Of The Depth Buffer
+void initGL() // We call this right after our OpenGL window is created.
+{
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// This Will Clear The Background Color To Black
+  glClearDepth(1.0);				// Enables Clearing Of The Depth Buffer
+  glDepthFunc(GL_LESS);				// The Type Of Depth Test To Do
+  glEnable(GL_DEPTH_TEST);			// Enables Depth Testing
+  glShadeModel(GL_SMOOTH);			// Enables Smooth Color Shading
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-  //glEnable(GL_DEPTH_TEST);
-  //glDepthFunc(GL_LEQUAL);
-  /*
   glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  gluPerspective(45.0f, 640.0f / 480.0f, 0.1f, 100.0f);
+  glLoadIdentity();				// Reset The Projection Matrix
+  glOrtho(0.0, 1.0, 0.0, 1.0, -100.0, 100.0);
+  glScalef(1.f/320.f, 1.f/240.f, 100.f);
+  glTranslatef(-320, -240, 0);
+
+  //gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,100.0f);
+  //glScalef(0.75, 1, 1);
+  //glScalef(0.1, 0.1, 0.1);
+
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  //glOrtho(0.0, 640.0, 320.0, 0.0, 0.0, 1.0);
-  */
-
-
-  //glDisable(GL_DEPTH_TEST);
 }
 
 void quitGame(){

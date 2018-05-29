@@ -6,7 +6,7 @@ OBJS += scene_temple.o scene_test.o scene_desert.o scene_soussol.o scene_jardin.
 REAP_LIBS = $(addprefix lib/, $(REAP_OBJ))
 REAP_OBJ  = gl_png.o debug_screen.o game_object.o scene.o particule.o gl_font.o  tilemap.o gl_pvr_texture.o dreamroqlib.o player.o
 
-KOS_CFLAGS += -std=c11 -I$(KOS_PORTS)/include/lua
+KOS_CFLAGS += -std=c99 -I$(KOS_PORTS)/include/lua
 #KOS_ROMDISK_DIR = romdisk
 
 all: rm-elf $(TARGET)
@@ -21,7 +21,7 @@ rm-elf:
 
 $(TARGET): $(OBJS) $(REAP_LIBS) romdisk.o
 	$(KOS_CC) $(KOS_CFLAGS) $(KOS_LDFLAGS) -o $(TARGET) $(KOS_START) \
-		$(OBJS) $(REAP_LIBS) romdisk.o $(OBJEXTRA) -lpng -lkmg -llua -lGL -lmp3 -loggvorbisplay -lvorbis -logg -lparallax -lm -lz  $(KOS_LIBS)
+		$(OBJS) $(REAP_LIBS) romdisk.o $(OBJEXTRA) -lpng -llua -lGLdc -lmp3 -loggvorbisplay -lvorbis -logg -lm -lz  $(KOS_LIBS)
 
 #make a bunch of romdisk here
 romdisk.img:

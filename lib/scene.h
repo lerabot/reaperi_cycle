@@ -2,8 +2,6 @@
 #define __SCENE_H__
 
 #include <kos.h>
-#include <GL/glu.h>
-#include <GL/glut.h>
 #include "game_object.h"
 
 typedef struct _scene

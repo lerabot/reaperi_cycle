@@ -4,8 +4,6 @@
 #include <kos/img.h>
 #include <png/png.h>
 #include <GL/gl.h>
-#include <GL/glut.h>
-#include <kmg/kmg.h>
 #include "gl_png.h"
 #include "debug_screen.h"
 #include "../global_var.h"
@@ -265,56 +263,82 @@ void setLight(texture *tex, float light){
 }
 
 void draw_textured_quad(texture *tex, float x, float y) {
-	//float texW = tex->w * tex->xScale;
-	//float texH = tex->h * tex->yScale;
-	float texW = tex->w * tex->uSize * tex->xScale;
-	float texH = tex->h * tex->vSize * tex->yScale;
-	float x0 = x - texW / 2;
-	float y0 = y - texH / 2;
-	float x1 = x + texW / 2;
-	float y1 = y + texH / 2;
-	float u = tex->u;
-	float v = tex->v;
-	float xS = tex->uSize;
-	float yS = tex->vSize;
+	GLfloat texW = tex->w * tex->uSize * tex->xScale;
+GLfloat texH = tex->h * tex->vSize * tex->yScale;
+//texW = 10;
+//texH = 10;
+GLfloat x0 = x - texW / 2;
+GLfloat y0 = y - texH / 2;
+GLfloat x1 = x + texW / 2;
+GLfloat y1 = y + texH / 2;
+GLfloat u = tex->u;
+GLfloat v = tex->v;
+GLfloat xS = tex->uSize;
+GLfloat yS = tex->vSize;
+GLfloat z = -10;
 
-	float vertex_data[] = {
-		/* 2D Coordinate, texture coordinate */
-		x0, y1, 0.0, u, v + yS, 0.0, 0.0, -1.0,
-		x0, y0, 0.0, u, v, 0.0, 0.0, -1.0,
-		x1, y1, 0.0, u + xS, v + yS, 0.0, 0.0, -1.0,
-		x1, y0, 0.0, u + xS, v, 0.0, 0.0, -1.0
-	};
-	/*
-	float vertex_data[] = {
 
-		x0, y1, 0.0, 0.0, u, v + yS,
-		x0, y0, 0.0, 0.0, u, v,
-		x1, y1, 0.0, 0.0, u + xS, v + yS,
-		x1, y0, 0.0, 0.0, u + xS, v,
-	};
-	*/
+GLfloat vertex_data[] = {
+	/* 2D Coordinate, texture coordinate */
+	x0, y1, z,
+	x1, y1, z,
+	x1, y0, z,
+	x0, y0, z
+};
 
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, tex->id);
+GLfloat uv_data[] = {
+	/* 2D Coordinate, texture coordinate */
+	u, v + yS,
+	u + xS, v + yS,
+	u + xS, v,
+	u, v
+};
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, tex->min_filter);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, tex->mag_filter);
+GLfloat normal_data[] = {
+	/* 2D Coordinate, texture coordinate */
+	0.0, 0.0, -1.0,
+	0.0, 0.0, 1.0,
+	0.0, 0.0, 1.0,
+	0.0, 0.0, -1.0
+};
 
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+GLfloat color_data[] = {
+	/* 2D Coordinate, texture coordinate */
+	1.0, 1.0, 1.0, 1.0,
+	1.0, 1.0, 1.0, 1.0,
+	1.0, 1.0, 1.0, 1.0,
+	1.0, 1.0, 1.0, 1.0
+};
 
-	glVertexPointer  	(3, GL_FLOAT, 8 * sizeof(float), vertex_data);
-  glTexCoordPointer	(2, GL_FLOAT, 8 * sizeof(float), vertex_data + 3);
-	glNormalPointer		(GL_FLOAT, 8 * sizeof(float), vertex_data + 5);
+//GLint indices[] = {0,1,2,3,2,3};
 
-	glColor4f(tex->light * highlight[0],tex->light * highlight[1],tex->light * highlight[2], tex->a);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-	glBlendFunc(tex->blend_source, tex->blend_dest);
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+glEnable(GL_TEXTURE_2D);
+glBindTexture(GL_TEXTURE_2D, tex->id);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, tex->min_filter);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, tex->mag_filter);
 
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+glEnableClientState(GL_VERTEX_ARRAY);
+glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+//glEnableClientState(GL_NORMAL_ARRAY);
+glEnableClientState(GL_COLOR_ARRAY);
+
+
+glVertexPointer(3, GL_FLOAT, 0, vertex_data);
+glTexCoordPointer(2, GL_FLOAT, 0, uv_data);
+//glNormalPointer(GL_FLOAT, 0, normal_data);
+glColorPointer(4, GL_FLOAT, 0, color_data);
+
+glEnable(GL_BLEND);
+glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+glVertexPointer(3, GL_FLOAT, 0, vertex_data);
+glDrawArrays(GL_QUADS, 0, 4);
+
+glDisableClientState(GL_VERTEX_ARRAY);
+glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+//glDisableClientState(GL_NORMAL_ARRAY);
+glDisableClientState(GL_COLOR_ARRAY);
+
 }
 
 void blackScreen(float a) {

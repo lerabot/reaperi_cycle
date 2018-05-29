@@ -81,15 +81,17 @@ void printString(char *string, int x, int y) {
 void memoryInfo(){
   long maxMem = 4077736;
   long avail = pvr_mem_available();
-  float rem;
+  double rem;
 
 
-  rem = (float) avail / maxMem * 100;
+  rem = avail / maxMem * 100;
   snprintf(mem_buf, 32, "PVR:%0.2f/100", rem);
   setParam(0, mem_buf);
 }
 
 void debugScreen() {
+  int left = 16;
+  int right = 16 * 32;
   int lineHeight = 20;
   char cursorPos[16];
 
@@ -99,10 +101,16 @@ void debugScreen() {
   {
     for (int i = 0; i < 6; i++)
     {
+      /*
       if (debugName[i] != '\0')
         writeFont(debugName[i], 16, 460 - lineHeight * i);
       if (debugData[i] != '\0')
         writeFont(debugData[i], 512, 460 - lineHeight * i);
+        */
+      if (debugName[i] != '\0')
+        bfont_draw_str(vram_s + 640 * lineHeight * i + left, 640, 1, debugName[i]);
+      if (debugData[i] != '\0')
+        bfont_draw_str(vram_s + 640 * lineHeight * i + right, 640, 1, debugData[i]);
     }
   }
 }

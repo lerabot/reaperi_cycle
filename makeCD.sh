@@ -26,9 +26,9 @@ sudo arp -s 192.168.0.99 00:d0:f1:03:14:02
 
 #start the game
 #sudo ../dc-tool-ip -t dreamcast -i ../phenix_data.iso -x main.elf
-#sudo ../dc-tool-ip -t dreamcast -c ./ -x main.elf
+sudo ../dc-tool-ip -t dreamcast -c ./ -x main.elf
 #lxdream --audio=null main.elf
 #lxdream main.elf
 #lxdream --audio=null ../$PROJECT_NAME.iso
 #reicast ../$PROJECT_NAME.cdi
-../redream ../$PROJECT_NAME.cdi
+#../redream ../$PROJECT_NAME.cdi

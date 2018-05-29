@@ -5,7 +5,6 @@
 #include <kos.h>
 #include <png/png.h>
 #include <GL/gl.h>
-#include <GL/glut.h>
 
 typedef struct _texture {
 	GLuint 		id;

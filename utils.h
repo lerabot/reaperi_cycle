@@ -8,7 +8,7 @@ int     mount_gz_romdisk(char *filename, char *mountpoint);
 int     loadFile(char *filename);
 int     loadLuaFile(lua_State *L, char *filename);
 void    setLuaState(lua_State **L);
-void    enableTrans();
+void    initGL();
 void    renderMenu();
 float   getFrameTime();
 void    quitGame();

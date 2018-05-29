@@ -8,7 +8,6 @@
 #include <zlib/zlib.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include <GL/glut.h>
 #include <malloc.h>
 #include <oggvorbis/sndoggvorbis.h>
 #include <mp3/sndserver.h>

@@ -4,8 +4,6 @@
 #include <kos.h>
 #include <png/png.h>
 #include "gl_png.h"
-#include <GL/gl.h>
-#include <GL/glut.h>
 #include <dc/vec3f.h>
 
 typedef struct part {
