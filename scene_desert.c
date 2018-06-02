@@ -16,7 +16,7 @@ void loadDesert(scene *self){
   self->updateScene = updateDesert;
 }
 
-void updateDesert(cont_state_t *state, scene *self){
+void updateDesert(scene *self){
 
   //TEMPLE
   if(over(&self->obj[2])){

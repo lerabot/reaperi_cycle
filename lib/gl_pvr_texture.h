@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <kos.h>
 #include <GL/gl.h>
-#include <GL/glut.h>
 #include "gl_png.h"
 
 GLuint glTextureLoadPVR(char *fname, texture *t, unsigned char isMipMapped, unsigned char glMipMap);

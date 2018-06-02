@@ -3,6 +3,7 @@
 
 #include "lua.h"
 
+char*   findFile(char* filename);
 int     mount_romdisk(char *filename, char *mountpoint);
 int     mount_gz_romdisk(char *filename, char *mountpoint);
 int     loadFile(char *filename);

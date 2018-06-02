@@ -4,8 +4,9 @@
 #include <kos.h>
 #include "lib/scene.h"
 
-void loadSoussol   (scene *self);
-void updateSoussol (cont_state_t *state, scene *self);
-void freeSoussol   (scene *self);
+void loadSoussol    (scene *self);
+void updateSoussol  (scene *self);
+void renderSoussol  (scene *self);
+void freeSoussol    (scene *self);
 
 #endif

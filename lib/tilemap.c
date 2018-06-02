@@ -3,7 +3,6 @@
 #include <kos/img.h>
 #include <png/png.h>
 #include <GL/gl.h>
-#include <GL/glut.h>
 #include "../global_var.h"
 #include "gl_png.h"
 #include "gl_font.h"
@@ -25,18 +24,38 @@ void generateFloor(scene* self, int texNum) {
 }
 
 void drawMap(texture *t, int x, int y) {
-  int xPos, yPos, xCenter, yCenter, xOffset, yOffset;
-  int xTile = t->w * t->uSize * t->xScale;
-  int yTile = t->h * t->vSize * t->xScale / 2;
-  int maxTile = 15;
+  int xPos, yPos, xOffset, yOffset;
+  float xCenter, yCenter;
+  float xTile = t->w * t->uSize;
+  float yTile = t->h * t->vSize / 2;
+  float maxTile = 16;
 
   xPos = yPos = 0;
-  xCenter = (xTile * maxTile/2) + xTile; //LEGIT!
-  yCenter = (yTile * maxTile/2) + yTile; //LEGIT
+  xCenter = (xTile * maxTile/2.0f) + xTile; //LEGIT!
+  yCenter = (yTile * maxTile/2.0f) + yTile; //LEGIT
 
   xOffset = (-displayPos[0]/2 / xTile);
   yOffset = (-displayPos[1]/2 / yTile);
 
+  int _i, _j;
+  for(int j = 0; j < maxTile; j++){
+    for(int i = 0; i < maxTile; i++) {
+      _i = i + xOffset;
+      _j = j + yOffset;
+      xPos = 320 + ((_i) * xTile) + ((j + xOffset) * xTile) - yCenter;
+      yPos = 240 + ((_j) * yTile) - ((i - yOffset) * yTile);
+      //xPos = (_i * xTile) - (j % 2 * xTile);
+      //yPos = (_j * yTile) - (i % 2 * yTile);
+      setAnim(t, mapData2[_i - yOffset + 100][_j + xOffset + 100]);
+      drawHex(t, xPos, yPos);
+      //snprintf(buf, 8, "%u", i + (j * mapSize));
+      //snprintf(buf, 8, "i%u j%u", _i - yOffset, _j + xOffset);
+      //writeFont(buf, xPos, yPos);
+    }
+  }
+
+
+/*
   int _i, _j;
   for(int j = 0; j < maxTile; j++){
     for(int i = 0; i < maxTile; i++) {
@@ -51,6 +70,79 @@ void drawMap(texture *t, int x, int y) {
       //writeFont(buf, xPos, yPos);
     }
   }
+*/
+}
+
+void drawHex(texture *tex, float x, float y) {
+  //trouver les coord
+  float texW = tex->w * tex->uSize * tex->xScale;
+  float texH = tex->h * tex->vSize * tex->yScale;
+  float x0 = x - texW; //LA WIDTH D'UNE TILE = tex->Size[0] * 2;
+  float y0 = y - texH / 2;
+  float x1 = x + texW;
+  float y1 = y + texH / 2;
+  float u = tex->u;
+  float v = tex->v;
+  float xS = tex->uSize;
+  float yS = tex->vSize;
+  float z = 10;
+
+  GLfloat vertex_data[] = {
+  	/* 2D Coordinate, texture coordinate */
+  	x, y1, z,
+  	x1, y, z,
+  	x, y0, z,
+  	x0, y, z
+  };
+
+  GLfloat uv_data[] = {
+  	/* 2D Coordinate, texture coordinate */
+  	u, v + yS,
+  	u + xS, v + yS,
+  	u + xS, v,
+  	u, v
+  };
+
+  GLfloat normal_data[] = {
+  	/* 2D Coordinate, texture coordinate */
+  	0.0, 0.0, -1.0,
+  	0.0, 0.0, 1.0,
+  	0.0, 0.0, 1.0,
+  	0.0, 0.0, -1.0
+  };
+
+  GLfloat color_data[] = {
+  	/* 2D Coordinate, texture coordinate */
+  	1.0, 1.0, 1.0, 1.0,
+  	1.0, 1.0, 1.0, 1.0,
+  	1.0, 1.0, 1.0, 1.0,
+  	1.0, 1.0, 1.0, 1.0
+  };
+
+  glEnable(GL_TEXTURE_2D);
+  glBindTexture(GL_TEXTURE_2D, tex->id);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+  //glEnableClientState(GL_NORMAL_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  glVertexPointer(3, GL_FLOAT, 0, vertex_data);
+  glTexCoordPointer(2, GL_FLOAT, 0, uv_data);
+  //glNormalPointer(GL_FLOAT, 0, normal_data);
+  glColorPointer(4, GL_FLOAT, 0, color_data);
+
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+  glVertexPointer(3, GL_FLOAT, 0, vertex_data);
+  glDrawArrays(GL_QUADS, 0, 4);
+
+  glDisableClientState(GL_VERTEX_ARRAY);
+  glDisableClientState(GL_COLOR_ARRAY);
+  glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 void drawMap2(texture *t, int x, int y) {
@@ -77,48 +169,4 @@ void drawMap2(texture *t, int x, int y) {
       drawHexa(t, xPos, yPos);
     }
   }
-}
-
-void drawHex(texture *tex, float x, float y) {
-  //trouver les coord
-  float texW = tex->w * tex->uSize * tex->xScale;
-  float texH = tex->h * tex->vSize * tex->yScale;
-  float x0 = x - texW; //LA WIDTH D'UNE TILE = tex->Size[0] * 2;
-  float y0 = y - texH / 2;
-  float x1 = x + texW;
-  float y1 = y + texH / 2;
-  float u = tex->u;
-  float v = tex->v;
-  float xS = tex->uSize;
-  float yS = tex->vSize;
-
-  //pack les coord
-  float vertex_data[] = {
-  	/* 2D Coordinate, texture coordinate */
-  	x0, y,  u, v + yS,
-  	x, y1,  u + xS, v + yS,
-  	x, y0,  u , v,
-    x1, y,  u + xS, v
-  };
-
-  glEnable(GL_TEXTURE_2D);
-  glBindTexture(GL_TEXTURE_2D, tex->id);
-
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-  glEnableClientState(GL_VERTEX_ARRAY);
-  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-  glVertexPointer  (2, GL_FLOAT, 4 * sizeof(float), vertex_data);
-  glTexCoordPointer(2, GL_FLOAT, 4 * sizeof(float), vertex_data + 2);
-
-  //trouver un facon de mettre le
-  glColor4f(tex->light,tex->light,tex->light, tex->a);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA);
-  glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
-
-  glDisableClientState(GL_VERTEX_ARRAY);
-  glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }

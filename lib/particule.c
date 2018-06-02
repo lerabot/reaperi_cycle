@@ -2,7 +2,6 @@
 #include <kos.h>
 #include <png/png.h>
 #include <GL/gl.h>
-#include <GL/glut.h>
 #include "particule.h"
 
 pSystem createSystem(int size, vec3f_t pos){

@@ -18,6 +18,7 @@ gameObject createObject(char *path, float x, float y, int visible){
   png_to_gl_texture(&temp.t, path);
   temp.x = x;
   temp.y = y;
+  temp.z = 0;
   temp.visible = visible;
   temp.t.a = visible;
   temp.size = 1;
@@ -27,6 +28,7 @@ gameObject createObject(char *path, float x, float y, int visible){
   temp.emitLight = 0;
   temp.name = ""; //CHECK THIS SHIT OUT
   strncpy(temp.name, path, sizeof(*path));
+  temp.desc = "";
   return(temp);
 }
 
@@ -149,7 +151,7 @@ void moveObject(gameObject *object, float x, float y){
 }
 
 void drawObject(gameObject *object){
-  draw_textured_quad(&object->t, object->x, object->y);
+  draw_textured_quad(&object->t, object->x, object->y, object->z);
 }
 
 void setTexture(gameObject *object, texture *t){

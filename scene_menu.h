@@ -6,6 +6,7 @@
 
 void loadMenu(scene *s);
 void freeMenu(scene *s);
-void updateMenu(cont_state_t *state, scene *self);
+void renderIntro(scene *s);
+void updateMenu(scene *self);
 
 #endif

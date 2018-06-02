@@ -1,10 +1,35 @@
 #include <kos.h>
+#include <string.h>
+#include <unistd.h>
 #include <zlib/zlib.h>
 #include "header.h"
-
 #include "lua.h"
 #include "lauxlib.h"
 #include "lualib.h"
+
+int l_game_state;
+
+
+char* findFile(char *filename) {
+  FILE *file;
+  char *dest[3];
+  char *path = "";
+
+
+  dest[0] = "/cd";
+  dest[1] = "/pc";
+  dest[2] = "/sd";
+
+  for(int i = 0; i < 3; i ++){
+    snprintf(path, 50, "%s%s", dest[i], filename);
+    if (file = fopen(path, "r")){
+      fclose(file);
+      setParam(1, path);
+      return(path);
+    }
+  }
+  return("NoFile!");
+}
 
 int mount_romdisk(char *filename, char *mountpoint){
   void *buffer;
@@ -12,9 +37,9 @@ int mount_romdisk(char *filename, char *mountpoint){
   char *dest[3];
   int length;
 
-  dest[0] = "/cd/";
-  dest[1] = "/pc/";
-  dest[2] = "/sd/";
+  dest[0] = "/cd";
+  dest[1] = "/pc";
+  dest[2] = "/sd";
 
   for(int i = 0; i < 3; i ++){
     snprintf(path, 50, "%s%s", dest[i], filename);
@@ -89,17 +114,22 @@ void setLuaState(lua_State **L_state) {
   luaopen_io(*L_state);
 }
 
-int menuOn = -1;
 void toggleMenu() {
-  if (buttonPressed(CONT_Y))
-    menuOn = -menuOn;
+  if (buttonPressed(CONT_START)) {
+    if(game_state != MENU) {
+      l_game_state = game_state;
+      game_state = MENU;
+    }
+    else
+      game_state = l_game_state;
+  }
 }
 
 int cMenu = 0;
 void renderMenu() {
   char *option[4] = {"Return to Menu", "Save (not yet)", "Load (not yet)", "Quit Game (DEV ONLY)"};
   toggleMenu();
-  if (menuOn == 1) {
+  if (game_state == MENU) {
     if(buttonPressed(CONT_DPAD_DOWN) && cMenu < 3)
       cMenu++;
     if(buttonPressed(CONT_DPAD_UP) && cMenu > 0)
@@ -110,12 +140,10 @@ void renderMenu() {
       case 0:
         currentScene->freeScene(currentScene);
         loadMenu(tempScene);
-        menuOn = -1;
         break;
       case 1:
         currentScene->freeScene(currentScene);
         loadSoussol(tempScene);
-        menuOn = -1;
         break;
       case 2:
         break;
@@ -126,10 +154,10 @@ void renderMenu() {
 
     for(int i = 0; i < 4; i++) {
       if (i == cMenu)
-        setColor(1.0, 0.0, 0.0);
+        fontColor(1.0, 0.0, 0.0);
 
       writeFont(option[i], 320 - (strlen(option[i])/2 * 10), (240 + 20) - (20 * i));
-      resetColor();
+      resetFontColor();
     }
   }
 }
@@ -138,18 +166,15 @@ void initGL() // We call this right after our OpenGL window is created.
 {
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// This Will Clear The Background Color To Black
   glClearDepth(1.0);				// Enables Clearing Of The Depth Buffer
-  glDepthFunc(GL_LESS);				// The Type Of Depth Test To Do
-  glEnable(GL_DEPTH_TEST);			// Enables Depth Testing
+  //glDepthFunc(GL_LESS);				// The Type Of Depth Test To Do
+  //glEnable(GL_DEPTH_TEST);			// Enables Depth Testing
   glShadeModel(GL_SMOOTH);			// Enables Smooth Color Shading
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();				// Reset The Projection Matrix
-  glOrtho(0.0, 1.0, 0.0, 1.0, -100.0, 100.0);
-  glScalef(1.f/320.f, 1.f/240.f, 100.f);
-  glTranslatef(-320, -240, 0);
-
+  glOrtho(0.0, 640.0, 0.0, 480.0, -100.0, 100.0);
   //gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,100.0f);
   //glScalef(0.75, 1, 1);
   //glScalef(0.1, 0.1, 0.1);

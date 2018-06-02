@@ -2,7 +2,6 @@
 #include <string.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include <GL/glut.h>
 #include <math.h>
 #include "gl_png.h"
 #include "gl_font.h"
@@ -10,7 +9,6 @@
 #include "../global_var.h"
 
 font f;
-
 texture box;
 texture portrait;
 char *portraitFile;
@@ -18,6 +16,7 @@ char boxText[196] = "";
 
 int textActive = 0;
 int showDialog = 0;
+int showPortait = 0;
 int portraitX, portraitY;
 float frame;
 float screenAlpha;
@@ -57,11 +56,13 @@ void    renderDialog() {
   int x = 56 + margin * 2;
   int y = 100 + 64 - margin;
 
-  if(textActive != 0 && buttonPressed(CONT_B))
-    showDialog = textActive = 0;
+  if(textActive != 0 && buttonPressed(CONT_A)) {
+    showDialog = showPortait = textActive = 0;
+    game_state = EXPLORATION;
+  }
 
   //show dialog animation
-  if(showDialog != 0 && frame < 90) {
+  if(textActive != 0 && frame < 90) {
     //portraitX = sin(frame * (3.1416 / 180)) * 320;
     portraitY = sin(frame * (3.1416 / 180)) * 240;
     frame += speed;
@@ -71,26 +72,27 @@ void    renderDialog() {
   }
 
   //Remove dialog animation
-  if(showDialog == 0 && frame > -90) {
+  if(textActive == 0 && frame > -90) {
     //portraitX = sin(frame * (3.1416 / 180)) * 320;
     portraitY = sin(frame * (3.1416 / 180)) * 240;
     frame -= speed;
     box.a -= aSpeed;
-
     showController();
   }
 
-  blackScreen(box.a);
+  //blackScreen(box.a);
 
-  if(strlen(portrait.path) > 1)
-    draw_textured_quad(&portrait, portraitX, portraitY);
+  //draw the portait
+  if(showPortait == 1)
+    draw_textured_quad(&portrait, portraitX, portraitY, -1);
 
+  //render the text
   if (showDialog > 1) {
-    draw_textured_quad(&box, 320, 100);
-    if(showDialog != 0 && frame > 70) {
-      if(portraitY > 200)
-        writeFontDelay(boxText, x, y, 6);
-    }
+    //text box
+    draw_textured_quad(&box, 320, 100, -2);
+    if((showDialog != 0 && frame > 40) || showPortait == 0)
+      writeFontDelay(boxText, x, y, 6);
+
   }
 }
 
@@ -100,17 +102,32 @@ void    setDialog(char *s, char *filename) {
   showDialog = strlen(s);
   textActive = 1;
 
-  if (strcmp(filename, portraitFile) != 0) {
+  if (strcmp(filename, "") == 0) {
+    showPortait = 0;
+    //showDialog = 2;
+  } else if (strcmp(filename, portraitFile) != 0) {
     glDeleteTextures(1, &portrait.id);
     png_to_gl_texture(&portrait, filename);
     portraitFile = filename;
+    showPortait = 1;
   }
   //setString(0, portraitFile);
   len = 0;
+  game_state = DIALOG;
 }
 
 void    resetText() {
   len = 0;
+}
+
+void    fontColor(float r, float g, float b) {
+  f.txtFont.color[0] = r;
+  f.txtFont.color[1] = g;
+  f.txtFont.color[2] = b;
+}
+
+void    resetFontColor() {
+  f.txtFont.color[0] = f.txtFont.color[1] = f.txtFont.color[2] = 1.0f;
 }
 
 void    writeFont(char *string, int x, int y){
@@ -123,7 +140,7 @@ void    writeFont(char *string, int x, int y){
   for (int i = 0; i < l; i++){
     glyph = *string;
     setChar(glyph);
-    draw_textured_quad(&f.txtFont, x + (c*cellSize), y - (line * 16));
+    draw_textured_quad(&f.txtFont, x + (c*cellSize), y - (line * 16), -3);
     c++;
     string++;
     if (glyph == '\n') {
@@ -135,6 +152,7 @@ void    writeFont(char *string, int x, int y){
 
 int     writeFontDelay(char *string, int x, int y, int delay){
   int cellSize = 10; //char width
+  int maxGlyph = 36;
   int c = 0; //char number
   int line = 0;
   int l = strlen(string);
@@ -145,11 +163,11 @@ int     writeFontDelay(char *string, int x, int y, int delay){
   for (int i = 0; i < len; i++){
     glyph = nString[i];
     setChar(glyph);
-    draw_textured_quad(&f.txtFont, x + (c*cellSize), y - (line * 16));
+    draw_textured_quad(&f.txtFont, x + (c*cellSize), y - (line * 16), -3);
     c++;
     if (c == l)
       c = line = 0;
-    if (glyph == '\n' || (c > 30 && glyph == ' ' )) {
+    if (glyph == '\n' || (c > maxGlyph && glyph == ' ' )) {
       line++;
       c = 0;
     }

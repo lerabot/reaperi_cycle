@@ -10,8 +10,8 @@ KOS_INIT_ROMDISK(romdisk);
 maple_device_t  *cont;
 cont_state_t    *state;
 uint64          begin, end, t_diff;
-pvr_stats_t     stats;
 int             game_active = 1;
+int             game_state = 0;
 
 scene     *currentScene;
 scene     *tempScene;
@@ -32,7 +32,6 @@ int main()
   //sounds stuff
   snd_stream_init();
   sndoggvorbis_init();
-  //mp3_init();
 
   setLuaState(&L);
   setLuaState(&t_data);
@@ -43,55 +42,35 @@ int main()
   tempScene = malloc(sizeof(scene));
   currentScene = malloc(sizeof(scene));
   tempScene = currentScene;
-  loadTemple(currentScene);
+  loadSoussol(currentScene);
 
-  png_to_gl_texture(&t, "/rd/DFKei.png");
-  setInt(1, glIsTexture(t.id));
-
-
-  uint64_t b, e;
-  double avg;
-  char buf[24];
   while(game_active)
   {
-    b =  timer_us_gettime64();
-
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     if (tempScene != currentScene) {
       free(tempScene);
       *currentScene = *tempScene;
     }
 
-    pvr_get_stats(&stats);
+    //UPDATE
     updatePlayer();
+    if(game_state == EXPLORATION)
+      currentScene->updateScene(currentScene);
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glPushMatrix();
-    glTranslated((int)displayPos[0], (int)displayPos[1], displayPos[2]);
-    drawScene(currentScene);
+    //GAME RENDER
+    currentScene->renderScene(currentScene);
     drawCursor();
 
-    //FIX THIS SHIT
-    currentScene->updateScene(state, currentScene);
-    //post transform - GUI stuff
-    glPopMatrix();
-    renderDialog();
+    //OVERLAYS
     renderMenu();
+    if (game_state == DIALOG)
+      renderDialog();
+
     debugScreen();
+
     glKosSwapBuffers();
-
-    //adds the buttons to the previously pressed button
-    p1.pstate.buttons &= p1.state->buttons;
     frameCount++;
-
-    if(buttonPressed(CONT_Y))
-      game_active = 0;
-
-    e =  timer_us_gettime64();
-    avg = (double)(e - b)/1000;
-    if (frameCount % 30 == 0) {
-      sprintf(buf, "Frame:%.4f", stats.frame_rate);
-      setParam(2, buf);
-    }
+    p1.pstate.buttons &= p1.state->buttons;
   }
   return(0);
 }

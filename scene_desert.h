@@ -6,6 +6,6 @@
 
 void loadDesert(scene *s);
 void freeDesert(scene *s);
-void updateDesert(cont_state_t *state, scene *self);
+void updateDesert(scene *self);
 
 #endif

@@ -23,19 +23,15 @@ typedef struct _scene
   char        *bgm;
   sfxhnd_t    *snd; // sfx
 
-  void (* updateGUI)(struct _scene *self);
-  void (* updateScene)(cont_state_t *, struct _scene *self);
+  void (* renderScene)(struct _scene *self);
+  void (* updateScene)(struct _scene *self);
   void (* freeScene)(struct _scene *self);
 
 } scene;
 
-
-void  updateLoading();
-scene loadLoading();
-void  drawScene();
+void  loadMapData(scene *self, char* filename);
 void  setMapInfo(scene *s, int x, int y, int xStart, int yStart);
-scene loadScene(scene (*loader)());
-void  freeScene2();
-void  drawAllTex();
+void  renderScene(scene *self);
+void  updateScene(scene *self);
 
 #endif

@@ -3,7 +3,7 @@
 #include <string.h>
 #include "header.h"
 #include "scene_menu.h"
-
+#include "global_var.h"
 
 char *map[4] = {"Temple", "Sous-sol", "Jardin", "Desert"};
 int   mapSelect = 0;
@@ -30,11 +30,29 @@ void loadMenu(scene* self) {
   //self->bgm = "/pc/music/title.mp3";
   //mp3_start(self->bgm, 1);
 
+  game_state = EXPLORATION;
+
+  self->renderScene = renderIntro;
   self->updateScene = updateMenu;
-  self->freeScene = freeMenu;
+  self->freeScene   = freeMenu;
 }
 
-void updateMenu(cont_state_t *state, scene *self){
+void renderIntro(scene *s){
+  glPushMatrix();
+  glTranslated((int)displayPos[0], (int)displayPos[1], displayPos[2]);
+  if (s != NULL)
+  {
+    if (s->floorTex != -1)
+      drawMap(&s->obj[s->floorTex].t, s->mapSize[0]/2, s->mapSize[1]/2);
+
+    for (int i = 0; i < s->objNum; i++){
+      drawObject(&s->obj[i]);
+    }
+  }
+  glPopMatrix();
+}
+
+void updateMenu(scene *self){
   char buf[32];
 
   nextFrame(&self->obj[0], 5);
@@ -73,7 +91,7 @@ void freeMenu(scene *self){
   //mp3_stop();
   glDeleteTextures(1, &self->obj[0].t.id);
   glDeleteTextures(1, &self->obj[1].t.id);
-  
+
   free(self->obj);
   fs_romdisk_unmount("/rd");
 }

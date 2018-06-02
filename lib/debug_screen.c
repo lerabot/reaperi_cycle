@@ -2,6 +2,7 @@
 #include <kos/string.h>
 #include <stdio.h>
 #include "gl_font.h"
+#include "../global_var.h"
 
 char *debugData[6];
 char *debugName[6];
@@ -11,7 +12,7 @@ int visible = 0;
 int release = 0;
 
 void toggleDebug(cont_state_t *state) {
-  if (state->buttons & CONT_START)
+  if (state->buttons & CONT_Y)
   {
     if (release == 0)
     {
@@ -81,10 +82,9 @@ void printString(char *string, int x, int y) {
 void memoryInfo(){
   long maxMem = 4077736;
   long avail = pvr_mem_available();
-  double rem;
+  float rem;
 
-
-  rem = avail / maxMem * 100;
+  rem = (avail / maxMem) * 100.0;
   snprintf(mem_buf, 32, "PVR:%0.2f/100", rem);
   setParam(0, mem_buf);
 }
@@ -94,23 +94,34 @@ void debugScreen() {
   int right = 16 * 32;
   int lineHeight = 20;
   char cursorPos[16];
+  pvr_stats_t stats;
 
   bfont_set_encoding(BFONT_CODE_ISO8859_1);
   memoryInfo();
+
+
+
+  char buf[32];
+  pvr_get_stats(&stats);
+  sprintf(buf, "Frame:%.2f", stats.frame_rate);
+  setParam(2, buf);
+
   if (visible == 1)
   {
     for (int i = 0; i < 6; i++)
     {
-      /*
+
       if (debugName[i] != '\0')
         writeFont(debugName[i], 16, 460 - lineHeight * i);
       if (debugData[i] != '\0')
         writeFont(debugData[i], 512, 460 - lineHeight * i);
-        */
+
+        /*
       if (debugName[i] != '\0')
         bfont_draw_str(vram_s + 640 * lineHeight * i + left, 640, 1, debugName[i]);
       if (debugData[i] != '\0')
         bfont_draw_str(vram_s + 640 * lineHeight * i + right, 640, 1, debugData[i]);
+        */
     }
   }
 }

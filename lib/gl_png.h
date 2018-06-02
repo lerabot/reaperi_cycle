@@ -20,6 +20,7 @@ typedef struct _texture {
 	float 		xScale, yScale; //render scale
 	float 		a; //alpha
 	float 		light; //alpha
+	float 		color[3];
 	char  		path[32];
 
 } texture;
@@ -27,7 +28,7 @@ typedef struct _texture {
 //loaders
 int 	png_to_gl_texture(texture *tex, char const * const filename);
 int 	getAtlasData(texture *t, char *path);
-void 	draw_textured_quad(texture *tex, float x0, float y0);
+void 	draw_textured_quad(texture *tex, float x, float y, float z);
 void 	blackScreen(float a);
 //set UV size
 void 	setUV(texture *tex, float u, float v);
@@ -37,8 +38,6 @@ void 	setUVHex(texture *tex, float xSize, float ySize);
 void 	setAnim(texture *tex, int a);
 void 	flipU(texture *tex);
 void  setLight(texture *tex, float brightness);
-void 	setColor(float r, float g, float b);
-void 	resetColor();
 void 	setScale(texture *tex, float scale);
 void 	setPattern(texture *tex, int x, int y);
 

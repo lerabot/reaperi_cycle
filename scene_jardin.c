@@ -19,7 +19,7 @@ void loadJardin(scene* self) {
   self->freeScene = freeJardin;
 }
 
-void updateJardin(cont_state_t *state, scene *self){
+void updateJardin(scene *self){
 
   //TEMPLE
   if(over(&self->obj[3])){

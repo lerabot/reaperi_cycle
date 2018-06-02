@@ -1,0 +1,111 @@
+{"frames": [
+
+{
+	"filename": "barrel_1.png",
+	"frame": {"x":451,"y":1,"w":33,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":33,"h":76},
+	"sourceSize": {"w":33,"h":76},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "barrel_2.png",
+	"frame": {"x":1,"y":456,"w":32,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":50},
+	"sourceSize": {"w":32,"h":50},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "barrel_3.png",
+	"frame": {"x":35,"y":456,"w":33,"h":42},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":33,"h":42},
+	"sourceSize": {"w":33,"h":42},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "barrel_4.png",
+	"frame": {"x":252,"y":1,"w":62,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":62,"h":64},
+	"sourceSize": {"w":62,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "boite_1.png",
+	"frame": {"x":317,"y":1,"w":132,"h":115},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":132,"h":115},
+	"sourceSize": {"w":132,"h":115},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "boite_2.png",
+	"frame": {"x":252,"y":118,"w":100,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":107},
+	"sourceSize": {"w":100,"h":107},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "boite_3.png",
+	"frame": {"x":70,"y":456,"w":34,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":34,"h":36},
+	"sourceSize": {"w":34,"h":36},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "boite_4.png",
+	"frame": {"x":354,"y":118,"w":71,"h":65},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":71,"h":65},
+	"sourceSize": {"w":71,"h":65},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "mur_1.png",
+	"frame": {"x":1,"y":1,"w":249,"h":226},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":249,"h":226},
+	"sourceSize": {"w":249,"h":226},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "mur_2.png",
+	"frame": {"x":1,"y":229,"w":156,"h":225},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":156,"h":225},
+	"sourceSize": {"w":156,"h":225},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "mur_3.png",
+	"frame": {"x":159,"y":229,"w":156,"h":225},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":156,"h":225},
+	"sourceSize": {"w":156,"h":225},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "spritesheet.png",
+	"format": "RGBA5551",
+	"size": {"w":512,"h":512},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:e6fa9cb1b15f2fcffa6098aaf9b797f1:cf45c0b37abbfa32987f14cb7f606ffa:729adc6043343cfda41c447ce8f464d6$"
+}
+}

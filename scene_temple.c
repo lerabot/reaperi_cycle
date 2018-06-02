@@ -1,4 +1,4 @@
-#include <kos.h>                                                                                                                        
+#include <kos.h>                                                                                                  
 #include <stdlib.h>
 #include <string.h>
 #include "header.h"
@@ -36,10 +36,8 @@ void loadTemple(scene* self) {
 void updateTemple(cont_state_t *state, scene *self){
   char* buf;
 
-  setColor(1, 0, 0);
   drawObject(marchand);
   drawObject(golem);
-  resetColor();
 
   if(clicked(marchand, CONT_A)) {
     lua_getglobal(L, "setDialog");

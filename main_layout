@@ -1,0 +1,13 @@
+update player
+  update controller
+
+update scene logic
+
+render scene
+  draw floor
+  draw obj
+  draw extra
+
+rendr overlays
+  DIALOG
+  MENU

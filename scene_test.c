@@ -13,48 +13,38 @@ gameObject portrait;
 roq_callbacks_t cbs;
 
 void loadTest(scene* self) {
-  setMapInfo(self, 640, 480, 320, 240);
-  /*
-  mount_romdisk("asset/rd_test.img.gz", "/rd");
+  mount_romdisk("/asset/rd_test.img.gz", "/rd");
+  loadMapData(self, "/rd/map_guild2.svg");
+
   generateFloor(self, -1);
+  setPosition(320, 240);
 
-  loadTestData(self);
-  setMapInfo(self, 1000, 1000, 320, 240);
-
-  cbs.render_cb = render_cb;
-  cbs.audio_cb = audio_cb;
-  cbs.quit_cb = quit_cb;
-  cbs.finish_cb = finish_cb;
-
-  //self->bgm = "/cd/music/soussol.ogg";
-  //sndoggvorbis_start(self->bgm, 1);
-
-  //loadLuaFile(t_data, "/rd/json.lua");
-  loadLuaFile(t_data, "/rd/jsontest.lua");
-
-  portrait = createObject("/rd/data_map.png", 320, 240, 1);
-  getAtlasData(&portrait.t, "autel.png");
-
-  lua_getglobal(t_data, "loadXML");
-  lua_pcall(t_data, 0, 1, 0);
-  //lua_settop(t_data, 0);
-  setParam(2, lua_tostring(t_data, -1));
-  char *buf = lua_tostring(t_data, -1);
-  setDialog(buf, "");
-  */
-
-  self->objNum = 0;
+  game_state = EXPLORATION;
+  self->renderScene = renderTest;
   self->updateScene = updateTest;
   self->freeScene = freeTest;
 }
 
+void renderTest(scene *self){
+  glPushMatrix();
+  glTranslated((int)displayPos[0], (int)displayPos[1], displayPos[2]);
+  if (self != NULL)
+  {
+    if (self->floorTex != -1)
+      drawMap(&self->obj[self->floorTex].t, self->mapSize[0]/2, self->mapSize[1]/2);
 
-void _updateGUI(scene *self){
-  if(buttonPressed(CONT_A))
-    toggleDialog();
+    for (int i = 0; i < self->objNum; i++){
+      drawObject(&self->obj[i]);
+    }
+
+    //drawObject(&sprite_t);
+    //updateLight(self);
+    //updateEnigme(self);
+  }
+  glPopMatrix();
 }
 
-void updateTest(cont_state_t *state, scene *self){
+void updateTest(scene *self){
   /*
   drawObject(&portrait);
 

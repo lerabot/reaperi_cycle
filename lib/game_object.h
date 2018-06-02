@@ -11,7 +11,8 @@ typedef struct game_object {
   int     active;
   char    *script;
   char    *name;
-  float   x, y, angle;
+  char    *desc;
+  float   x, y, z, angle;
   float   emitLight;
   texture t;
 } gameObject;

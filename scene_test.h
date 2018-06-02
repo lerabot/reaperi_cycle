@@ -6,7 +6,8 @@
 
 void loadTest(scene *s);
 //void updateGUI(scene *self);
+void renderTest(scene *s);
 void freeTest(scene *s);
-void updateTest(cont_state_t *state, scene *self);
+void updateTest(scene *self);
 
 #endif

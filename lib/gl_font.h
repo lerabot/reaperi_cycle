@@ -31,6 +31,9 @@ int     writeFontDelay(char *string, int x, int y, int delay);
 void    setFontAlpha(float a);
 void    setChar(int c);
 void    resetText();
+/////////////////////////
+void    fontColor(float r, float g, float b);
+void    resetFontColor();
 
 
 #endif

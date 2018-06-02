@@ -34,18 +34,17 @@ player      initPlayer(int playerNum) {
     return(temp);
 }
 
-void updatePlayer() {
+void        updatePlayer() {
   updateController();
   updateItem();
+  movePlayer();
+  toggleDebug(p1.state);
 }
 
-void        updateController() {
-  p1.cont = maple_enum_type(0, MAPLE_FUNC_CONTROLLER);
+void        movePlayer() {
   int cursorSpeed = p1.cSpeed;
 
-  if (p1.cont){
-    p1.state = (cont_state_t *)maple_dev_status(p1.cont);
-
+  if (game_state == EXPLORATION) {
     if (p1.state->buttons & CONT_DPAD_DOWN)
       p1.obj.y -= cursorSpeed;
     if (p1.state->buttons & CONT_DPAD_UP)
@@ -66,21 +65,25 @@ void        updateController() {
       p1.obj.y -= cursorSpeed;
     if (p1.obj.y < 0 + edgeSize)
       p1.obj.y += cursorSpeed;
-
-    direction[0] = 320 - displayPos[0] - p1.obj.x;
-    direction[1] = 240 - displayPos[1] - p1.obj.y;
-
-    velocity[0] = direction[0] / 100 * 2.5;
-    velocity[1] = direction[1] / 100 * 2.5;
-
-    displayPos[0] += velocity[0];
-    displayPos[1] += velocity[1];
-
-    velocity[0] *= 0.99;
-    velocity[1] *= 0.99;
-
-    toggleDebug(p1.state);
   }
+  direction[0] = 320 - displayPos[0] - p1.obj.x;
+  direction[1] = 240 - displayPos[1] - p1.obj.y;
+
+  velocity[0] = direction[0] / 100 * 2.5;
+  velocity[1] = direction[1] / 100 * 2.5;
+
+  displayPos[0] += velocity[0];
+  displayPos[1] += velocity[1];
+
+  velocity[0] *= 0.99;
+  velocity[1] *= 0.99;
+}
+
+void        updateController() {
+  p1.cont = maple_enum_type(0, MAPLE_FUNC_CONTROLLER);
+
+  if (p1.cont)
+    p1.state = (cont_state_t *)maple_dev_status(p1.cont);
 }
 
 void        updateItem() {
@@ -108,8 +111,8 @@ void        addItem(gameObject *target, char *path) {
   }
 }
 
+/*
 void        displayInventory() {
-  /*
   for(int i = 0; i < p1.inventorySize; i++) {
     //if (i == cMenu)
       //setColor(1.0, 0.0, 0.0);
@@ -120,9 +123,8 @@ void        displayInventory() {
     int _y = 240 + cos((2 * 3.1416) / p1.inventorySize * i) * 50;
     draw_textured_quad(&inventory->t, _x, _y);
   }
-  */
 }
-
+*/
 void        setItem(gameObject *target) {
   if (hasItem())
     dropItem();
@@ -239,22 +241,21 @@ void        setPosition(int x, int y) {
 }
 
 void        hideController(){
-  p1.obj.t.a = 0;
   p1.cSpeed = 0;
+  p1.obj.visible = 0;
 }
 
 void        showController(){
-  p1.obj.t.a = 1;
   p1.cSpeed = 3;
+  p1.obj.visible = 1;
 }
 
 void        drawCursor() {
+  glPushMatrix();
+  glTranslated((int)displayPos[0], (int)displayPos[1], displayPos[2]);
   if (p1.obj.visible) {
-    //draw_textured_quad(&p1.obj.t, p1.obj.x, p1.obj.y);
-    //writeFont(currentItem, p1.obj.x, p1.obj.y + 20);
-
     if(p1.currentItem != NULL)
       drawObject(p1.currentItem);
-
   }
+  glPopMatrix();
 }

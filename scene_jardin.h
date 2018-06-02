@@ -6,6 +6,6 @@
 
 void loadJardin(scene *s);
 void freeJardin(scene *s);
-void updateJardin(cont_state_t *state, scene *self);
+void updateJardin(scene *self);
 
 #endif

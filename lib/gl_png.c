@@ -11,7 +11,6 @@
 #define CLEANUP(x) { ret = (x); goto cleanup; }
 
 float light = 1;
-GLfloat highlight[] = {1, 1, 1};
 
 int png_to_gl_texture(texture * tex, char const * const filename) {
 	int ret = 0;
@@ -105,6 +104,7 @@ int png_to_gl_texture(texture * tex, char const * const filename) {
 	tex->u = 0.f;
 	tex->v = 0.f;
 	tex->a = tex->light = 1;
+	tex->color[0] = tex->color[1] = tex->color[2] = 1.0f;
 	tex->uSize = tex->vSize = 1.f;
 	tex->xScale = tex->yScale = 1.f;
 	tex->format = texture_format;
@@ -217,16 +217,6 @@ void flipU(texture *tex){
 	tex->xScale = -1;
 }
 
-void setColor(float r, float g, float b){
-	highlight[0] = r;
-	highlight[1] = g;
-	highlight[2] = b;
-}
-
-void resetColor() {
-	highlight[0] = highlight[1] = highlight[2] = 1.0;
-}
-
 void setAnim(texture *tex, int a){ // exemple avec index
 	float u = tex->uSize;
 	float v = tex->vSize;
@@ -262,7 +252,7 @@ void setLight(texture *tex, float light){
 		tex->light = 0;
 }
 
-void draw_textured_quad(texture *tex, float x, float y) {
+void draw_textured_quad(texture *tex, float x, float y, float z) {
 	GLfloat texW = tex->w * tex->uSize * tex->xScale;
 GLfloat texH = tex->h * tex->vSize * tex->yScale;
 //texW = 10;
@@ -275,7 +265,6 @@ GLfloat u = tex->u;
 GLfloat v = tex->v;
 GLfloat xS = tex->uSize;
 GLfloat yS = tex->vSize;
-GLfloat z = -10;
 
 
 GLfloat vertex_data[] = {
@@ -304,10 +293,10 @@ GLfloat normal_data[] = {
 
 GLfloat color_data[] = {
 	/* 2D Coordinate, texture coordinate */
-	1.0, 1.0, 1.0, 1.0,
-	1.0, 1.0, 1.0, 1.0,
-	1.0, 1.0, 1.0, 1.0,
-	1.0, 1.0, 1.0, 1.0
+	tex->color[0], tex->color[1], tex->color[2], tex->a,
+	tex->color[0], tex->color[1], tex->color[2], tex->a,
+	tex->color[0], tex->color[1], tex->color[2], tex->a,
+	tex->color[0], tex->color[1], tex->color[2], tex->a
 };
 
 //GLint indices[] = {0,1,2,3,2,3};
@@ -322,7 +311,6 @@ glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 //glEnableClientState(GL_NORMAL_ARRAY);
 glEnableClientState(GL_COLOR_ARRAY);
 
-
 glVertexPointer(3, GL_FLOAT, 0, vertex_data);
 glTexCoordPointer(2, GL_FLOAT, 0, uv_data);
 //glNormalPointer(GL_FLOAT, 0, normal_data);
@@ -333,6 +321,7 @@ glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 glVertexPointer(3, GL_FLOAT, 0, vertex_data);
 glDrawArrays(GL_QUADS, 0, 4);
+
 
 glDisableClientState(GL_VERTEX_ARRAY);
 glDisableClientState(GL_TEXTURE_COORD_ARRAY);
