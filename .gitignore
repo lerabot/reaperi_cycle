@@ -1,4 +1,7 @@
 *.png
 *.wav
 *.ogg
+*.mp3
+*.gch
+*.gz
 *.o
