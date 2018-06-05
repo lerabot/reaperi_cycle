@@ -57,13 +57,11 @@ void    renderDialog() {
   int y = 100 + 64 - margin;
 
   if(textActive != 0 && buttonPressed(CONT_A)) {
-    showDialog = showPortait = textActive = 0;
-    game_state = EXPLORATION;
+    textActive = 0; //should try to check for next text.
   }
 
   //show dialog animation
   if(textActive != 0 && frame < 90) {
-    //portraitX = sin(frame * (3.1416 / 180)) * 320;
     portraitY = sin(frame * (3.1416 / 180)) * 240;
     frame += speed;
     box.a += aSpeed;
@@ -73,35 +71,42 @@ void    renderDialog() {
 
   //Remove dialog animation
   if(textActive == 0 && frame > -90) {
-    //portraitX = sin(frame * (3.1416 / 180)) * 320;
     portraitY = sin(frame * (3.1416 / 180)) * 240;
     frame -= speed;
     box.a -= aSpeed;
     showController();
   }
 
-  //blackScreen(box.a);
+  if (textActive == 0 && frame <= -80) { //
+    game_state = EXPLORATION;
+  }
 
   //draw the portait
   if(showPortait == 1)
-    draw_textured_quad(&portrait, portraitX, portraitY, -1);
+    draw_textured_quad(&portrait, portraitX, portraitY, 5.0);
 
-  //render the text
-  if (showDialog > 1) {
-    //text box
-    draw_textured_quad(&box, 320, 100, -2);
-    if((showDialog != 0 && frame > 40) || showPortait == 0)
+  if(showDialog != 0) {
+    draw_textured_quad(&box, 320, 100, 5.0);
+    if(frame > 40)
       writeFontDelay(boxText, x, y, 6);
-
   }
 }
 
 void    setDialog(char *s, char *filename) {
-  memcpy(boxText, s, strlen(s));
-  boxText[strlen(s)] = '\0';
-  showDialog = strlen(s);
-  textActive = 1;
 
+  //Check for the dialog lenght
+  if (strlen(s) > 2) {
+    memcpy(boxText, s, strlen(s));
+    boxText[strlen(s)] = '\0';
+    showDialog = strlen(s);
+    textActive = 1;
+  } else {
+    boxText[0] = '\0';
+    textActive = 0;
+    showDialog = 0;
+  }
+
+  //check for the filename lenght
   if (strcmp(filename, "") == 0) {
     showPortait = 0;
     //showDialog = 2;
@@ -111,7 +116,6 @@ void    setDialog(char *s, char *filename) {
     portraitFile = filename;
     showPortait = 1;
   }
-  //setString(0, portraitFile);
   len = 0;
   game_state = DIALOG;
 }
@@ -140,7 +144,7 @@ void    writeFont(char *string, int x, int y){
   for (int i = 0; i < l; i++){
     glyph = *string;
     setChar(glyph);
-    draw_textured_quad(&f.txtFont, x + (c*cellSize), y - (line * 16), -3);
+    draw_textured_quad(&f.txtFont, x + (c*cellSize), y - (line * 16), 9);
     c++;
     string++;
     if (glyph == '\n') {
@@ -163,7 +167,7 @@ int     writeFontDelay(char *string, int x, int y, int delay){
   for (int i = 0; i < len; i++){
     glyph = nString[i];
     setChar(glyph);
-    draw_textured_quad(&f.txtFont, x + (c*cellSize), y - (line * 16), -3);
+    draw_textured_quad(&f.txtFont, x + (c*cellSize), y - (line * 16), 9);
     c++;
     if (c == l)
       c = line = 0;

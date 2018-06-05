@@ -42,7 +42,7 @@ int main()
   tempScene = malloc(sizeof(scene));
   currentScene = malloc(sizeof(scene));
   tempScene = currentScene;
-  loadSoussol(currentScene);
+  loadTemple(currentScene);
 
   while(game_active)
   {
@@ -55,13 +55,14 @@ int main()
     //UPDATE
     updatePlayer();
     if(game_state == EXPLORATION)
-      currentScene->updateScene(currentScene);
+      updateScene(currentScene);
 
     //GAME RENDER
-    currentScene->renderScene(currentScene);
+    glEnable(GL_LIGHTING);
+    renderScene(currentScene);
     drawCursor();
 
-    //OVERLAYS
+    glDisable(GL_LIGHTING);
     renderMenu();
     if (game_state == DIALOG)
       renderDialog();

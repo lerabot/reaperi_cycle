@@ -26,8 +26,7 @@ gameObject createObject(char *path, float x, float y, int visible){
   temp.cFrame = 0;
   temp.active = 1;
   temp.emitLight = 0;
-  temp.name = ""; //CHECK THIS SHIT OUT
-  strncpy(temp.name, path, sizeof(*path));
+  temp.name = "";
   temp.desc = "";
   return(temp);
 }

@@ -52,25 +52,24 @@ void loadMapData(scene *self, char* filename) {
   lua_pcall(t_data, 1, 1, 0);
   lua_settop(t_data, 0);
 
-
+  int depth = 0;
   self->obj = malloc(sizeof(gameObject) * self->objNum);
   for (int i = 0; i < self->objNum; i++) { //LUA OFFSET!!!!
     lua_getglobal(t_data, "createObject");
     lua_pushnumber(t_data, i+1);
-    lua_pcall(t_data, 1, 10, 0);
+    lua_pcall(t_data, 1, 9, 0);
     self->obj[i] = createObject("", 0, 0, 1);
     self->obj[i].t = spritesheet.t;
     self->obj[i].x =        lua_tonumber(t_data, 1);
     self->obj[i].y =        lua_tonumber(t_data, 2);
-    self->obj[i].z =        1;
-    //self->obj[i].t.w =      lua_tonumber(t_data, 3);
-    //self->obj[i].t.h =      lua_tonumber(t_data, 4);
-    self->obj[i].t.u =      lua_tonumber(t_data, 5);
-    self->obj[i].t.v =      lua_tonumber(t_data, 6);
-    self->obj[i].t.uSize =  lua_tonumber(t_data, 7);
-    self->obj[i].t.vSize =  lua_tonumber(t_data, 8);
-    self->obj[i].t.xScale = lua_tonumber(t_data, 9);
-    self->obj[i].desc =     lua_tostring(t_data,10);
+    self->obj[i].z =        depth += 0.01;
+    self->obj[i].t.u =      lua_tonumber(t_data, 3);
+    self->obj[i].t.v =      lua_tonumber(t_data, 4);
+    self->obj[i].t.uSize =  lua_tonumber(t_data, 5);
+    self->obj[i].t.vSize =  lua_tonumber(t_data, 6);
+    self->obj[i].t.xScale = lua_tonumber(t_data, 7);
+    self->obj[i].desc =     lua_tostring(t_data, 8);
+    self->obj[i].name =     lua_tostring(t_data, 9);
     lua_settop(t_data, 0);
   }
 }
@@ -81,11 +80,12 @@ void setMapInfo(scene *s, int x, int y, int xStart, int yStart){
   setPosition(xStart, yStart);
 }
 
-void update_Scene(scene *self) {
+void updateScene(scene *self) {
   self->updateScene(self);
 }
 
 void renderScene(scene *self){
+  glLoadIdentity();
   glPushMatrix();
   glTranslated((int)displayPos[0], (int)displayPos[1], displayPos[2]);
   if (self != NULL)
@@ -96,9 +96,7 @@ void renderScene(scene *self){
     for (int i = 0; i < self->objNum; i++){
       drawObject(&self->obj[i]);
     }
-
     self->renderScene(self);
-
   }
   glPopMatrix();
 }

@@ -11,6 +11,9 @@
 #define CLEANUP(x) { ret = (x); goto cleanup; }
 
 float light = 1;
+int 	light_type = 0;
+GLfloat material_ambient[] = {1.0, 1.0, 1.0, 1.0};
+GLfloat material_emit[] = {1.0, 0.0, 1.0, 1.0};
 
 int png_to_gl_texture(texture * tex, char const * const filename) {
 	int ret = 0;
@@ -244,90 +247,99 @@ void setScale(texture *tex, float scale){
 	tex->yScale = scale;
 }
 
-void setLight(texture *tex, float light){
-	tex->light = light;
-	if (tex->light > 1)
-		tex->light = 1;
-	if (tex->light < 0)
-		tex->light = 0;
+void setAmbientLight(float r, float g, float b){
+	material_ambient[0] = r;
+	material_ambient[1] = g;
+	material_ambient[2] = b;
+}
+
+void resetAmbientLight() {
+	material_ambient[0] = material_ambient[1] = material_ambient[2] = 1.0;
+}
+
+void setLightType(int type) {
+	light_type = type;
 }
 
 void draw_textured_quad(texture *tex, float x, float y, float z) {
 	GLfloat texW = tex->w * tex->uSize * tex->xScale;
-GLfloat texH = tex->h * tex->vSize * tex->yScale;
-//texW = 10;
-//texH = 10;
-GLfloat x0 = x - texW / 2;
-GLfloat y0 = y - texH / 2;
-GLfloat x1 = x + texW / 2;
-GLfloat y1 = y + texH / 2;
-GLfloat u = tex->u;
-GLfloat v = tex->v;
-GLfloat xS = tex->uSize;
-GLfloat yS = tex->vSize;
+	GLfloat texH = tex->h * tex->vSize * tex->yScale;
+	//texW = 10;
+	//texH = 10;
+	GLfloat x0 = x - texW / 2;
+	GLfloat y0 = y - texH / 2;
+	GLfloat x1 = x + texW / 2;
+	GLfloat y1 = y + texH / 2;
+	GLfloat u = tex->u;
+	GLfloat v = tex->v;
+	GLfloat xS = tex->uSize;
+	GLfloat yS = tex->vSize;
 
 
-GLfloat vertex_data[] = {
-	/* 2D Coordinate, texture coordinate */
-	x0, y1, z,
-	x1, y1, z,
-	x1, y0, z,
-	x0, y0, z
-};
+	GLfloat vertex_data[] = {
+		/* 2D Coordinate, texture coordinate */
+		x0, y1, z,
+		x1, y1, z,
+		x1, y0, z,
+		x0, y0, z
+	};
 
-GLfloat uv_data[] = {
-	/* 2D Coordinate, texture coordinate */
-	u, v + yS,
-	u + xS, v + yS,
-	u + xS, v,
-	u, v
-};
+	GLfloat uv_data[] = {
+		/* 2D Coordinate, texture coordinate */
+		u, v + yS,
+		u + xS, v + yS,
+		u + xS, v,
+		u, v
+	};
 
-GLfloat normal_data[] = {
-	/* 2D Coordinate, texture coordinate */
-	0.0, 0.0, -1.0,
-	0.0, 0.0, 1.0,
-	0.0, 0.0, 1.0,
-	0.0, 0.0, -1.0
-};
+	GLfloat normal_data[] = {
+		/* 2D Coordinate, texture coordinate */
+		0.0, 0.0, 1.0,
+		0.0, 0.0, 1.0,
+		0.0, 0.0, 1.0,
+		0.0, 0.0, 1.0
+	};
 
-GLfloat color_data[] = {
-	/* 2D Coordinate, texture coordinate */
-	tex->color[0], tex->color[1], tex->color[2], tex->a,
-	tex->color[0], tex->color[1], tex->color[2], tex->a,
-	tex->color[0], tex->color[1], tex->color[2], tex->a,
-	tex->color[0], tex->color[1], tex->color[2], tex->a
-};
+	GLfloat color_data[] = {
+		/* 2D Coordinate, texture coordinate */
+		tex->color[0], tex->color[1], tex->color[2], tex->a,
+		tex->color[0], tex->color[1], tex->color[2], tex->a,
+		tex->color[0], tex->color[1], tex->color[2], tex->a,
+		tex->color[0], tex->color[1], tex->color[2], tex->a
+	};
 
-//GLint indices[] = {0,1,2,3,2,3};
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, tex->id);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, tex->min_filter);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, tex->mag_filter);
 
-glEnable(GL_TEXTURE_2D);
-glBindTexture(GL_TEXTURE_2D, tex->id);
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, tex->min_filter);
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, tex->mag_filter);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
 
-glEnableClientState(GL_VERTEX_ARRAY);
-glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-//glEnableClientState(GL_NORMAL_ARRAY);
-glEnableClientState(GL_COLOR_ARRAY);
+	glVertexPointer(3, GL_FLOAT, 0, vertex_data);
+	glTexCoordPointer(2, GL_FLOAT, 0, uv_data);
+	glNormalPointer(GL_FLOAT, 0, normal_data);
+	glColorPointer(4, GL_FLOAT, 0, color_data);
+	//glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT);
+	switch (light_type) {
+		case 0:
+			glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, material_ambient);
+			break; //normal case
+		case 1:
+			glMaterialfv(GL_FRONT, GL_EMISSION, material_ambient);
+			break; //text case
+	}
 
-glVertexPointer(3, GL_FLOAT, 0, vertex_data);
-glTexCoordPointer(2, GL_FLOAT, 0, uv_data);
-//glNormalPointer(GL_FLOAT, 0, normal_data);
-glColorPointer(4, GL_FLOAT, 0, color_data);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDrawArrays(GL_QUADS, 0, 4);
 
-glEnable(GL_BLEND);
-glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-glVertexPointer(3, GL_FLOAT, 0, vertex_data);
-glDrawArrays(GL_QUADS, 0, 4);
-
-
-glDisableClientState(GL_VERTEX_ARRAY);
-glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-//glDisableClientState(GL_NORMAL_ARRAY);
-glDisableClientState(GL_COLOR_ARRAY);
-
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_NORMAL_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
 }
 
 void blackScreen(float a) {

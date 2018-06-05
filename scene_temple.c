@@ -1,10 +1,10 @@
-#include <kos.h>                                                                                                  
+#include <kos.h>                                                       
 #include <stdlib.h>
 #include <string.h>
 #include "header.h"
 #include "scene_temple.h"
 #include "scene_soussol.h"
-#include "asset/map_temple/mapdata.c"
+
 
 char *_golem_portrait = "/rd/golem_portrait.png";
 char *_marchand_portrait = "/rd/marchand_v1_dith.png";
@@ -14,30 +14,36 @@ gameObject *golem;
 
 void loadTemple(scene* self) {
   mount_romdisk("asset/rd_temple.img.gz", "/rd");
-  loadTempleData(self);
+  loadMapData(self, "/rd/map_temple_v7.svg");
+
+  self->obj[0] = createObject("/rd/floor.png", -1000, -1000, 1);
   generateFloor(self, 0);
-  setPosition(945, 1000);
+  setPosition(1200, 300);
 
   marchand = malloc(sizeof(gameObject));
-  *marchand = createObject("/rd/marchand_mini.png", 1617, 991, 1);
+  *marchand = createObject("/rd/marchand_mini.png", 935, 548, 1);
   golem = malloc(sizeof(gameObject));
-  *golem = createObject("/rd/golem_ingame.png", 945, 1780, 1);
+  *golem = createObject("/rd/golem_ingame.png", 625, 2130, 1);
+  flipU(&golem->t);
 
-  //loadLuaFile(L, "/rd/temple.lua");
-  //loadLuaFile(t_data, "/rd/jsontest.lua");
+  loadLuaFile(L, "/rd/temple.lua");
 
   //music
-  self->bgm = "/cd/music/soussol.ogg";
-  sndoggvorbis_start(self->bgm, 1);
+  //self->bgm = "/cd/music/soussol.ogg";
+  //sndoggvorbis_start(self->bgm, 1);
+
+  game_state = EXPLORATION;
 
   self->freeScene = freeTemple;
+  self->updateScene = updateTemple;
+  self->renderScene = renderTemple;
 }
 
-void updateTemple(cont_state_t *state, scene *self){
-  char* buf;
-
-  drawObject(marchand);
-  drawObject(golem);
+void updateTemple(scene *self){
+  //char* buf;
+  char *buf = "";
+  snprintf(buf, 16, "x-%d y-%d", (int)p1.obj.x, (int)p1.obj.y);
+  setParam(3, buf);
 
   if(clicked(marchand, CONT_A)) {
     lua_getglobal(L, "setDialog");
@@ -63,40 +69,11 @@ void updateTemple(cont_state_t *state, scene *self){
     lua_pop(L,1);
     setDialog(buf, _golem_portrait);
   }
+}
 
-
-  //WARP 2 SOUS-SOL
-  if(over(&self->obj[9])){
-    writeFont("To the basement", p1.obj.x + 16, p1.obj.y - 16);
-    if(buttonPressed(CONT_A)) {
-      freeTemple(self);
-      loadSoussol(tempScene);
-    }
-  }
-
-  //WARP 2 DESERT
-  if(over(&self->obj[1])){
-    writeFont("To the desert", p1.obj.x + 16, p1.obj.y - 16);
-    if(buttonPressed(CONT_A)) {
-      freeTemple(self);
-      loadDesert(tempScene);
-    }
-  }
-
-  //WARP 2 JARDIN
-  if(over(&self->obj[2])){
-    writeFont("To the garden", p1.obj.x + 16, p1.obj.y - 16);
-    if(buttonPressed(CONT_A)) {
-      freeTemple(self);
-      loadJardin(tempScene);
-    }
-  }
-
-  //to menu
-  if (buttonPressed(CONT_X)) {
-    freeTemple(self);
-    loadMenu(tempScene);
-  }
+void renderTemple(scene *self) {
+    drawObject(marchand);
+    drawObject(golem);
 }
 
 void freeTemple(scene *self){
@@ -112,6 +89,6 @@ void freeTemple(scene *self){
   free(golem);
   free(self->obj);
 
-  sndoggvorbis_stop();
+  //sndoggvorbis_stop();
   fs_romdisk_unmount("/rd");
 }

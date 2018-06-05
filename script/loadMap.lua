@@ -79,7 +79,8 @@ function createObject(i)
     textures[i].desc = img[i]["@desc"]
   end
 
-  return textures[i].x, textures[i].y, textures[i].h, textures[i].w, textures[i].u, textures[i].v, textures[i].uSize, textures[i].vSize, textures[i].xScale, textures[i].desc
+  return textures[i].x, textures[i].y, textures[i].u, textures[i].v, textures[i].uSize, textures[i].vSize, textures[i].xScale, textures[i].desc,
+  textures[i].file
 end
 
 function getMapInfo()

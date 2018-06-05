@@ -1,37 +1,73 @@
 #include <kos.h>
+#include <time.h>
 #include <stdlib.h>
 #include <string.h>
 #include "scene_soussol.h"
 #include "header.h"
 
-#define TORCHE_NUM 7
+#define TORCHE_NUM 11
+#define TABLEAU_NUM 3
 
-int tableau[3] = {99, 100, 101};
-int torche[3] = {99, 100, 101};
-int tableau_state[3] = {0, 0, 0};
+texture torche_tex;
+texture flame;
+gameObject *torche[TORCHE_NUM];
+int torche_active[TORCHE_NUM] = {0};
+
+gameObject *tab[TABLEAU_NUM];
+int tableau_state[TABLEAU_NUM] = {0};
+
+gameObject *descObj[20];
+int desc_num = 0;
 
 int symbole = 0;
 
-gameObject sprite;
+GLfloat l1_pos[] = {320.0, 240.0, 1.0, 1.0};
+GLfloat l1_diff[] = {1.0, 0.8, 0.2, 1.0};
+GLfloat l1_amb[] = {0.5, 0.5, 0.5, 1.0};
 
 void loadSoussol(scene* self) {
   mount_romdisk("/asset/rd_soussol.img.gz", "/rd");
   //load map via JSON+XML
   loadMapData(self, "/rd/map_soussol.svg");
 
-  //self->obj[0] = createObject("/rd/soussol_floor.png", -1000, -1000, 1);
+  self->obj[0] = createObject("/rd/soussol_floor.png", -1000, -1000, 1);
   generateFloor(self, 0);
 
+  png_to_gl_texture(&torche_tex, "/rd/lantern_anim.png");
+  setUV(&torche_tex, 0.125, 1);
+  setAnim(&torche_tex, 0);
 
+  png_to_gl_texture(&flame, "/rd/fire.png");
+  setUV(&flame, 0.25, 1);
+  setScale(&flame, 0.5);
+  setAnim(&flame, 0);
+  flame.a = 0;
+
+
+  int l = 0;
+  int t = 0;
   //assing obj ID to items
   for (int i = 0; i < self->objNum; i++) {
-    if(strcmp(self->obj[i].name, "symbole_oil.png"))
-      symbole = i;
-    //if(strcmp(self->obj[i].name, "lantern.png"))
-
+    if(strcmp(self->obj[i].name, "tableau_2.png") == 0)
+      tab[t++] = &self->obj[i];
+    if(strcmp(self->obj[i].name, "lantern.png") == 0) {
+      torche[l++] = &self->obj[i];
+      self->obj[i].t = torche_tex;
+    }
+    if (strcmp(self->obj[i].name, "barrel_2.png") == 0) {
+      torche[l++] = &self->obj[i];
+    }
+    if (strlen(self->obj[i].desc) > 2) {
+      descObj[desc_num++] = &self->obj[i];
+    }
   }
 
+  setInt(1, desc_num);
 
+  glDisable(GL_LIGHT0);
+  glLightfv(GL_LIGHT1, GL_AMBIENT, l1_amb);
+  glLightfv(GL_LIGHT1, GL_DIFFUSE, l1_diff);
+  glEnable(GL_LIGHT1);
 
   //music--
   //self->bgm = "/cd/music/soussol.ogg";
@@ -49,90 +85,57 @@ void updateEnigme(scene *self) {
   //snprintf(buf, 16, "x-%d y-%d", (int)p1.obj.x, (int)p1.obj.y);
   //setParam(3, buf);
 
-  //add torche to items
-  //if(clicked(&torche[0], CONT_A))
-    //addItem(&torche[0], "/cd/asset/item/torche.png");
-
-  /*
-  if(p1.currentItem->emitLight > 0){
-    for(int i = 0; i < TORCHE_NUM; i++) {
-      if(over(&torche[i])) {
-        torche[i].emitLight = p1.currentItem->emitLight;
-      }
+  for(int i = 0; i < TORCHE_NUM; i++) {
+    if(over(torche[i])) {
+      torche_active[i] = 1;
+      torche[i]->t.a = 1.0f;
     }
   }
-  */
+
 
   //run script for the 3 tableau
   for (int i = 0; i < 3; i++) {
     //when clicked
-    if(clicked(&self->obj[tableau[i]], CONT_A)){
-      addItem(&self->obj[tableau[i]], "/cd/asset/item/tableau.png");
-      setDialog("", "/rd/tableau_1.png");
+    if(clicked(tab[i], CONT_A)){
+      addItem(tab[i], "/cd/asset/item/tableau.png");
+      setDialog("", "/cd/asset/portrait/tableau_1_512.png");
       tableau_state[i] = 1;
-      //setString(i, "Tableau SET!");
     }
     //fade item
     if(tableau_state[i] == 1)
-      setAlpha(&self->obj[tableau[i]], self->obj[tableau[i]].t.a - 0.01);
+      setAlpha(tab[i], tab[i]->t.a - 0.01);
   }
 
 }
 
-void updateLight(scene *self) {
-  /*
-  //clear the lights
-  for (int i = 0; i < self->objNum; i++)
-    setLight(&self->obj[i].t, 0);
-
-  for (int i = 0; i < TORCHE_NUM; i++) {
-    if(torche[i].emitLight < 0.1) {
-      setLight(&torche[i].t, 0);
-    }
-    else {
-      if(frameCount % 3 == 0)
-        setAnim(&torche[i].t, (rand() % 6) + 1);
-    }
-    //else
-      //setLight(&torche[i].t, 0.9);
+void updateDesc(scene *self) {
+  for(int i = 0; i < desc_num; i++) {
+    if(clicked(descObj[i], CONT_A))
+      setDialog(descObj[i]->desc, "");
+      setString(3, "Dialog on item!");
   }
-
-  //check if the current item emit light;
-  if(p1.currentItem->emitLight != 0) {
-    for (int i = 0; i < self->objNum; i++) {
-      executeLight(p1.currentItem, &self->obj[i]);
-      if (i > 0 && i < TORCHE_NUM)
-        executeLight(p1.currentItem, &torche[i]);
-    }
-  }
-
-  //run throught all the lights
-  for (int j = 0; j < TORCHE_NUM; j++) {
-    drawObject(&torche[j]);
-
-    //add some lil noise
-    if(frameCount % ((rand() % 8) + 3) == 0)
-      noise[j] = (rand() % 5) / 20.0;
-
-    //run through all the object.
-    if(torche[j].active == 1) {
-      for (int i = 0; i < self->objNum; i++) {
-        executeLight(&torche[j], &self->obj[i]);
-      }
-    }
-  }
-  */
 }
 
 void updateSoussol(scene *self){
-  for(int i = 0; i < self->objNum; i++) {
-    if(clicked(&self->obj[i], CONT_A))
-      if(strlen(self->obj[i].desc) > 1) {
-        setDialog(self->obj[i].desc, "");
-        setString(3, "Dialog on item!");
-      }
-  }
+  updateEnigme(self);
+  updateDesc(self);
 
+  GLfloat pos[] = {p1.obj.x/2, p1.obj.y/2, 25.0f, 1.0f};
+  glLightfv(GL_LIGHT1, GL_POSITION, pos);
+
+  /*
+  for(int i = 0; i < 9; i++) {
+    if(torche_active[i] == 1) {
+      GLfloat pos[] = {torche[i]->x, torche[i]->y, 10.0f, 1.0f};
+      glLightfv(GL_LIGHT1 + i, GL_POSITION, pos);
+      glEnable(GL_LIGHT1  + i);
+      glLightfv(GL_LIGHT1 + i, GL_AMBIENT, l1_amb);
+      glLightfv(GL_LIGHT1 + i, GL_DIFFUSE, l1_diff);
+    }
+  }
+  */
+
+  /*
   //TEMPLE
   if(over(&self->obj[102])){
     writeFont("Vers le temple", p1.obj.x + 16, p1.obj.y - 16);
@@ -142,24 +145,22 @@ void updateSoussol(scene *self){
       setPosition(302, 404);
     }
   }
+  */
 }
 
 void renderSoussol(scene *self){
-  glPushMatrix();
-  glTranslated((int)displayPos[0], (int)displayPos[1], displayPos[2]);
-  if (self != NULL)
-  {
-    if (self->floorTex != -1)
-      drawMap(&self->obj[self->floorTex].t, self->mapSize[0]/2, self->mapSize[1]/2);
+  srand(time(NULL));
+  for(int i = 0; i < TORCHE_NUM; i++) {
+    if(torche_active[i] == 1) {
+      if (strcmp(torche[i]->name, "lantern.png") == 0)
+        setAnim(&torche[i]->t, (frameCount % 6) + 1);
+      else {
+        setAnim(&flame, (frameCount % 3));
+        draw_textured_quad(&flame, torche[i]->x, torche[i]->y + 30, torche[i]->z + 1);
 
-    for (int i = 0; i < self->objNum; i++){
-      drawObject(&self->obj[i]);
+      }
     }
-
-    //updateLight(self);
-    //updateEnigme(self);
   }
-  glPopMatrix();
 }
 
 void freeSoussol(scene *self){

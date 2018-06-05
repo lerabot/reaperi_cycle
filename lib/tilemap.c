@@ -37,6 +37,7 @@ void drawMap(texture *t, int x, int y) {
   xOffset = (-displayPos[0]/2 / xTile);
   yOffset = (-displayPos[1]/2 / yTile);
 
+  /*
   int _i, _j;
   for(int j = 0; j < maxTile; j++){
     for(int i = 0; i < maxTile; i++) {
@@ -53,9 +54,7 @@ void drawMap(texture *t, int x, int y) {
       //writeFont(buf, xPos, yPos);
     }
   }
-
-
-/*
+  */
   int _i, _j;
   for(int j = 0; j < maxTile; j++){
     for(int i = 0; i < maxTile; i++) {
@@ -70,7 +69,6 @@ void drawMap(texture *t, int x, int y) {
       //writeFont(buf, xPos, yPos);
     }
   }
-*/
 }
 
 void drawHex(texture *tex, float x, float y) {
@@ -85,7 +83,8 @@ void drawHex(texture *tex, float x, float y) {
   float v = tex->v;
   float xS = tex->uSize;
   float yS = tex->vSize;
-  float z = 10;
+  float z = -1.0;
+  GLfloat material_ambient[] = {1.0, 1.0, 1.0, 1.0};
 
   GLfloat vertex_data[] = {
   	/* 2D Coordinate, texture coordinate */
@@ -105,44 +104,33 @@ void drawHex(texture *tex, float x, float y) {
 
   GLfloat normal_data[] = {
   	/* 2D Coordinate, texture coordinate */
-  	0.0, 0.0, -1.0,
   	0.0, 0.0, 1.0,
   	0.0, 0.0, 1.0,
-  	0.0, 0.0, -1.0
-  };
-
-  GLfloat color_data[] = {
-  	/* 2D Coordinate, texture coordinate */
-  	1.0, 1.0, 1.0, 1.0,
-  	1.0, 1.0, 1.0, 1.0,
-  	1.0, 1.0, 1.0, 1.0,
-  	1.0, 1.0, 1.0, 1.0
+  	0.0, 0.0, 1.0,
+  	0.0, 0.0, 1.0
   };
 
   glEnable(GL_TEXTURE_2D);
   glBindTexture(GL_TEXTURE_2D, tex->id);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, tex->min_filter);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, tex->mag_filter);
 
   glEnableClientState(GL_VERTEX_ARRAY);
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-  //glEnableClientState(GL_NORMAL_ARRAY);
-  glEnableClientState(GL_COLOR_ARRAY);
+  glEnableClientState(GL_NORMAL_ARRAY);
 
   glVertexPointer(3, GL_FLOAT, 0, vertex_data);
   glTexCoordPointer(2, GL_FLOAT, 0, uv_data);
-  //glNormalPointer(GL_FLOAT, 0, normal_data);
-  glColorPointer(4, GL_FLOAT, 0, color_data);
+  glNormalPointer(GL_FLOAT, 0, normal_data);
+  glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, material_ambient);
 
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-  glVertexPointer(3, GL_FLOAT, 0, vertex_data);
   glDrawArrays(GL_QUADS, 0, 4);
 
   glDisableClientState(GL_VERTEX_ARRAY);
-  glDisableClientState(GL_COLOR_ARRAY);
   glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+  glDisableClientState(GL_NORMAL_ARRAY);
 }
 
 void drawMap2(texture *t, int x, int y) {

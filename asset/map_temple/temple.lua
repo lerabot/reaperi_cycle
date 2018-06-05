@@ -20,7 +20,7 @@ object = nil
 text = intro
 p = 1 --progression
 
-package.path = package.path .. ";cd/lib/?.lua" .. ";pc/lib/?.lua" .. ";../lib/?.lua"
+package.path = package.path .. ";cd/script/?.lua" .. ";pc/script/?.lua" .. ";../script/?.lua"
 
 
 data = {}

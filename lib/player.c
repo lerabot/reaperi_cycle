@@ -14,6 +14,7 @@ player      initPlayer(int playerNum) {
     player temp;
     //Texture
     temp.obj = createObject("", 320, 240, 1);
+    temp.obj.z = 10;
     setScale(&temp.obj.t, 0.5);
 
     //data
@@ -251,6 +252,7 @@ void        showController(){
 }
 
 void        drawCursor() {
+  glLoadIdentity();
   glPushMatrix();
   glTranslated((int)displayPos[0], (int)displayPos[1], displayPos[2]);
   if (p1.obj.visible) {

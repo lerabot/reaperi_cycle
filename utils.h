@@ -10,6 +10,7 @@ int     loadFile(char *filename);
 int     loadLuaFile(lua_State *L, char *filename);
 void    setLuaState(lua_State **L);
 void    initGL();
+void    basicLight();
 void    renderMenu();
 float   getFrameTime();
 void    quitGame();

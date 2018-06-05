@@ -9,6 +9,37 @@
 
 int l_game_state;
 
+void initGL() // We call this right after our OpenGL window is created.
+{
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// This Will Clear The Background Color To Black
+  glClearDepth(1.0);				// Enables Clearing Of The Depth Buffer
+  glEnable(GL_DEPTH_TEST);			// Enables Depth Testing
+  glDepthFunc(GL_EQUAL);				// The Type Of Depth Test T
+  glShadeModel(GL_SMOOTH);			// Enables Smooth Color Shading
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();				// Reset The Projection Matrix
+  glOrtho(0.0, 640.0, 0.0, 480.0, -10.0, 10.0);
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+
+  GLfloat ambi[] = {1.0, 1.0, 1.0, 1.0};
+  glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+  glLightfv(GL_LIGHT0, GL_AMBIENT, ambi);
+  glEnable(GL_COLOR_MATERIAL);
+}
+
+
+void basicLight() {
+  GLfloat ambi[] = {1.0, 1.0, 1.0, 1.0};
+  glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+  glLightfv(GL_LIGHT0, GL_AMBIENT, ambi);
+}
 
 char* findFile(char *filename) {
   FILE *file;
@@ -129,6 +160,7 @@ int cMenu = 0;
 void renderMenu() {
   char *option[4] = {"Return to Menu", "Save (not yet)", "Load (not yet)", "Quit Game (DEV ONLY)"};
   toggleMenu();
+  //basicLight();
   if (game_state == MENU) {
     if(buttonPressed(CONT_DPAD_DOWN) && cMenu < 3)
       cMenu++;
@@ -162,26 +194,7 @@ void renderMenu() {
   }
 }
 
-void initGL() // We call this right after our OpenGL window is created.
-{
-  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// This Will Clear The Background Color To Black
-  glClearDepth(1.0);				// Enables Clearing Of The Depth Buffer
-  //glDepthFunc(GL_LESS);				// The Type Of Depth Test To Do
-  //glEnable(GL_DEPTH_TEST);			// Enables Depth Testing
-  glShadeModel(GL_SMOOTH);			// Enables Smooth Color Shading
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();				// Reset The Projection Matrix
-  glOrtho(0.0, 640.0, 0.0, 480.0, -100.0, 100.0);
-  //gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,100.0f);
-  //glScalef(0.75, 1, 1);
-  //glScalef(0.1, 0.1, 0.1);
-
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-}
 
 void quitGame(){
     exit(1);

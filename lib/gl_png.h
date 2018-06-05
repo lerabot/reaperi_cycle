@@ -37,7 +37,9 @@ void 	setUVHex(texture *tex, float xSize, float ySize);
 //set frame in sprite sheet
 void 	setAnim(texture *tex, int a);
 void 	flipU(texture *tex);
-void  setLight(texture *tex, float brightness);
+void  setAmbientLight(float r, float g, float b);
+void 	resetAmbientLight();
+void 	setLightType(int type);
 void 	setScale(texture *tex, float scale);
 void 	setPattern(texture *tex, int x, int y);
 
