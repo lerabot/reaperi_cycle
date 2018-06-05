@@ -11,7 +11,8 @@
 font f;
 texture box;
 texture portrait;
-char *portraitFile;
+char *portraitFile = "";
+char *active_npc = "";
 char boxText[196] = "";
 
 int textActive = 0;
@@ -45,20 +46,23 @@ font    loadFont(char *path){
   return(tmp);
 }
 
-void    setFont(font *f){
-  //theFont = f;
-}
-
+//main rendering fonction
 void    renderDialog() {
-  float speed = 2;
-  float aSpeed = 0.01;
+  float speed = 3;
+  float aSpeed = 0.015;
   int margin = 36;
   int x = 56 + margin * 2;
   int y = 100 + 64 - margin;
 
-  if(textActive != 0 && buttonPressed(CONT_A)) {
-    textActive = 0; //should try to check for next text.
+  if(buttonPressed(CONT_A)) {
+    //check for NPC
+    if (showPortait == 1)
+      setDialog(getLuaDialog(active_npc));
+    else
+      textActive = 0;
   }
+
+  setString(3, active_npc);
 
   //show dialog animation
   if(textActive != 0 && frame < 90) {
@@ -77,47 +81,105 @@ void    renderDialog() {
     showController();
   }
 
-  if (textActive == 0 && frame <= -80) { //
+
+  if (textActive == 0 && frame <= -90) { //
     game_state = EXPLORATION;
   }
+
 
   //draw the portait
   if(showPortait == 1)
     draw_textured_quad(&portrait, portraitX, portraitY, 5.0);
 
-  if(showDialog != 0) {
+  if(showDialog == 1) {
     draw_textured_quad(&box, 320, 100, 5.0);
     if(frame > 40)
       writeFontDelay(boxText, x, y, 6);
   }
 }
 
-void    setDialog(char *s, char *filename) {
+//activate a NPC portait and trigger thier dialog
+void    activateNPC (char *npc_name, char *filename) {
+  setPortrait(filename);
+  setDialog(getLuaDialog(npc_name));
+  active_npc = npc_name;
+}
 
-  //Check for the dialog lenght
-  if (strlen(s) > 2) {
-    memcpy(boxText, s, strlen(s));
-    boxText[strlen(s)] = '\0';
-    showDialog = strlen(s);
-    textActive = 1;
-  } else {
-    boxText[0] = '\0';
-    textActive = 0;
-    showDialog = 0;
-  }
-
-  //check for the filename lenght
-  if (strcmp(filename, "") == 0) {
-    showPortait = 0;
-    //showDialog = 2;
-  } else if (strcmp(filename, portraitFile) != 0) {
+//set the portrait / image. 1 = new image, 0 = not new image
+int     setPortrait (char *filename) {
+  if (strcmp(filename, portraitFile) != 0) {
     glDeleteTextures(1, &portrait.id);
     png_to_gl_texture(&portrait, filename);
     portraitFile = filename;
     showPortait = 1;
+    return(1);
+  }
+  return(0);
+}
+
+void    resetPortrait() {
+  if(strcmp(portraitFile, "") != 0) {
+    glDeleteTextures(1, &portrait.id);
+    portraitFile = "";
+    showPortait = 0;
+  }
+}
+
+int     setDialog (char *dialog) {
+  //Check for the dialog length for valid text
+  if (strlen(dialog) > 2) {
+    memcpy(boxText, dialog, strlen(dialog));
+    boxText[strlen(dialog)] = '\0';
+    showDialog = 1;
+    textActive = 1;
+    game_state = DIALOG;
+    len = 0;
+    return(1);
+  } else { //otherwise, go back to exploration
+    boxText[0] = '\0';
+    textActive = 0;
+    showDialog = 0;
+    active_npc = "";
   }
   len = 0;
-  game_state = DIALOG;
+  return(0);
+}
+
+int     setDesciption (char *dialog) {
+  //reset both the portrait and the current npc
+  resetPortrait();
+  active_npc = "";
+
+  //Check for the dialog length for valid text
+  if (strlen(dialog) > 2) {
+    memcpy(boxText, dialog, strlen(dialog));
+    boxText[strlen(dialog)] = '\0';
+    showDialog = 1;
+    textActive = 1;
+    game_state = DIALOG;
+    len = 0;
+    return(1);
+  } else { //otherwise, go back to exploration
+    boxText[0] = '\0';
+    textActive = 0;
+    showDialog = 0;
+    game_state = EXPLORATION;
+  }
+  len = 0;
+  return(0);
+}
+
+char*   getLuaDialog(char *npc_name) {
+  char *buf = "";
+  lua_getglobal(L, "setDialog");
+  lua_pushstring(L, npc_name);
+  lua_pcall(L, 1, 0, 0);
+  lua_settop(L, 0);
+  lua_getglobal(L, "getDialog");
+  lua_pcall(L, 0, 1, 0);
+  buf = lua_tostring(L, -1);
+  lua_pop(L,1);
+  return(buf);
 }
 
 void    resetText() {

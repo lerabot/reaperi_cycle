@@ -109,9 +109,6 @@ void setAlpha(gameObject *object, float alpha){
     object->t.a = alpha;
 }
 
-void fadeObject(gameObject *object, float alpha){
-}
-
 void executeLight(gameObject *object, gameObject *target){
   float noise = 0;
   int   dist = 350;

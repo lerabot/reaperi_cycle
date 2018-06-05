@@ -98,7 +98,7 @@ void updateEnigme(scene *self) {
     //when clicked
     if(clicked(tab[i], CONT_A)){
       addItem(tab[i], "/cd/asset/item/tableau.png");
-      setDialog("", "/cd/asset/portrait/tableau_1_512.png");
+      //setDialog("", "/cd/asset/portrait/tableau_1_512.png");
       tableau_state[i] = 1;
     }
     //fade item
@@ -111,8 +111,7 @@ void updateEnigme(scene *self) {
 void updateDesc(scene *self) {
   for(int i = 0; i < desc_num; i++) {
     if(clicked(descObj[i], CONT_A))
-      setDialog(descObj[i]->desc, "");
-      setString(3, "Dialog on item!");
+      setDesciption(descObj[i]->desc);
   }
 }
 
@@ -165,17 +164,15 @@ void renderSoussol(scene *self){
 
 void freeSoussol(scene *self){
 
-  //glDeleteTextures(1, &torche[1].t.id);
-  //glDeleteTextures(1, &torche[0].t.id);
+  freeSpritesheet();
+  glDeleteTextures(1, &torche_tex.id);
+  glDeleteTextures(1, &flame.id);
 
-  int t[11] = {0, 1, 2, 7, 10, 11, 12, 56, 98, 99, 102};
-  for (int i = 0; i < 11; i++){
-      glDeleteTextures(1, &self->obj[t[i]].t.id);
-  }
-
-  free(torche);
+  //free(torche);
+  //free(tab);
+  //free(descObj);
   free(self->obj);
 
-  sndoggvorbis_stop();
+  //sndoggvorbis_stop();
   fs_romdisk_unmount("/rd");
 }

@@ -10,12 +10,28 @@ int     edgeSize = 120;
 float   velocity[2] = {0, 1};
 float   direction[2] = {0, 1};
 
+texture spirit_base;
+texture spirit_outer;
+gameObject spirit_particule;
+
 player      initPlayer(int playerNum) {
     player temp;
     //Texture
     temp.obj = createObject("", 320, 240, 1);
     temp.obj.z = 10;
     setScale(&temp.obj.t, 0.5);
+
+    png_to_gl_texture(&spirit_base, "/rd/inside_blue.png");
+    setScale(&spirit_base, 0.5);
+
+    spirit_particule = createObject("/rd/spirit_particule.png", -1000, -1000, 1);
+    //setScale(&spirit_particule.t, 0.5);
+    setUV(&spirit_particule.t, 0.125, 1);
+    setAnim(&spirit_particule.t, 0);
+    spirit_particule.cFrame = 0;
+    spirit_particule.frames = 7;
+    spirit_particule.z = 8;
+    spirit_particule.t.a = 0.6;
 
     //data
     temp.cSpeed = 3;
@@ -26,7 +42,12 @@ player      initPlayer(int playerNum) {
     if(temp.inventory == 0)
       setParam(3, "Inventory Malloc Fail");
 
-    temp.inventory[0] = createObject("/rd/cursor_2.png", 0, 0 ,1);
+    //BOOTLEG.
+    temp.inventory[0] = createObject("/rd/spirit_base_spin.png", 0, 0 ,1);
+    setUV(&temp.inventory[0].t, 0.125, 1);
+    setAnim(&temp.inventory[0].t, 0);
+    temp.inventory[0].cFrame = 0;
+    temp.inventory[0].frames = 7;
     setScale(&temp.inventory[0].t, 0.5);
     temp.currentItem = &temp.inventory[0];
 
@@ -40,6 +61,13 @@ void        updatePlayer() {
   updateItem();
   movePlayer();
   toggleDebug(p1.state);
+
+
+  nextFrame(&p1.inventory[0], 7);
+
+  moveObject(&spirit_particule, p1.obj.x, p1.obj.y);
+  nextFrame(&spirit_particule, 10);
+
 }
 
 void        movePlayer() {
@@ -256,8 +284,11 @@ void        drawCursor() {
   glPushMatrix();
   glTranslated((int)displayPos[0], (int)displayPos[1], displayPos[2]);
   if (p1.obj.visible) {
-    if(p1.currentItem != NULL)
+    if(p1.currentItem != NULL) {
+      //drawObject(&spirit_particule);
       drawObject(p1.currentItem);
+      draw_textured_quad(&spirit_base, p1.obj.x + sin(frameCount/90.0f) * 4,  p1.obj.y + cos(frameCount/42.0f) * 3, 9);
+    }
   }
   glPopMatrix();
 }

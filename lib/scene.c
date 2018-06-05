@@ -100,3 +100,7 @@ void renderScene(scene *self){
   }
   glPopMatrix();
 }
+
+void freeSpritesheet() {
+  glDeleteTextures(1, &spritesheet.t.id);
+}

@@ -105,9 +105,8 @@ function setDialog (char, obj)
   elseif  char == "magi"      then active = magicienne
   elseif  char == "golem"     then active = golem
   elseif  char == "vitrail"   then active = data[1]
+  elseif  char == ""          then active = nil
   end
-
   object = obj
-
   --print(active.text[1])
 end

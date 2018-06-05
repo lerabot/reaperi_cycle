@@ -5,12 +5,13 @@
 #include "scene_temple.h"
 #include "scene_soussol.h"
 
-
 char *_golem_portrait = "/rd/golem_portrait.png";
 char *_marchand_portrait = "/rd/marchand_v1_dith.png";
 
 gameObject *marchand;
 gameObject *golem;
+
+int to_soussol = 0;
 
 void loadTemple(scene* self) {
   mount_romdisk("asset/rd_temple.img.gz", "/rd");
@@ -27,6 +28,13 @@ void loadTemple(scene* self) {
   flipU(&golem->t);
 
   loadLuaFile(L, "/rd/temple.lua");
+
+  ////////////////////////////////////////////////
+  for (int i = 0 ; i < self->objNum; i++) {
+    if (strcmp(self->obj[i].name, "stair_close.png") == 0)
+      to_soussol = i;
+  }
+
 
   //music
   //self->bgm = "/cd/music/soussol.ogg";
@@ -46,29 +54,20 @@ void updateTemple(scene *self){
   setParam(3, buf);
 
   if(clicked(marchand, CONT_A)) {
-    lua_getglobal(L, "setDialog");
-    lua_pushstring(L, "marchand");
-    lua_pushstring(L, "coin");
-    lua_pcall(L, 2, 0, 0);
-    lua_settop(L, 0);
-    lua_getglobal(L, "getDialog");
-    lua_pcall(L, 0, 1, 0);
-    buf = lua_tostring(L, -1);
-    lua_pop(L,1);
-    setDialog(buf, _marchand_portrait);
+    activateNPC("marchand", _marchand_portrait);
   }
 
   if(clicked(golem, CONT_A)) {
-    lua_getglobal(L, "setDialog");
-    lua_pushstring(L, "golem");
-    lua_pcall(L, 1, 0, 0);
-    lua_settop(L, 0);
-    lua_getglobal(L, "getDialog");
-    lua_pcall(L, 0, 1, 0);
-    buf = lua_tostring(L, -1);
-    lua_pop(L,1);
-    setDialog(buf, _golem_portrait);
+    activateNPC("golem", _golem_portrait);
   }
+
+  if(clicked(&self->obj[to_soussol], CONT_A)) {
+    freeTemple(self);
+    loadSoussol(tempScene);
+    setPosition(320, 240);
+  }
+
+
 }
 
 void renderTemple(scene *self) {
@@ -77,11 +76,7 @@ void renderTemple(scene *self) {
 }
 
 void freeTemple(scene *self){
-  int texID[12] = {0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 18};
-
-  for (int i = 0; i < 12; i++)
-    glDeleteTextures(1, &self->obj[texID[i]].t.id);
-
+  freeSpritesheet();
   glDeleteTextures(1, &marchand->t.id);
   glDeleteTextures(1, &golem->t.id);
 
