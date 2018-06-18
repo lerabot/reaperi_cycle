@@ -28,9 +28,18 @@
 #include "lib/tilemap.h"
 #include "lib/player.h"
 #include "lib/particule.h"
+#include "lib/lua_binds.h"
+#include "lib/dreamroqlib.h"
 
 /////////////////////////
-//test shit
+//scenes
+
+#define MAP_NOID 0
+#define MAP_TEMPLE 1
+#define MAP_SOUSSOL 2
+#define MAP_DESERT 3
+#define MAP_JARDIN 4
+#define MAP_HIDEOUT 77
 
 #include "scene_menu.h"
 #include "scene_temple.h"

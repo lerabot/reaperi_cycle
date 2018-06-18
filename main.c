@@ -19,8 +19,6 @@ player    p1;
 font      courrier;
 float     displayPos[3] = {0,0,0};
 long      frameCount = 0;
-lua_State *t_data;
-lua_State *L;
 
 texture t;
 
@@ -33,8 +31,7 @@ int main()
   snd_stream_init();
   sndoggvorbis_init();
 
-  setLuaState(&L);
-  setLuaState(&t_data);
+  LUA_initLua();
 
   p1 = initPlayer(0);
   loadFont("/rd/DFKei.png");

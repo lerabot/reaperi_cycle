@@ -23,6 +23,9 @@
 #define ROQ_RGB565 0
 #define ROQ_RGBA   1
 
+int   playROQvideo(char* filename);
+void  stopROQvideo();
+
 /* The library calls this function when it has a frame ready for display. */
 typedef int (*render_callback)(void *buf, int width, int height,
     int stride, int texture_height, int colorspace);

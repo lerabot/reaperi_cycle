@@ -74,6 +74,7 @@ void loadSoussol(scene* self) {
   //sndoggvorbis_start(self->bgm, 1);
 
   game_state = EXPLORATION;
+  p1.currentMap = MAP_SOUSSOL;
 
   self->updateScene   = updateSoussol;
   self->freeScene     = freeSoussol;
@@ -119,7 +120,7 @@ void updateSoussol(scene *self){
   updateEnigme(self);
   updateDesc(self);
 
-  GLfloat pos[] = {p1.obj.x/2, p1.obj.y/2, 25.0f, 1.0f};
+  GLfloat pos[] = {p1.obj.x, p1.obj.y, 5.0f, 1.0f};
   glLightfv(GL_LIGHT1, GL_POSITION, pos);
 
   /*

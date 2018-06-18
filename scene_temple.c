@@ -1,9 +1,9 @@
-#include <kos.h>                                                       
 #include <stdlib.h>
 #include <string.h>
 #include "header.h"
 #include "scene_temple.h"
 #include "scene_soussol.h"
+#include "lib/lua_binds.h"
 
 char *_golem_portrait = "/rd/golem_portrait.png";
 char *_marchand_portrait = "/rd/marchand_v1_dith.png";
@@ -27,7 +27,7 @@ void loadTemple(scene* self) {
   *golem = createObject("/rd/golem_ingame.png", 625, 2130, 1);
   flipU(&golem->t);
 
-  loadLuaFile(L, "/rd/temple.lua");
+  //loadLuaFile(L, "/rd/temple.lua");
 
   ////////////////////////////////////////////////
   for (int i = 0 ; i < self->objNum; i++) {
@@ -41,6 +41,11 @@ void loadTemple(scene* self) {
   //sndoggvorbis_start(self->bgm, 1);
 
   game_state = EXPLORATION;
+  p1.currentMap = MAP_TEMPLE;
+  p1.questID = 0;
+
+  LUA_addQuest(0);
+  LUA_loadDialog("/rd/temple_dialog.json");
 
   self->freeScene = freeTemple;
   self->updateScene = updateTemple;
@@ -51,7 +56,7 @@ void updateTemple(scene *self){
   //char* buf;
   char *buf = "";
   snprintf(buf, 16, "x-%d y-%d", (int)p1.obj.x, (int)p1.obj.y);
-  setParam(3, buf);
+  //setParam(5, buf);
 
   if(clicked(marchand, CONT_A)) {
     activateNPC("marchand", _marchand_portrait);
@@ -66,13 +71,11 @@ void updateTemple(scene *self){
     loadSoussol(tempScene);
     setPosition(320, 240);
   }
-
-
 }
 
 void renderTemple(scene *self) {
-    drawObject(marchand);
-    drawObject(golem);
+  drawObject(marchand);
+  drawObject(golem);
 }
 
 void freeTemple(scene *self){

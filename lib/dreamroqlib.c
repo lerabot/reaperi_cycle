@@ -10,7 +10,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "player.h"
 #include "dreamroqlib.h"
+#include "debug_screen.h"
 
 #define RoQ_INFO           0x1001
 #define RoQ_QUAD_CODEBOOK  0x1002
@@ -36,6 +38,23 @@ int video_height = 512;
 
 static pvr_ptr_t textures[2];
 static int current_frame = 0;
+
+roq_callbacks_t cbs;
+int video_status = 1;
+
+
+
+int   playROQvideo(char* filename) {
+  cbs.render_cb   = render_cb;
+  cbs.audio_cb    = audio_cb;
+  cbs.quit_cb     = quit_cb;
+  cbs.finish_cb   = finish_cb;
+
+  if(video_status)
+    dreamroq_play(filename, ROQ_RGB565, 1, &cbs);
+
+  return(video_status);
+}
 
 struct roq_audio
 {
@@ -1016,7 +1035,10 @@ int audio_cb(unsigned char *buf_rgb565, int samples, int channels)
 
 int quit_cb()
 {
-  return 0;
+  if(buttonPressed(CONT_A))
+    return(1);
+  else
+    return(0);
 }
 
 int finish_cb()

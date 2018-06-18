@@ -1,6 +1,8 @@
-#include <kos.h>
+#include <string.h>
 #include "player.h"
 #include "../global_var.h"
+#include "../utils.h"
+#include "lua_binds.h"
 #include "debug_screen.h"
 #include "gl_font.h"
 #include "game_object.h"
@@ -18,7 +20,6 @@ player      initPlayer(int playerNum) {
     player temp;
     //Texture
     temp.obj = createObject("", 320, 240, 1);
-    temp.obj.z = 10;
     setScale(&temp.obj.t, 0.5);
 
     png_to_gl_texture(&spirit_base, "/rd/inside_blue.png");
@@ -34,6 +35,8 @@ player      initPlayer(int playerNum) {
     spirit_particule.t.a = 0.6;
 
     //data
+    //temp.activeQuest = "";
+    temp.obj.z = 10;
     temp.cSpeed = 3;
     temp.cont = maple_enum_type(playerNum, MAPLE_FUNC_CONTROLLER);
     temp.inventorySize = 0;
@@ -52,22 +55,10 @@ player      initPlayer(int playerNum) {
     temp.currentItem = &temp.inventory[0];
 
 
+    loadLuaFile(L, findFile("/script/player.lua"));
+
     p1.state = (cont_state_t *)maple_dev_status(p1.cont);
     return(temp);
-}
-
-void        updatePlayer() {
-  updateController();
-  updateItem();
-  movePlayer();
-  toggleDebug(p1.state);
-
-
-  nextFrame(&p1.inventory[0], 7);
-
-  moveObject(&spirit_particule, p1.obj.x, p1.obj.y);
-  nextFrame(&spirit_particule, 10);
-
 }
 
 void        movePlayer() {
@@ -279,12 +270,29 @@ void        showController(){
   p1.obj.visible = 1;
 }
 
+void        updatePlayer() {
+  //LUA
+  LUA_updatePlayer();
+
+  //ENGINE
+  updateController();
+  updateItem();
+  movePlayer();
+  toggleDebug(p1.state);
+}
+
 void        drawCursor() {
   glLoadIdentity();
   glPushMatrix();
   glTranslated((int)displayPos[0], (int)displayPos[1], displayPos[2]);
   if (p1.obj.visible) {
     if(p1.currentItem != NULL) {
+      //sprite updates
+      nextFrame(&p1.inventory[0], 7);
+      moveObject(&spirit_particule, p1.obj.x, p1.obj.y);
+      nextFrame(&spirit_particule, 10);
+
+      //sprite drawing
       //drawObject(&spirit_particule);
       drawObject(p1.currentItem);
       draw_textured_quad(&spirit_base, p1.obj.x + sin(frameCount/90.0f) * 4,  p1.obj.y + cos(frameCount/42.0f) * 3, 9);

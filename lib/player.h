@@ -1,7 +1,6 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
-#include <kos.h>
 #include "game_object.h"
 
 #define MAX_ITEM 8
@@ -9,7 +8,10 @@
 /* controller handle the maple data but also the "cursor" in game*/
 typedef struct _player
 {
+  char*           questDesc;
+  int             questID;
   int             visible;
+  int             currentMap;
   int             inventorySize;
   float           cSpeed;     //speed of cursor
 
@@ -26,7 +28,6 @@ player  initPlayer(int playerNum);
 void    updateController();
 void    updatePlayer();
 void    updateInventory();
-
 
 void  updateItem();
 void  displayInventory();

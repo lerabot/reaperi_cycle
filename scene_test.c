@@ -10,7 +10,6 @@ void loadTestData(scene* self);
 
 texture _t;
 gameObject portrait;
-roq_callbacks_t cbs;
 
 void loadTest(scene* self) {
   mount_romdisk("/asset/rd_test.img.gz", "/rd");

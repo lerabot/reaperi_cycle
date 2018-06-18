@@ -1,4 +1,4 @@
-package.path = package.path .. ";cd/lib/?.lua" .. ";pc/lib/?.lua" .. ";../lib/?.lua"
+package.path = package.path .. ";cd/lib/?.lua" .. ";pc/scrip/?.lua" .. ";../lib/?.lua"
 
 function loadJSON()
   json = require "json"

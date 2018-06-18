@@ -3,9 +3,6 @@
 #include <unistd.h>
 #include <zlib/zlib.h>
 #include "header.h"
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
 
 int l_game_state;
 
@@ -32,7 +29,6 @@ void initGL() // We call this right after our OpenGL window is created.
   glLightfv(GL_LIGHT0, GL_AMBIENT, ambi);
   glEnable(GL_COLOR_MATERIAL);
 }
-
 
 void basicLight() {
   GLfloat ambi[] = {1.0, 1.0, 1.0, 1.0};
@@ -131,20 +127,6 @@ int loadFile(char *filename) {
       return 0;
 }
 
-int loadLuaFile(lua_State *L_state, char *filename) {
-  if(luaL_loadfile(L_state, filename) || lua_pcall(L_state, 0, 0, 0)) {
-    setParam(3, lua_tostring(L_state, -1));
-    return(0);
-  }
-  return (1);
-}
-
-void setLuaState(lua_State **L_state) {
-  *L_state = luaL_newstate();
-  luaL_openlibs(*L_state);
-  luaopen_io(*L_state);
-}
-
 void toggleMenu() {
   if (buttonPressed(CONT_START)) {
     if(game_state != MENU) {
@@ -191,10 +173,12 @@ void renderMenu() {
       writeFont(option[i], 320 - (strlen(option[i])/2 * 10), (240 + 20) - (20 * i));
       resetFontColor();
     }
+
+    fontColor(0.0, 0.0, 1.0);
+    writeFont(p1.questDesc, 320 - (strlen(p1.questDesc)/2 * 10), 320);
+    resetFontColor();
   }
 }
-
-
 
 void quitGame(){
     exit(1);

@@ -182,10 +182,6 @@ char*   getLuaDialog(char *npc_name) {
   return(buf);
 }
 
-void    resetText() {
-  len = 0;
-}
-
 void    fontColor(float r, float g, float b) {
   f.txtFont.color[0] = r;
   f.txtFont.color[1] = g;
@@ -259,4 +255,8 @@ void    setChar(int c){
   c -= 16;
   f.txtFont.u = (c % (int)(1 / u)) * u;
   f.txtFont.v = 1 - ((c / (int)(1 / u)) * v);
+}
+
+void    resetText() {
+  len = 0;
 }

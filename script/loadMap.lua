@@ -1,5 +1,4 @@
 package.path = package.path .. ";cd/script/?.lua" .. ";pc/script/?.lua" .. ";../script/?.lua" .. ";/rd/?.lua"
---package.path = package.path .. ";rd/?.lua"
 
 sprite_data = {}
 xml_data = {}
