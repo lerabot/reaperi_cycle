@@ -6,7 +6,7 @@
 
 int l_game_state;
 
-void initGL() // We call this right after our OpenGL window is created.
+void  initGL() // We call this right after our OpenGL window is created.
 {
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// This Will Clear The Background Color To Black
   glClearDepth(1.0);				// Enables Clearing Of The Depth Buffer
@@ -30,7 +30,7 @@ void initGL() // We call this right after our OpenGL window is created.
   glEnable(GL_COLOR_MATERIAL);
 }
 
-void basicLight() {
+void  basicLight() {
   GLfloat ambi[] = {1.0, 1.0, 1.0, 1.0};
   glEnable(GL_LIGHTING);
   glEnable(GL_LIGHT0);
@@ -58,7 +58,7 @@ char* findFile(char *filename) {
   return("NoFile!");
 }
 
-int mount_romdisk(char *filename, char *mountpoint){
+int   mount_romdisk(char *filename, char *mountpoint){
   void *buffer;
   char path[50];
   char *dest[3];
@@ -90,7 +90,7 @@ int mount_romdisk(char *filename, char *mountpoint){
   return 1;
 }
 
-int mount_gz_romdisk(char *filename, char *mountpoint){
+int   mount_gz_romdisk(char *filename, char *mountpoint){
     void *buffer;
     int length;
 
@@ -113,7 +113,7 @@ int mount_gz_romdisk(char *filename, char *mountpoint){
     return 1;
 }
 
-int loadFile(char *filename) {
+int   loadFile(char *filename) {
   void *buffer;
   int size = fs_load(filename, &buffer);
 
@@ -127,7 +127,7 @@ int loadFile(char *filename) {
       return 0;
 }
 
-void toggleMenu() {
+void  toggleMenu() {
   if (buttonPressed(CONT_START)) {
     if(game_state != MENU) {
       l_game_state = game_state;
@@ -139,7 +139,7 @@ void toggleMenu() {
 }
 
 int cMenu = 0;
-void renderMenu() {
+void  renderMenu() {
   char *option[4] = {"Return to Menu", "Save (not yet)", "Load (not yet)", "Quit Game (DEV ONLY)"};
   toggleMenu();
   //basicLight();
@@ -180,13 +180,17 @@ void renderMenu() {
   }
 }
 
+int   getTime() {
+  return clock() / CLOCKS_PER_SEC;
+}
+
 void quitGame(){
     exit(1);
 }
 
 clock_t cTime, lTime;
-double avgTime = 0;
-char buf[24];
+double  avgTime = 0;
+char    buf[24];
 float getFrameTime() {
   lTime = cTime;
   cTime = clock();

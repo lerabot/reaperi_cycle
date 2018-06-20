@@ -4,6 +4,7 @@
 #include <GL/glu.h>
 #include <math.h>
 #include "gl_png.h"
+#include "lua_binds.h"
 #include "gl_font.h"
 #include "debug_screen.h"
 #include "../global_var.h"
@@ -57,7 +58,7 @@ void    renderDialog() {
   if(buttonPressed(CONT_A)) {
     //check for NPC
     if (showPortait == 1)
-      setDialog(getLuaDialog(active_npc));
+      setDialog(LUA_getDialog(active_npc));
     else
       textActive = 0;
   }
@@ -101,7 +102,7 @@ void    renderDialog() {
 //activate a NPC portait and trigger thier dialog
 void    activateNPC (char *npc_name, char *filename) {
   setPortrait(filename);
-  setDialog(getLuaDialog(npc_name));
+  setDialog(LUA_getDialog(npc_name));
   active_npc = npc_name;
 }
 
@@ -167,19 +168,6 @@ int     setDesciption (char *dialog) {
   }
   len = 0;
   return(0);
-}
-
-char*   getLuaDialog(char *npc_name) {
-  char *buf = "";
-  lua_getglobal(L, "setDialog");
-  lua_pushstring(L, npc_name);
-  lua_pcall(L, 1, 0, 0);
-  lua_settop(L, 0);
-  lua_getglobal(L, "getDialog");
-  lua_pcall(L, 0, 1, 0);
-  buf = lua_tostring(L, -1);
-  lua_pop(L,1);
-  return(buf);
 }
 
 void    fontColor(float r, float g, float b) {

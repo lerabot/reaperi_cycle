@@ -9,7 +9,7 @@ extern uint8    romdisk[];
 KOS_INIT_ROMDISK(romdisk);
 maple_device_t  *cont;
 cont_state_t    *state;
-uint64          begin, end, t_diff;
+uint64          e_time, s_time;
 int             game_active = 1;
 int             game_state = 0;
 
@@ -24,6 +24,7 @@ texture t;
 
 int main()
 {
+  s_time = clock();
   glKosInit();
 	initGL();
 

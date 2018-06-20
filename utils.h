@@ -12,6 +12,7 @@ void    setLuaState(lua_State **L);
 void    initGL();
 void    basicLight();
 void    renderMenu();
+int     getTime();
 float   getFrameTime();
 void    quitGame();
 

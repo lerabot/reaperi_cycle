@@ -13,6 +13,7 @@
 
 extern lua_State    *L;               //game data
 extern lua_State    *t_data;          //texture data
+extern uint64       e_time, s_time;   //time stuff
 extern player       p1;               //player data
 extern scene        *currentScene;    //...
 extern scene        *tempScene;       //... to load shit

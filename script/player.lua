@@ -11,6 +11,10 @@ player.inventory = {} --what the player holds
 player.relation = {} --relation to other NPC
 player.knowledge = {} --information the players holds
 
+function getTime()
+  return os.clock()
+end
+
 function getPlayerPosition()
   return player.pos[1], player.pos[2]
 end
