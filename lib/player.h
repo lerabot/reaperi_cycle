@@ -8,12 +8,14 @@
 /* controller handle the maple data but also the "cursor" in game*/
 typedef struct _player
 {
-  char*           questDesc;
-  int             questID;
   int             visible;
   int             currentMap;
   int             inventorySize;
   float           cSpeed;     //speed of cursor
+
+  char*           questDesc;  //quest description
+  char*           questName;  //quest title in quest list
+  int             questID;    //int define in header
 
   maple_device_t  *cont;      //controller adress
   cont_state_t    *state;     //current state

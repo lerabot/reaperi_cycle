@@ -1,7 +1,5 @@
 --[[
-use loadstring to transform 'event = "sunrise"' 'quest="trade_coin"' into a chunk.
-permet de setter des condition au complet dans le json
-https://www.lua.org/pil/8.html
+
 --]]
 
 package.path = package.path .. ";cd/script/?.lua" .. ";pc/script/?.lua" .. ";../script/?.lua" .. ";/rd/?.lua"
@@ -9,6 +7,7 @@ package.path = package.path .. ";cd/script/?.lua" .. ";pc/script/?.lua" .. ";../
 dialog_raw = {}
 npc_state = {}
 active_npc = {}
+
 
 function loadDialog(filename)
   local json = assert(require "json")
@@ -26,6 +25,15 @@ function loadDialog(filename)
   return "JSON dialog loaded"
 end
 
+function getDialog()
+  local p = require "player"
+
+  -- fetchs the proper textID (quest? event? random?)
+  getTextID(active_npc)
+  -- return text string
+  return getText(active_npc.name, active_npc.textID)
+end
+
 c = 1
 function getText(npc, textID)
   local text = ""
@@ -40,8 +48,12 @@ function getText(npc, textID)
       elseif v.nextID ~= "" then
         active_npc.textID = v.nextID
         c = 1
+      elseif v.result ~= nil and v.result ~= "" then
+        checkResult(v.result)
+        active_npc.textID = ""
+        c = 1
       else
-        --npc_state[v.npc].current_textID = v.textID
+        active_npc.textID = ""
         c = 1
       end
     end
@@ -49,45 +61,50 @@ function getText(npc, textID)
   return text
 end
 
-function getDialog()
-  p = require "player"
-  questID = p.currentQuest.name
-  questID = "Intro"
+function checkQuest(questName)
+  local p = require "player"
 
-  -- fetchs the proper textID (quest? event? random?)
-  getTextID(active_npc, questID)
-  -- return text string
-  return getText(active_npc.name, active_npc.textID)
 end
 
-function checkCondition(npc_name)
-  for k, v in pairs(npc_state) do
-    if v.name == npc_name then
-      if v.condition ~= "" then
-        local c = loadstring(v.condition)
+--work on this to make this flexible
+function checkResult(result)
+  local text = ""
+  --ugly array check
+  if result[1] ~= "" then
+    for i,v in ipairs(result) do
+      if i % 2 == 1 then
+        --SEEMS TO WORK?
+        _G[result[i]](result[i+1])
       end
     end
   end
 end
 
-function getTextID(npc, questID)
+function getTextID(npc)
+  local p = require "player"
+  -- FETCH les choses, si c'est null va à l'autre
+
   -- 1. check special condition (for quest completion)
   -- 2. check for quest
   -- 3. random text?
   if npc.textID == "" then
     print("No textID found for " .. npc.name)
     for k, v in pairs(dialog_raw.data) do
-      -- checkinf for special condition
-
-      -- checking for quest
-      if v.npc == npc.name and v.textID == questID then
-        print("TextID from quest : " .. v.textID)
-        active_npc.textID = v.textID
-        return active_npc.textID
+      if v.npc == npc.name then
+        ---------------------------------------
+        if v.textID == p.currentQuest.name then
+          print("TextID from quest : " .. v.textID)
+          active_npc.textID = v.textID
+          return active_npc.textID
+        ---------------------------------------
+        --else then
+          --active_npc.textID = "random"
+          --return active_npc.textID
+        ---------------------------------------
+        end
       end
     end
   end
-
   return active_npc.textID
 end
 

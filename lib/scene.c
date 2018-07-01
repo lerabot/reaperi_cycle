@@ -8,22 +8,7 @@
 
 gameObject spritesheet;
 
-/*
-void renderScene(scene *s){
-  glPushMatrix();
-  glTranslated((int)displayPos[0], (int)displayPos[1], displayPos[2]);
-  if (s != NULL)
-  {
-    if (s->floorTex != -1)
-      drawMap(&s->obj[s->floorTex].t, s->mapSize[0]/2, s->mapSize[1]/2);
 
-    for (int i = 0; i < s->objNum; i++){
-      drawObject(&s->obj[i]);
-    }
-  }
-  glPopMatrix();
-}
-*/
 
 void loadMapData(scene *self, char* filename) {
   loadLuaFile(t_data, findFile("/script/loadMap.lua"));
@@ -54,10 +39,10 @@ void loadMapData(scene *self, char* filename) {
 
   int depth = 0;
   self->obj = malloc(sizeof(gameObject) * self->objNum);
-  for (int i = 0; i < self->objNum; i++) { //LUA OFFSET!!!!
+  for (int i = 0; i < self->objNum; i++) {
     lua_getglobal(t_data, "createObject");
-    lua_pushnumber(t_data, i+1);
-    lua_pcall(t_data, 1, 9, 0);
+    lua_pushnumber(t_data, i+1); // +1 = lua offset
+    lua_pcall(t_data, 1, 10, 0);
     self->obj[i] = createObject("", 0, 0, 1);
     self->obj[i].t = spritesheet.t;
     self->obj[i].x =        lua_tonumber(t_data, 1);
@@ -70,6 +55,7 @@ void loadMapData(scene *self, char* filename) {
     self->obj[i].t.xScale = lua_tonumber(t_data, 7);
     self->obj[i].desc =     lua_tostring(t_data, 8);
     self->obj[i].name =     lua_tostring(t_data, 9);
+    self->obj[i].npcID =    lua_tostring(t_data, 10);
     lua_settop(t_data, 0);
   }
 }

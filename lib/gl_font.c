@@ -18,7 +18,7 @@ char boxText[196] = "";
 
 int textActive = 0;
 int showDialog = 0;
-int showPortait = 0;
+int showPortrait = 0;
 int portraitX, portraitY;
 float frame;
 float screenAlpha;
@@ -57,13 +57,15 @@ void    renderDialog() {
 
   if(buttonPressed(CONT_A)) {
     //check for NPC
-    if (showPortait == 1)
+    if (showDialog == 1)
       setDialog(LUA_getDialog(active_npc));
     else
       textActive = 0;
   }
 
-  setString(3, active_npc);
+  if(buttonPressed(CONT_B)) {
+    textActive = 0;
+  }
 
   //show dialog animation
   if(textActive != 0 && frame < 90) {
@@ -82,17 +84,16 @@ void    renderDialog() {
     showController();
   }
 
-
+  //Return to the exploration state once the animation is done
   if (textActive == 0 && frame <= -90) { //
     game_state = EXPLORATION;
   }
 
-
   //draw the portait
-  if(showPortait == 1)
+  if(showPortrait)
     draw_textured_quad(&portrait, portraitX, portraitY, 5.0);
 
-  if(showDialog == 1) {
+  if(showDialog) {
     draw_textured_quad(&box, 320, 100, 5.0);
     if(frame > 40)
       writeFontDelay(boxText, x, y, 6);
@@ -100,19 +101,31 @@ void    renderDialog() {
 }
 
 //activate a NPC portait and trigger thier dialog
-void    activateNPC (char *npc_name, char *filename) {
-  setPortrait(filename);
+int    activateNPC (char *npc_name, char *filename) {
+  showPortrait = setPortrait(filename);
   setDialog(LUA_getDialog(npc_name));
   active_npc = npc_name;
+  return(textActive);
 }
 
 //set the portrait / image. 1 = new image, 0 = not new image
 int     setPortrait (char *filename) {
-  if (strcmp(filename, portraitFile) != 0) {
+  //check if the portrait is empty
+  if (strcmp(filename, "") == 0) {
+    setParam(3, "No portrait");
+    return(0);
+  }
+
+  //check if the portrait has changed
+  if  (strcmp(filename, portraitFile) == 0) {
+    setParam(3, "Old portrait");
+    return (1);
+  }
+  else {
     glDeleteTextures(1, &portrait.id);
     png_to_gl_texture(&portrait, filename);
     portraitFile = filename;
-    showPortait = 1;
+    setParam(3, "New portrait");
     return(1);
   }
   return(0);
@@ -122,8 +135,8 @@ void    resetPortrait() {
   if(strcmp(portraitFile, "") != 0) {
     glDeleteTextures(1, &portrait.id);
     portraitFile = "";
-    showPortait = 0;
   }
+  showPortrait = 0;
 }
 
 int     setDialog (char *dialog) {
@@ -146,7 +159,7 @@ int     setDialog (char *dialog) {
   return(0);
 }
 
-int     setDesciption (char *dialog) {
+int     setDescription (char *dialog) {
   //reset both the portrait and the current npc
   resetPortrait();
   active_npc = "";
@@ -180,8 +193,19 @@ void    resetFontColor() {
   f.txtFont.color[0] = f.txtFont.color[1] = f.txtFont.color[2] = 1.0f;
 }
 
+void setFontScale(float scale) {
+  f.glyphScale = scale;
+  setScale(&f.txtFont, scale);
+}
+
+void resetFontScale() {
+  f.glyphScale = 1.0;
+  setScale(&f.txtFont, 1.0);
+}
+
 void    writeFont(char *string, int x, int y){
-  int cellSize = 10; //char width
+  float cellSize = 10 * f.glyphScale; //char width
+  int maxGlyph = 36;
   int c = 0; //char number
   int l = strlen(string);
   int line = 0;
@@ -190,10 +214,12 @@ void    writeFont(char *string, int x, int y){
   for (int i = 0; i < l; i++){
     glyph = *string;
     setChar(glyph);
-    draw_textured_quad(&f.txtFont, x + (c*cellSize), y - (line * 16), 9);
+    draw_textured_quad(&f.txtFont, x + (c * cellSize), y - (line * 16), 9);
     c++;
     string++;
-    if (glyph == '\n') {
+    if (c == l)
+      c = line = 0;
+    if (glyph == '\n' || (c > maxGlyph && glyph == ' ' )) {
       line++;
       c = 0;
     }
@@ -201,7 +227,7 @@ void    writeFont(char *string, int x, int y){
 }
 
 int     writeFontDelay(char *string, int x, int y, int delay){
-  int cellSize = 10; //char width
+  float cellSize = 10 * f.glyphScale; //char width
   int maxGlyph = 36;
   int c = 0; //char number
   int line = 0;
@@ -213,7 +239,7 @@ int     writeFontDelay(char *string, int x, int y, int delay){
   for (int i = 0; i < len; i++){
     glyph = nString[i];
     setChar(glyph);
-    draw_textured_quad(&f.txtFont, x + (c*cellSize), y - (line * 16), 9);
+    draw_textured_quad(&f.txtFont, x + (c * cellSize), y - (line * 16), 9);
     c++;
     if (c == l)
       c = line = 0;

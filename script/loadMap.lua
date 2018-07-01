@@ -78,8 +78,13 @@ function createObject(i)
     textures[i].desc = img[i]["@desc"]
   end
 
+  textures[i].npcID = ""
+  if img[i]["@npcID"] ~= nil then
+    textures[i].npcID = img[i]["@npcID"]
+  end
+
   return textures[i].x, textures[i].y, textures[i].u, textures[i].v, textures[i].uSize, textures[i].vSize, textures[i].xScale, textures[i].desc,
-  textures[i].file
+  textures[i].file, textures[i].npcID
 end
 
 function getMapInfo()

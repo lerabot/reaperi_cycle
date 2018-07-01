@@ -131,6 +131,7 @@ void  toggleMenu() {
   if (buttonPressed(CONT_START)) {
     if(game_state != MENU) {
       l_game_state = game_state;
+      LUA_getQuest();
       game_state = MENU;
     }
     else
@@ -166,16 +167,21 @@ void  renderMenu() {
         break;
     }
 
+    float cellSize = 10;
+
     for(int i = 0; i < 4; i++) {
       if (i == cMenu)
         fontColor(1.0, 0.0, 0.0);
 
-      writeFont(option[i], 320 - (strlen(option[i])/2 * 10), (240 + 20) - (20 * i));
+      writeFont(option[i], 320 - (strlen(option[i])/2 * cellSize), (200 + 20) - (20 * i));
       resetFontColor();
     }
 
-    fontColor(0.0, 0.0, 1.0);
-    writeFont(p1.questDesc, 320 - (strlen(p1.questDesc)/2 * 10), 320);
+    fontColor(0.3, 0.46, 0.9);
+    setFontScale(1.5);
+    writeFont(p1.questName, 320 - (strlen(p1.questName)/2 * cellSize * 1.5), 360);
+    resetFontScale();
+    writeFont(p1.questDesc, 320 - (strlen(p1.questDesc)/2 * cellSize), 320);
     resetFontColor();
   }
 }

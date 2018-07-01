@@ -22,6 +22,8 @@ void loadTest(scene* self) {
   self->renderScene = renderTest;
   self->updateScene = updateTest;
   self->freeScene = freeTest;
+
+  //dreamroq_play("/rd/test_512_square.roq", ROQ_RGB565, 1, &cbs)
 }
 
 void renderTest(scene *self){

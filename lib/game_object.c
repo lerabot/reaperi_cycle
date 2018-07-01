@@ -28,6 +28,7 @@ gameObject createObject(char *path, float x, float y, int visible){
   temp.emitLight = 0;
   temp.name = "";
   temp.desc = "";
+  temp.npcID = "";
   return(temp);
 }
 

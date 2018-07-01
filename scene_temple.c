@@ -4,6 +4,7 @@
 #include "scene_temple.h"
 #include "scene_soussol.h"
 #include "lib/lua_binds.h"
+#include "lib/dreamroqlib.h"
 
 char *_golem_portrait = "/rd/golem_portrait.png";
 char *_marchand_portrait = "/rd/marchand_v1_dith.png";
@@ -11,6 +12,7 @@ char *_marchand_portrait = "/rd/marchand_v1_dith.png";
 gameObject *marchand;
 gameObject *golem;
 
+int intro = 0;
 int to_soussol = 0;
 
 void loadTemple(scene* self) {
@@ -42,21 +44,26 @@ void loadTemple(scene* self) {
 
   game_state = EXPLORATION;
   p1.currentMap = MAP_TEMPLE;
-  p1.questID = 0;
 
-  LUA_addQuest(0);
   LUA_loadDialog("/rd/temple_dialog.json");
+  LUA_addQuest(0);
 
   self->freeScene = freeTemple;
   self->updateScene = updateTemple;
-  self->renderScene = renderTemple;
+  self->renderScene = renderTemple;;
 }
 
 void updateTemple(scene *self){
   //char* buf;
   char *buf = "";
   snprintf(buf, 16, "x-%d y-%d", (int)p1.obj.x, (int)p1.obj.y);
-  //setParam(5, buf);
+  setParam(5, buf);
+
+  if(intro == 0){
+    playROQvideo("/cd/video/fiole_squared.roq");
+    activateNPC("magicienne", "");
+    intro = 1;
+  }
 
   if(clicked(marchand, CONT_A)) {
     activateNPC("marchand", _marchand_portrait);
@@ -67,9 +74,15 @@ void updateTemple(scene *self){
   }
 
   if(clicked(&self->obj[to_soussol], CONT_A)) {
-    freeTemple(self);
-    loadSoussol(tempScene);
-    setPosition(320, 240);
+    if(p1.questID == QUEST_INTRO) {
+      activateNPC("magicienne", "");
+      LUA_addQuest(QUEST_SCROLL);
+    }
+    else {
+      freeTemple(self);
+      loadSoussol(tempScene);
+      setPosition(320, 240);
+    }
   }
 }
 

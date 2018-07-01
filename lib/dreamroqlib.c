@@ -42,16 +42,13 @@ static int current_frame = 0;
 roq_callbacks_t cbs;
 int video_status = 1;
 
-
-
 int   playROQvideo(char* filename) {
   cbs.render_cb   = render_cb;
   cbs.audio_cb    = audio_cb;
   cbs.quit_cb     = quit_cb;
   cbs.finish_cb   = finish_cb;
 
-  if(video_status)
-    dreamroq_play(filename, ROQ_RGB565, 1, &cbs);
+  dreamroq_play(filename, ROQ_RGB565, 0, &cbs);
 
   return(video_status);
 }
@@ -967,10 +964,13 @@ int render_cb(void *buf_ptr, int width, int height, int stride,
         //br_x = (ratio * stride);
         //ul_y = ((video_height - ratio * height) / 2);
         //br_y = ul_y + ratio * texture_height;
+        video_width = 512;
+        video_height = 512;
+
 
         ratio = video_width / video_height;
-        ul_x = 320 - 512/2;
-        br_x = 320 + 512/2;
+        ul_x = 320 - video_width/2;
+        br_x = 320 + video_width/2;
         ul_y = ((video_height - ratio * height) / 2);
         br_y = ul_y + ratio * texture_height;
 

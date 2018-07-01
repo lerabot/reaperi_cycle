@@ -41,6 +41,14 @@
 #define MAP_JARDIN 4
 #define MAP_HIDEOUT 77
 
+//MAIN STORYLINE 0-50
+#define NO_QUEST 0
+#define QUEST_INTRO 1
+#define QUEST_SCROLL 2
+
+//EXTRA QUEST 50-???
+#define QUEST_MARCHANT_1 50
+
 #include "scene_menu.h"
 #include "scene_temple.h"
 #include "scene_soussol.h"

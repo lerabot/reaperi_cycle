@@ -80,12 +80,13 @@ void printString(char *string, int x, int y) {
 }
 
 void memoryInfo(){
-  long maxMem = 4077736;
-  long avail = pvr_mem_available();
-  float rem;
+  char *mem_buf = "";
+  double maxMem = 4077736;
+  double avail = pvr_mem_available();
+  double rem;
 
-  rem = (avail / maxMem) * 100.0;
-  snprintf(mem_buf, 32, "PVR:%0.2f/100", rem);
+  rem = ((avail / maxMem) * 100);
+  sprintf(mem_buf, "PVR:%0.2f/100", rem);
   setParam(0, mem_buf);
 }
 
@@ -98,8 +99,6 @@ void debugScreen() {
 
   bfont_set_encoding(BFONT_CODE_ISO8859_1);
   memoryInfo();
-
-
 
   char buf[32];
   pvr_get_stats(&stats);

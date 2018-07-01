@@ -2,6 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
+#include "lib/lua_binds.h"
 #include "scene_soussol.h"
 #include "header.h"
 
@@ -19,6 +20,9 @@ int tableau_state[TABLEAU_NUM] = {0};
 gameObject *descObj[20];
 int desc_num = 0;
 
+gameObject *npcObj[5];
+int npc_num = 0;
+
 int symbole = 0;
 
 GLfloat l1_pos[] = {320.0, 240.0, 1.0, 1.0};
@@ -29,6 +33,7 @@ void loadSoussol(scene* self) {
   mount_romdisk("/asset/rd_soussol.img.gz", "/rd");
   //load map via JSON+XML
   loadMapData(self, "/rd/map_soussol.svg");
+  setPosition(1852, 2100);
 
   self->obj[0] = createObject("/rd/soussol_floor.png", -1000, -1000, 1);
   generateFloor(self, 0);
@@ -48,9 +53,9 @@ void loadSoussol(scene* self) {
   int t = 0;
   //assing obj ID to items
   for (int i = 0; i < self->objNum; i++) {
-    if(strcmp(self->obj[i].name, "tableau_2.png") == 0)
+    if (strcmp(self->obj[i].name, "tableau_2.png") == 0)
       tab[t++] = &self->obj[i];
-    if(strcmp(self->obj[i].name, "lantern.png") == 0) {
+    if (strcmp(self->obj[i].name, "lantern.png") == 0) {
       torche[l++] = &self->obj[i];
       self->obj[i].t = torche_tex;
     }
@@ -60,10 +65,13 @@ void loadSoussol(scene* self) {
     if (strlen(self->obj[i].desc) > 2) {
       descObj[desc_num++] = &self->obj[i];
     }
+    if (strlen(self->obj[i].npcID) > 2) {
+      npcObj[npc_num++] = &self->obj[i];
+    }
   }
+  //setInt(0, npc_num);
 
-  setInt(1, desc_num);
-
+  //light related
   glDisable(GL_LIGHT0);
   glLightfv(GL_LIGHT1, GL_AMBIENT, l1_amb);
   glLightfv(GL_LIGHT1, GL_DIFFUSE, l1_diff);
@@ -76,23 +84,24 @@ void loadSoussol(scene* self) {
   game_state = EXPLORATION;
   p1.currentMap = MAP_SOUSSOL;
 
+  LUA_loadDialog("/rd/soussol_dialog.json");
+  LUA_addQuest(QUEST_SCROLL);
+  //LUA_addQuest(QUEST_INTRO);
+
   self->updateScene   = updateSoussol;
   self->freeScene     = freeSoussol;
   self->renderScene   = renderSoussol;
 }
 
 void updateEnigme(scene *self) {
-  //char *buf = "";
-  //snprintf(buf, 16, "x-%d y-%d", (int)p1.obj.x, (int)p1.obj.y);
-  //setParam(3, buf);
 
+  // torches
   for(int i = 0; i < TORCHE_NUM; i++) {
     if(over(torche[i])) {
       torche_active[i] = 1;
       torche[i]->t.a = 1.0f;
     }
   }
-
 
   //run script for the 3 tableau
   for (int i = 0; i < 3; i++) {
@@ -112,7 +121,12 @@ void updateEnigme(scene *self) {
 void updateDesc(scene *self) {
   for(int i = 0; i < desc_num; i++) {
     if(clicked(descObj[i], CONT_A))
-      setDesciption(descObj[i]->desc);
+      setDescription(descObj[i]->desc);
+  }
+  for(int i = 0; i < npc_num; i++) {
+    if(clicked(npcObj[i], CONT_A))
+      //setDescription("whoughhh");
+      activateNPC(npcObj[i]->npcID, "");
   }
 }
 
@@ -120,8 +134,12 @@ void updateSoussol(scene *self){
   updateEnigme(self);
   updateDesc(self);
 
-  GLfloat pos[] = {p1.obj.x, p1.obj.y, 5.0f, 1.0f};
-  glLightfv(GL_LIGHT1, GL_POSITION, pos);
+  char *buf = "";
+  snprintf(buf, 16, "x-%d y-%d", (int)p1.obj.x, (int)p1.obj.y);
+  setParam(5, buf);
+
+  //GLfloat pos[] = {p1.obj.x, p1.obj.y, 5.0f, 1.0f};
+  //glLightfv(GL_LIGHT1, GL_POSITION, pos);
 
   /*
   for(int i = 0; i < 9; i++) {
@@ -150,6 +168,8 @@ void updateSoussol(scene *self){
 
 void renderSoussol(scene *self){
   srand(time(NULL));
+
+  //torches
   for(int i = 0; i < TORCHE_NUM; i++) {
     if(torche_active[i] == 1) {
       if (strcmp(torche[i]->name, "lantern.png") == 0)
@@ -157,7 +177,6 @@ void renderSoussol(scene *self){
       else {
         setAnim(&flame, (frameCount % 3));
         draw_textured_quad(&flame, torche[i]->x, torche[i]->y + 30, torche[i]->z + 1);
-
       }
     }
   }
