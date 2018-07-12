@@ -33,14 +33,14 @@ int main()
   sndoggvorbis_init();
 
   LUA_initLua();
-
   p1 = initPlayer(0);
+  //VMU_loadGame();
   loadFont("/rd/DFKei.png");
 
   tempScene = malloc(sizeof(scene));
   currentScene = malloc(sizeof(scene));
   tempScene = currentScene;
-  loadSoussol(currentScene);
+  loadTemple(currentScene);
 
   while(game_active)
   {

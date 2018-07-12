@@ -85,8 +85,7 @@ void loadSoussol(scene* self) {
   p1.currentMap = MAP_SOUSSOL;
 
   LUA_loadDialog("/rd/soussol_dialog.json");
-  LUA_addQuest(QUEST_SCROLL);
-  //LUA_addQuest(QUEST_INTRO);
+  LUA_addQuest(2);
 
   self->updateScene   = updateSoussol;
   self->freeScene     = freeSoussol;
@@ -123,20 +122,18 @@ void updateDesc(scene *self) {
     if(clicked(descObj[i], CONT_A))
       setDescription(descObj[i]->desc);
   }
+  /*
   for(int i = 0; i < npc_num; i++) {
     if(clicked(npcObj[i], CONT_A))
       //setDescription("whoughhh");
       activateNPC(npcObj[i]->npcID, "");
   }
+  */
 }
 
 void updateSoussol(scene *self){
   updateEnigme(self);
   updateDesc(self);
-
-  char *buf = "";
-  snprintf(buf, 16, "x-%d y-%d", (int)p1.obj.x, (int)p1.obj.y);
-  setParam(5, buf);
 
   //GLfloat pos[] = {p1.obj.x, p1.obj.y, 5.0f, 1.0f};
   //glLightfv(GL_LIGHT1, GL_POSITION, pos);

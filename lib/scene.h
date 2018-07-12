@@ -10,10 +10,10 @@ typedef struct _scene
   char        *status; //new, started, completed, ???
 
   //visual
-  int         objNum, texNum; //count for tex and obj
+  int         objNum, texNum, activeNum; //count for tex and obj
   gameObject  *bg;
   gameObject  *obj;
-  gameObject  *activeObj;
+  gameObject  **activeObj;
   int         *tex;
   int         floorTex;
   int         mapSize[2];

@@ -1,4 +1,4 @@
-local player = {}
+player = {}
 
 player.pos = {0, 0} -- x, y
 player.state = "basic" --fire, translate, etc

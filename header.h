@@ -30,24 +30,28 @@
 #include "lib/particule.h"
 #include "lib/lua_binds.h"
 #include "lib/dreamroqlib.h"
+#include "lib/vmu.h"
 
 /////////////////////////
 //scenes
 
-#define MAP_NOID 0
-#define MAP_TEMPLE 1
-#define MAP_SOUSSOL 2
-#define MAP_DESERT 3
-#define MAP_JARDIN 4
-#define MAP_HIDEOUT 77
+#define MAP_NOID            0
+#define MAP_TEMPLE          1
+#define MAP_SOUSSOL         2
+#define MAP_DESERT          3
+#define MAP_JARDIN          4
+#define MAP_HIDEOUT         77
 
+#define QUEST_NUMBER        50
 //MAIN STORYLINE 0-50
-#define NO_QUEST 0
-#define QUEST_INTRO 1
-#define QUEST_SCROLL 2
+#define NO_QUEST            0
+#define QUEST_INTRO         1
+#define QUEST_SCROLL        2
+#define QUEST_DECYPHER      3
+#define QUEST_GOLEMSPIT     4
 
 //EXTRA QUEST 50-???
-#define QUEST_MARCHANT_1 50
+#define QUEST_MARCHANT_1    50
 
 #include "scene_menu.h"
 #include "scene_temple.h"

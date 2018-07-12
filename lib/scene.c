@@ -8,8 +8,6 @@
 
 gameObject spritesheet;
 
-
-
 void loadMapData(scene *self, char* filename) {
   loadLuaFile(t_data, findFile("/script/loadMap.lua"));
 
@@ -39,6 +37,7 @@ void loadMapData(scene *self, char* filename) {
 
   int depth = 0;
   self->obj = malloc(sizeof(gameObject) * self->objNum);
+  self->activeNum = 0;
   for (int i = 0; i < self->objNum; i++) {
     lua_getglobal(t_data, "createObject");
     lua_pushnumber(t_data, i+1); // +1 = lua offset
@@ -56,7 +55,21 @@ void loadMapData(scene *self, char* filename) {
     self->obj[i].desc =     lua_tostring(t_data, 8);
     self->obj[i].name =     lua_tostring(t_data, 9);
     self->obj[i].npcID =    lua_tostring(t_data, 10);
+
+    if (strlen(self->obj[i].npcID) > 2)
+      self->activeNum++;
+
     lua_settop(t_data, 0);
+  }
+
+  self->activeObj = malloc(sizeof(gameObject*) * self->activeNum);
+
+  //assinging  obj > activeObj
+  int j = 0;
+  for (int i = 0; i < self->objNum; i++) {
+    if (strlen(self->obj[i].npcID) > 2) {
+      self->activeObj[j++] = &self->obj[i];
+    }
   }
 }
 
@@ -68,6 +81,13 @@ void setMapInfo(scene *s, int x, int y, int xStart, int yStart){
 
 void updateScene(scene *self) {
   self->updateScene(self);
+
+  if (self->activeNum > 0) {
+    for(int i = 0; i < self->activeNum; i++) {
+      if(clicked(self->activeObj[i], CONT_A))
+        activateNPC(self->activeObj[i]->npcID, "");
+    }
+  }
 }
 
 void renderScene(scene *self){
@@ -79,6 +99,8 @@ void renderScene(scene *self){
     if (self->floorTex != -1)
       drawMap(&self->obj[self->floorTex].t, self->mapSize[0]/2, self->mapSize[1]/2);
 
+    drawShadow();
+    
     for (int i = 0; i < self->objNum; i++){
       drawObject(&self->obj[i]);
     }

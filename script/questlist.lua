@@ -6,7 +6,7 @@ quest_data = {}
 function addQuest(questNum)
   local quest_raw = {}
   local json = assert(require "json")
-  local file = assert(io.open("/cd/script/quest_data.json", "r"))
+  local file = assert(io.open("pc/script/quest_data.json", "r"))
   if not file then
     return "No JSON quest_data"
   end
@@ -14,7 +14,7 @@ function addQuest(questNum)
   local raw = file:read("*all")
   file:close()
   quest_raw = json.decode(raw)
-  p = require "player"
+  local p = require "player"
   if p.quest[questNum] == nil then
     for k, v in pairs(quest_raw.quest) do
       --print(k .. " value :" ..v.name)
@@ -30,6 +30,7 @@ end
 
 -- set the quest state (completed, etc)
 function setQuestState(id, questState)
+  local p = require "player"
   for k, v in pairs(p.quest) do
     if p.quest[id] ~= nil then
       p.quest[id].completed = questState
@@ -39,6 +40,7 @@ end
 
 -- set the quest state (completed, etc)
 function completeQuest(id)
+  local p = require "player"
   if p.quest[id] ~= nil then
     p.quest[id].completed = 1
   end
@@ -47,6 +49,7 @@ end
 
 function getQuestNum()
   local questNumber = 0
+  local p = require "player"
   for k, v in pairs(p.quest) do
     questNumber = questNumber + 1
   end
@@ -54,6 +57,7 @@ function getQuestNum()
 end
 
 function getQuest()
+  local p = require "player"
   local q = p.currentQuest
   return q.name, q.desc, q.id, getQuestNum()
 end

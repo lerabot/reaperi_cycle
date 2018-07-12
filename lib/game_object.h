@@ -13,6 +13,7 @@ typedef struct game_object {
   char    *name; //filename
   char    *desc;
   char    *npcID; //npcID for LUA dialog etc.
+  char    *portraitID;
   float   x, y, z, angle;
   float   emitLight;
   texture t;

@@ -4,7 +4,7 @@ OBJS = main.o utils.o
 OBJS += scene_temple.o scene_test.o scene_desert.o scene_soussol.o scene_jardin.o scene_menu.o
 
 REAP_LIBS = $(addprefix lib/, $(REAP_OBJ))
-REAP_OBJ  = gl_png.o debug_screen.o game_object.o scene.o particule.o gl_font.o  tilemap.o gl_pvr_texture.o dreamroqlib.o player.o lua_binds.o
+REAP_OBJ  = gl_png.o debug_screen.o game_object.o scene.o particule.o gl_font.o  tilemap.o gl_pvr_texture.o dreamroqlib.o player.o lua_binds.o vmu.o
 
 KOS_CFLAGS += -std=c99 -I$(KOS_PORTS)/include/lua
 #KOS_ROMDISK_DIR = romdisk

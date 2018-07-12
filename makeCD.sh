@@ -25,10 +25,8 @@ mkisofs -C 0,11702 -V DC_GAME -G IP.BIN -r -J -l -o ../$PROJECT_NAME.iso $DIR
 sudo arp -s 192.168.0.99 00:d0:f1:03:14:02
 
 #start the game
-#sudo ../dc-tool-ip -t dreamcast -i ../phenix_data.iso -x main.elf
-#sudo ../dc-tool-ip -t dreamcast -c ./ -x main.elf
-#lxdream --audio=null main.elf
-#lxdream main.elf
+
+sudo ../dc-tool-ip -t dreamcast -c ./ -x main.elf
 #lxdream --audio=null ../$PROJECT_NAME.iso
 #reicast ../$PROJECT_NAME.cdi
-redream --audio 0 ../$PROJECT_NAME.cdi
+#../redream --audio 0 ../$PROJECT_NAME.cdi

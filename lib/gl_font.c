@@ -41,8 +41,10 @@ font    loadFont(char *path){
   box.a = 0;
 
   png_to_gl_texture(&tmp.txtFont, path);
-  tmp.glyphSize = 16;
+  tmp.glyphSize   = 16;
+  tmp.glyphScale  = 1;
   setUV(&tmp.txtFont, 0.0625, 0.0625);
+  tmp.txtFont.mag_filter = GL_NEAREST;
   f = tmp;
   return(tmp);
 }

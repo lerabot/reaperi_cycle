@@ -1,8 +1,9 @@
 #include <kos.h>
 #include <string.h>
-#include <unistd.h>
+#include <stdio.h>
 #include <zlib/zlib.h>
 #include "header.h"
+#include "lib/vmu.h"
 
 int l_game_state;
 
@@ -10,8 +11,8 @@ void  initGL() // We call this right after our OpenGL window is created.
 {
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// This Will Clear The Background Color To Black
   glClearDepth(1.0);				// Enables Clearing Of The Depth Buffer
-  glEnable(GL_DEPTH_TEST);			// Enables Depth Testing
-  glDepthFunc(GL_EQUAL);				// The Type Of Depth Test T
+  //glEnable(GL_DEPTH_TEST);			// Enables Depth Testing
+  //glDepthFunc(GL_EQUAL);				// The Type Of Depth Test T
   glShadeModel(GL_SMOOTH);			// Enables Smooth Color Shading
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -38,9 +39,9 @@ void  basicLight() {
 }
 
 char* findFile(char *filename) {
-  FILE *file;
-  char *dest[3];
-  char *path = "";
+  file_t  file;
+  char    *dest[3];
+  char    *path = "";
 
 
   dest[0] = "/cd";
@@ -49,13 +50,13 @@ char* findFile(char *filename) {
 
   for(int i = 0; i < 3; i ++){
     snprintf(path, 50, "%s%s", dest[i], filename);
-    if (file = fopen(path, "r")){
-      fclose(file);
+    if (file = fs_open(path, O_RDONLY) != -1){
+      fs_close(file);
       setParam(1, path);
       return(path);
     }
   }
-  return("NoFile!");
+  return("No File!");
 }
 
 int   mount_romdisk(char *filename, char *mountpoint){
@@ -157,10 +158,10 @@ void  renderMenu() {
         loadMenu(tempScene);
         break;
       case 1:
-        currentScene->freeScene(currentScene);
-        loadSoussol(tempScene);
+        VMU_saveGame();
         break;
       case 2:
+        VMU_loadGame();
         break;
       case 3:
         quitGame();
@@ -173,15 +174,15 @@ void  renderMenu() {
       if (i == cMenu)
         fontColor(1.0, 0.0, 0.0);
 
-      writeFont(option[i], 320 - (strlen(option[i])/2 * cellSize), (200 + 20) - (20 * i));
+      writeFont(option[i], 320 - (strlen(option[i])/2 * cellSize), (220 + 20) - (20 * i));
       resetFontColor();
     }
 
     fontColor(0.3, 0.46, 0.9);
     setFontScale(1.5);
-    writeFont(p1.questName, 320 - (strlen(p1.questName)/2 * cellSize * 1.5), 360);
+    writeFont(p1.questName, 320 - (strlen(p1.questName)/2 * cellSize * 1.5), 310);
     resetFontScale();
-    writeFont(p1.questDesc, 320 - (strlen(p1.questDesc)/2 * cellSize), 320);
+    writeFont(p1.questDesc, 320 - (strlen(p1.questDesc)/2 * cellSize), 280);
     resetFontColor();
   }
 }

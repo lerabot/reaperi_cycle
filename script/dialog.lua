@@ -7,6 +7,7 @@ package.path = package.path .. ";cd/script/?.lua" .. ";pc/script/?.lua" .. ";../
 dialog_raw = {}
 npc_state = {}
 active_npc = {}
+map_name = ""
 
 
 function loadDialog(filename)
@@ -16,12 +17,18 @@ function loadDialog(filename)
     return "No JSON dialog"
   end
 
-  local raw = file:read("*all")
+  local raw   = file:read("*all")
+  local _raw  = {}
   file:close()
-  dialog_raw = json.decode(raw)
-  for k, v in pairs(dialog_raw.data) do
+  _raw = json.decode(raw)
+
+  for k, v in pairs(_raw) do map_name = k end
+  dialog_raw = _raw[map_name]
+
+  for k, v in pairs(dialog_raw) do
     print("NPC: " ..v.npc .. " textID: " ..v.textID)
   end
+  
   return "JSON dialog loaded"
 end
 
@@ -37,7 +44,7 @@ end
 c = 1
 function getText(npc, textID)
   local text = ""
-  for k, v in pairs(dialog_raw.data) do
+  for k, v in pairs(dialog_raw) do
     if v.npc == npc and v.textID == textID then
       --check if there's something in the text array
       if v.text[c] ~= nil then
@@ -89,7 +96,7 @@ function getTextID(npc)
   -- 3. random text?
   if npc.textID == "" then
     print("No textID found for " .. npc.name)
-    for k, v in pairs(dialog_raw.data) do
+    for k, v in pairs(dialog_raw) do
       if v.npc == npc.name then
         ---------------------------------------
         if v.textID == p.currentQuest.name then

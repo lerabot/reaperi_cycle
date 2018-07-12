@@ -14,6 +14,7 @@ float   direction[2] = {0, 1};
 
 texture spirit_base;
 texture spirit_outer;
+texture ombre;
 gameObject spirit_particule;
 
 player      initPlayer(int playerNum) {
@@ -22,6 +23,7 @@ player      initPlayer(int playerNum) {
     temp.obj = createObject("", 320, 240, 1);
     setScale(&temp.obj.t, 0.5);
 
+    png_to_gl_texture(&ombre, "/rd/ombre.png");
     png_to_gl_texture(&spirit_base, "/rd/inside_blue.png");
     setScale(&spirit_base, 0.5);
 
@@ -53,9 +55,6 @@ player      initPlayer(int playerNum) {
     temp.inventory[0].frames = 7;
     setScale(&temp.inventory[0].t, 0.5);
     temp.currentItem = &temp.inventory[0];
-
-
-    loadLuaFile(L, findFile("/script/player.lua"));
 
     p1.state = (cont_state_t *)maple_dev_status(p1.cont);
     return(temp);
@@ -109,7 +108,6 @@ void        updateController() {
 void        updateItem() {
   if(buttonPressed(CONT_B))
     dropItem();
-
   switchItem();
 
   if(p1.currentItem != NULL) {
@@ -299,4 +297,10 @@ void        drawCursor() {
     }
   }
   glPopMatrix();
+}
+
+void        drawShadow() {
+  if (p1.obj.visible) {
+    draw_textured_quad(&ombre, p1.obj.x,  p1.obj.y - 50, -5);
+  }
 }

@@ -1,11 +1,12 @@
 #include <kos.h>
 #include <kos/string.h>
 #include <stdio.h>
+#include <string.h>
 #include "gl_font.h"
 #include "../global_var.h"
 
-char *debugData[6];
-char *debugName[6];
+char debugData[6][60];
+char debugName[6][60];
 char mem_buf[32];
 
 int visible = 0;
@@ -29,50 +30,23 @@ void toggleDebug(cont_state_t *state) {
 }
 
 void setParam(int paramIndex, char *text) {
-  debugName[paramIndex] = text;
+  strcpy(debugName[paramIndex], text);
 }
 
 void setString(int paramIndex, char *text) {
-  debugData[paramIndex] = text;
+  strcpy(debugData[paramIndex], text);
 }
 
 void setInt(int paramIndex, uint i) {
-  char *toString;
-
-  if (debugData[paramIndex] != NULL)
-    toString = debugData[paramIndex];
-  else
-    toString = malloc(8);
-
-  snprintf(toString, 8, "%u", i);
-  debugData[paramIndex] = toString;
-  //free(toString);
-}
-
-void setAdd(int paramIndex, void *pnt) {
-  char *toString;
-
-  if (debugData[paramIndex] != NULL)
-    toString = debugData[paramIndex];
-  else
-    toString = malloc(8);
-
-  snprintf(toString, 8, "%p", pnt);
-  debugData[paramIndex] = toString;
-  //free(toString);
+  char *toString = "";
+  sprintf(toString, "%u", i);
+  strcpy(debugData[paramIndex], toString);
 }
 
 void setFloat(int paramIndex, double i) {
-  char *toString;
-
-  if (debugData[paramIndex] != NULL)
-    toString = debugData[paramIndex];
-  else
-    toString = malloc(8);
-
-  snprintf(toString, 8, "%f", i);
-  debugData[paramIndex] = toString;
-  //free(toString);
+  char *toString = "";
+  sprintf(toString, "%f", i);
+  strcpy(debugData[paramIndex], toString);
 }
 
 void printString(char *string, int x, int y) {
@@ -80,7 +54,7 @@ void printString(char *string, int x, int y) {
 }
 
 void memoryInfo(){
-  char *mem_buf = "";
+  char  *mem_buf = "";
   double maxMem = 4077736;
   double avail = pvr_mem_available();
   double rem;

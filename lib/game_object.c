@@ -29,6 +29,7 @@ gameObject createObject(char *path, float x, float y, int visible){
   temp.name = "";
   temp.desc = "";
   temp.npcID = "";
+  temp.portraitID = "";
   return(temp);
 }
 

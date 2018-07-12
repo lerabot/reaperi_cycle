@@ -48,6 +48,7 @@ int   grab(gameObject *target);
 
 int   inScreen(int x, int y);
 void  drawCursor();
+void  drawShadow();
 void  hideController();
 void  showController();
 void  setPosition(int x, int y);

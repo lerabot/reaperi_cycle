@@ -21,7 +21,7 @@ void loadTemple(scene* self) {
 
   self->obj[0] = createObject("/rd/floor.png", -1000, -1000, 1);
   generateFloor(self, 0);
-  setPosition(1200, 300);
+  setPosition(200, 1300);
 
   marchand = malloc(sizeof(gameObject));
   *marchand = createObject("/rd/marchand_mini.png", 935, 548, 1);
@@ -45,8 +45,10 @@ void loadTemple(scene* self) {
   game_state = EXPLORATION;
   p1.currentMap = MAP_TEMPLE;
 
+  setInt(0, self->activeNum);
+
   LUA_loadDialog("/rd/temple_dialog.json");
-  LUA_addQuest(0);
+  LUA_addQuest(2);
 
   self->freeScene = freeTemple;
   self->updateScene = updateTemple;
@@ -60,7 +62,7 @@ void updateTemple(scene *self){
   setParam(5, buf);
 
   if(intro == 0){
-    playROQvideo("/cd/video/fiole_squared.roq");
+    //playROQvideo("/pc/video/fiole_squared.roq");
     activateNPC("magicienne", "");
     intro = 1;
   }
@@ -76,7 +78,6 @@ void updateTemple(scene *self){
   if(clicked(&self->obj[to_soussol], CONT_A)) {
     if(p1.questID == QUEST_INTRO) {
       activateNPC("magicienne", "");
-      LUA_addQuest(QUEST_SCROLL);
     }
     else {
       freeTemple(self);
