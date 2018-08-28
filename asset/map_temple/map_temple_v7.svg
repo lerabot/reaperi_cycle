@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="2500"
+   height="3000"
+   viewBox="0 0 2500 3000"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 (unknown)"
+   sodipodi:docname="map_temple_v7.svg"
+   inkscape:export-filename="/home/lerabot/___Projets/DC_reaperi_cycle/renders/temple_v7.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="1024.0154"
+     inkscape:cy="586.96682"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1366"
+     inkscape:window-height="716"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/grass.png"
+       xlink:href="grass.png"
+       y="1886.1768"
+       x="3864.8594"
+       id="image1721"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="161"
+       width="210" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/mur_2.png"
+       xlink:href="mur_2.png"
+       width="156"
+       height="225"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image2250-7-8"
+       x="-227.07814"
+       y="1986.8844"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/barrel_3.png"
+       xlink:href="barrel_3.png"
+       y="2263.6401"
+       x="154.85884"
+       id="image2095"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="42"
+       width="33" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/mur_3.png"
+       xlink:href="mur_3.png"
+       width="156"
+       height="225"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image2261-2-9"
+       x="-352.46536"
+       y="2038.6923"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/mur_2.png"
+       xlink:href="mur_2.png"
+       width="156"
+       height="225"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image2250-23-2-7"
+       x="-476.10699"
+       y="2090.3984"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/barrel_3.png"
+       xlink:href="barrel_3.png"
+       width="33"
+       height="42"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image2095-6"
+       x="154.83217"
+       y="2232.2004" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/boite_4.png"
+       xlink:href="boite_4.png"
+       y="2259.2979"
+       x="-179.22937"
+       id="image2073"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="65"
+       width="71"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/stair_close.png"
+       xlink:href="stair_close.png"
+       y="2297.1643"
+       x="159.46419"
+       id="image1809"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="113"
+       width="195" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/gate.png"
+       xlink:href="gate.png"
+       y="2330.1104"
+       x="-3803.5942"
+       id="image1743"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="171"
+       width="235"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/lampe_orange_lum2.png"
+       xlink:href="lampe_orange_lum2.png"
+       width="35"
+       height="116"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1853-6-9"
+       x="1453.2833"
+       y="2624.4712" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/autel_colonne.png"
+       xlink:href="autel_colonne.png"
+       width="168"
+       height="101"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1765-9"
+       x="1308.8572"
+       y="1612.9939" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/autel.png"
+       xlink:href="autel.png"
+       y="1682.8882"
+       x="1150.678"
+       id="image1776"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="242"
+       width="475" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/autel_colonne.png"
+       xlink:href="autel_colonne.png"
+       width="168"
+       height="101"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1765-7"
+       x="967.42859"
+       y="1761.5653" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/autel_colonne.png"
+       xlink:href="autel_colonne.png"
+       width="168"
+       height="101"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1765-0"
+       x="1304.5715"
+       y="1908.7083" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/lampe_orange_lum2.png"
+       xlink:href="lampe_orange_lum2.png"
+       width="35"
+       height="116"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1853-6-2-0"
+       x="1611.6525"
+       y="1513.901" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/grande_colonne.png"
+       xlink:href="grande_colonne.png"
+       y="1821.1428"
+       x="1475.6401"
+       id="image1732"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="976"
+       width="198" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/colone.png"
+       xlink:href="colone.png"
+       y="2284.7271"
+       x="-29.48543"
+       id="image1754"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="204"
+       width="209" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/autel_colonne.png"
+       xlink:href="autel_colonne.png"
+       y="1759.828"
+       x="1644.9927"
+       id="image1765"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="101"
+       width="168" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/arc.png"
+       xlink:href="arc.png"
+       y="691.38824"
+       x="-680.82617"
+       id="image1787"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="198"
+       width="165"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/vitrail2.png"
+       xlink:href="vitrail2.png"
+       y="1085.1208"
+       x="3700.7073"
+       id="image1831"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="459"
+       width="160" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/vitrail_2.png"
+       xlink:href="vitrail_2.png"
+       y="2230.1853"
+       x="1294.2104"
+       id="image1842"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="499"
+       width="171" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/lampe_orange_lum2.png"
+       xlink:href="lampe_orange_lum2.png"
+       y="1780.8671"
+       x="4474.0425"
+       id="image1853"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="116"
+       width="35" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/vitrail_2.png"
+       xlink:href="vitrail_2.png"
+       width="171"
+       height="499"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1842-3"
+       x="1100.016"
+       y="2149.8633" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/grande_colonne.png"
+       xlink:href="grande_colonne.png"
+       width="198"
+       height="976"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1732-7"
+       x="709.12201"
+       y="1481.1674" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/vitrail_2.png"
+       xlink:href="vitrail_2.png"
+       width="171"
+       height="499"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1842-3-3"
+       x="1451.2423"
+       y="1116.4357" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/grande_colonne.png"
+       xlink:href="grande_colonne.png"
+       width="198"
+       height="976"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1732-5"
+       x="1642.5031"
+       y="711.81689" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/lampe_orange_lum2.png"
+       xlink:href="lampe_orange_lum2.png"
+       width="35"
+       height="116"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1853-6"
+       x="1065.847"
+       y="2463.1733" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/lampe_orange_lum2.png"
+       xlink:href="lampe_orange_lum2.png"
+       width="35"
+       height="116"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1853-6-2"
+       x="1260.4261"
+       y="2547.3286" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/lampe_orange_lum2.png"
+       xlink:href="lampe_orange_lum2.png"
+       width="35"
+       height="116"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1853-6-6"
+       x="1417.0734"
+       y="1429.7457" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/barrel_4.png"
+       xlink:href="barrel_4.png"
+       y="2228.8865"
+       x="286.89044"
+       id="image2084"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="64"
+       width="62" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/boite_4.png"
+       xlink:href="boite_4.png"
+       width="71"
+       height="65"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image2073-6"
+       x="-414.88364"
+       y="2252.8179"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/barrel_3.png"
+       xlink:href="barrel_3.png"
+       width="33"
+       height="42"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image2095-6-1"
+       x="-433.2562"
+       y="2281.5117"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/lampe_orange_lum2.png"
+       xlink:href="lampe_orange_lum2.png"
+       width="35"
+       height="116"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1853-6-6-7"
+       x="687.58649"
+       y="675.1264" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/lampe_orange_lum2.png"
+       xlink:href="lampe_orange_lum2.png"
+       width="35"
+       height="116"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1853-6-6-9"
+       x="475.45447"
+       y="792.30408" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/brique1.png"
+       xlink:href="brique1.png"
+       y="844.63226"
+       x="-549.63568"
+       id="image2201"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="111"
+       width="235"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/mur_2.png"
+       xlink:href="mur_2.png"
+       y="2295.1428"
+       x="626.42859"
+       id="image2250"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="225"
+       width="156" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/mur_2.png"
+       xlink:href="mur_2.png"
+       width="156"
+       height="225"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image2250-2"
+       x="502.18817"
+       y="2347.6584" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/mur_2.png"
+       xlink:href="mur_2.png"
+       width="156"
+       height="225"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image2250-0"
+       x="376.83542"
+       y="2399.5771" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/mur_2.png"
+       xlink:href="mur_2.png"
+       width="156"
+       height="225"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image2250-23"
+       x="252.161"
+       y="2451.1643" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/mur_3.png"
+       xlink:href="mur_3.png"
+       y="2502.5142"
+       x="127.28481"
+       id="image2261"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="225"
+       width="156" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/mur_2.png"
+       xlink:href="mur_2.png"
+       width="156"
+       height="225"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image2250-7"
+       x="-1943.6876"
+       y="1535.2657"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/mur_3.png"
+       xlink:href="mur_3.png"
+       width="156"
+       height="225"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image2261-2"
+       x="-2069.0747"
+       y="1587.0736"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/mur_2.png"
+       xlink:href="mur_2.png"
+       width="156"
+       height="225"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image2250-23-2"
+       x="-2192.7163"
+       y="1638.7797"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/lampe_orange_lum2.png"
+       xlink:href="lampe_orange_lum2.png"
+       y="2355.5195"
+       x="839.94617"
+       id="image1853-6-3"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="116"
+       width="35" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/lampe_orange_lum2.png"
+       xlink:href="lampe_orange_lum2.png"
+       y="2617.6589"
+       x="-1704.6858"
+       id="image1853-6-9-6"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="116"
+       width="35"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/vitrail_2.png"
+       xlink:href="vitrail_2.png"
+       width="171"
+       height="499"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1842-1"
+       x="-1863.7588"
+       y="2223.373"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/vitrail_2.png"
+       xlink:href="vitrail_2.png"
+       y="2143.051"
+       x="-2057.9534"
+       id="image1842-3-2"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="499"
+       width="171"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/lampe_orange_lum2.png"
+       xlink:href="lampe_orange_lum2.png"
+       y="2456.3611"
+       x="-2092.1223"
+       id="image1853-6-93"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="116"
+       width="35"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/lampe_orange_lum2.png"
+       xlink:href="lampe_orange_lum2.png"
+       y="2540.5164"
+       x="-1897.5431"
+       id="image1853-6-2-1"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="116"
+       width="35"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/lampe_orange_lum2.png"
+       xlink:href="lampe_orange_lum2.png"
+       y="2407.7141"
+       x="736.78577"
+       id="image1853-6-36"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="116"
+       width="35" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_temple/vitrail_2.png"
+       xlink:href="vitrail_2.png"
+       transform="scale(-1,1)"
+       y="2096.2144"
+       x="-744.07141"
+       id="image1842-3-7"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="499"
+       width="171" />
+  </g>
+</svg>

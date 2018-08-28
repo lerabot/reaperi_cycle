@@ -1,7 +1,7 @@
 #include <kos.h>
 #include <stdlib.h>
 #include "header.h"
-#include "scene_template.h"
+#include "scene_hideout.h"
 
 void loadTemplate(scene* self) {
   mount_romdisk("asset/rd_template.img.gz", "/rd");

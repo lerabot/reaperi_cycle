@@ -1,0 +1,165 @@
+{"frames": [
+
+{
+	"filename": "altar_t2.png",
+	"frame": {"x":201,"y":245,"w":177,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":177,"h":64},
+	"sourceSize": {"w":177,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "arc.png",
+	"frame": {"x":201,"y":822,"w":165,"h":198},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":165,"h":198},
+	"sourceSize": {"w":165,"h":198},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "autel.png",
+	"frame": {"x":201,"y":1,"w":475,"h":242},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":475,"h":242},
+	"sourceSize": {"w":475,"h":242},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "autel_colonne.png",
+	"frame": {"x":380,"y":245,"w":168,"h":101},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":168,"h":101},
+	"sourceSize": {"w":168,"h":101},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "barrel_3.png",
+	"frame": {"x":1,"y":979,"w":33,"h":42},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":33,"h":42},
+	"sourceSize": {"w":33,"h":42},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "barrel_4.png",
+	"frame": {"x":915,"y":68,"w":62,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":62,"h":64},
+	"sourceSize": {"w":62,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "boite_4.png",
+	"frame": {"x":915,"y":1,"w":71,"h":65},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":71,"h":65},
+	"sourceSize": {"w":71,"h":65},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "brique1.png",
+	"frame": {"x":678,"y":1,"w":235,"h":111},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":235,"h":111},
+	"sourceSize": {"w":235,"h":111},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "charette.png",
+	"frame": {"x":889,"y":134,"w":127,"h":134},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":127,"h":134},
+	"sourceSize": {"w":127,"h":134},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "colone.png",
+	"frame": {"x":678,"y":114,"w":209,"h":204},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":209,"h":204},
+	"sourceSize": {"w":209,"h":204},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "grande_colonne.png",
+	"frame": {"x":1,"y":1,"w":198,"h":976},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":198,"h":976},
+	"sourceSize": {"w":198,"h":976},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "lampe_orange_lum2.png",
+	"frame": {"x":988,"y":1,"w":35,"h":116},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":35,"h":116},
+	"sourceSize": {"w":35,"h":116},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "mur_2.png",
+	"frame": {"x":565,"y":320,"w":156,"h":225},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":156,"h":225},
+	"sourceSize": {"w":156,"h":225},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "mur_3.png",
+	"frame": {"x":723,"y":320,"w":156,"h":225},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":156,"h":225},
+	"sourceSize": {"w":156,"h":225},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "stair_close.png",
+	"frame": {"x":368,"y":822,"w":195,"h":113},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":195,"h":113},
+	"sourceSize": {"w":195,"h":113},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "tuile_chemin.png",
+	"frame": {"x":889,"y":270,"w":114,"h":49},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":49},
+	"sourceSize": {"w":114,"h":49},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "vitrail_2.png",
+	"frame": {"x":201,"y":321,"w":171,"h":499},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":171,"h":499},
+	"sourceSize": {"w":171,"h":499},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "spritesheet.png",
+	"format": "RGBA4444",
+	"size": {"w":1024,"h":1024},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:ba480ee9daf7f94ee1dd3f8373bad6be:ce302b5dd615aae128f5200071b15469:729adc6043343cfda41c447ce8f464d6$"
+}
+}

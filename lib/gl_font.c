@@ -1,13 +1,12 @@
 #include <kos.h>
 #include <string.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
 #include <math.h>
 #include "gl_png.h"
 #include "lua_binds.h"
 #include "gl_font.h"
 #include "debug_screen.h"
 #include "../global_var.h"
+#include "../header.h"
 
 font f;
 texture box;
@@ -35,7 +34,7 @@ font    loadFont(char *path){
   showDialog = 0;
 
   png_to_gl_texture(&portrait, "/rd/trans32.png");
-  portraitFile = "";
+  portraitFile = "No Portrait";
 
   png_to_gl_texture(&box, "/rd/box_raw.png");
   box.a = 0;
@@ -52,7 +51,7 @@ font    loadFont(char *path){
 //main rendering fonction
 void    renderDialog() {
   float speed = 3;
-  float aSpeed = 0.015;
+  float aSpeed = 0.010;
   int margin = 36;
   int x = 56 + margin * 2;
   int y = 100 + 64 - margin;
@@ -75,6 +74,7 @@ void    renderDialog() {
     frame += speed;
     box.a += aSpeed;
     textActive = 1;
+    blackScreen(aSpeed);
     hideController();
   }
 
@@ -83,6 +83,7 @@ void    renderDialog() {
     portraitY = sin(frame * (3.1416 / 180)) * 240;
     frame -= speed;
     box.a -= aSpeed;
+    blackScreen(aSpeed);
     showController();
   }
 
@@ -112,24 +113,36 @@ int    activateNPC (char *npc_name, char *filename) {
 
 //set the portrait / image. 1 = new image, 0 = not new image
 int     setPortrait (char *filename) {
+  char message[256];
+  //sprintf(message, "Old Portrait %s ,\nPortrait %s", portraitFile, filename);
+  sprintf(message, "Old Portrait %s ,\nNew Portrait %s", portraitFile, filename);
+
   //check if the portrait is empty
   if (strcmp(filename, "") == 0) {
-    setParam(3, "No portrait");
+    strcat(message, " is empty.");
+    setParam(5, message);
     return(0);
   }
 
   //check if the portrait has changed
   if  (strcmp(filename, portraitFile) == 0) {
-    setParam(3, "Old portrait");
+    //strcat(message, " is old.");
+    setParam(5, message);
     return (1);
   }
-  else {
-    glDeleteTextures(1, &portrait.id);
+
+  //if they're different
+  if (strcmp(filename, portraitFile)) {
+    //delete the old tecture
+    if(strlen(filename) > 2)
+      glDeleteTextures(1, &portrait.id);
     png_to_gl_texture(&portrait, filename);
-    portraitFile = filename;
-    setParam(3, "New portrait");
+    strcpy(portraitFile, filename);
+    strcat(message, " is New!");
+    setParam(5, message);
     return(1);
   }
+
   return(0);
 }
 
@@ -195,12 +208,12 @@ void    resetFontColor() {
   f.txtFont.color[0] = f.txtFont.color[1] = f.txtFont.color[2] = 1.0f;
 }
 
-void setFontScale(float scale) {
+void    setFontScale(float scale) {
   f.glyphScale = scale;
   setScale(&f.txtFont, scale);
 }
 
-void resetFontScale() {
+void    resetFontScale() {
   f.glyphScale = 1.0;
   setScale(&f.txtFont, 1.0);
 }

@@ -29,6 +29,7 @@ int main()
 	initGL();
 
   //sounds stuff
+  //snd_init();
   snd_stream_init();
   sndoggvorbis_init();
 
@@ -36,11 +37,12 @@ int main()
   p1 = initPlayer(0);
   //VMU_loadGame();
   loadFont("/rd/DFKei.png");
+  //loadCycle();
 
   tempScene = malloc(sizeof(scene));
   currentScene = malloc(sizeof(scene));
   tempScene = currentScene;
-  loadTemple(currentScene);
+  loadHideout(currentScene);
 
   while(game_active)
   {
@@ -50,6 +52,7 @@ int main()
       *currentScene = *tempScene;
     }
 
+
     //UPDATE
     updatePlayer();
     if(game_state == EXPLORATION)
@@ -57,12 +60,14 @@ int main()
 
     //GAME RENDER
     glEnable(GL_LIGHTING);
+    limitScreen(currentScene->mapSize[0], currentScene->mapSize[1]);
     renderScene(currentScene);
     drawCursor();
 
     //MENU + GUI
     glDisable(GL_LIGHTING);
     renderMenu();
+
     if (game_state == DIALOG)
       renderDialog();
 

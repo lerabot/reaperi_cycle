@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <string.h>
-#include <kos.h>
-#include <kos/img.h>
 #include <png/png.h>
 #include <GL/gl.h>
+#include <GL/glkos.h>
+#include <GL/glext.h>
+#include <GL/glu.h>
+
 #include "gl_png.h"
 #include "debug_screen.h"
 #include "../global_var.h"
@@ -15,7 +17,7 @@ int 	light_type = 0;
 GLfloat material_ambient[] = {1.0, 1.0, 1.0, 1.0};
 GLfloat material_emit[] = {1.0, 0.0, 1.0, 1.0};
 
-int png_to_gl_texture(texture * tex, char const * const filename) {
+int png_to_gl_texture(texture *tex, char *filename) {
 	int ret = 0;
 	FILE * file = 0;
 	uint8_t * data = 0;
@@ -135,49 +137,210 @@ cleanup:
 
 	return ret;
 }
-/*
-int kmg_to_gl_texture(texture * tex, char const * const filename) {
-		int ret = 0;
-		kos_img_t img;
-		pvr_ptr_t rv;
 
-		if(kmg_to_img(filename, &img)) {
-			printf("Failed to load image file: %s\n", filename);
-			return NULL;
-		}
+// Load Bitmaps And Convert To Textures
+int dtex_to_gl_texture(texture *tex, char* filename) {
+    // Load Texture
+    Image *image1;
 
-		if(!(rv = pvr_mem_malloc(img.byte_count))) {
-			printf("Couldn't allocate memory for texture!\n");
-			//kos_img_free(&img, 0);
-			return NULL;
-		}
-		//pvr_txr_load_kimg(&img, rv, 0);
-		//kos_img_free(&img, 0);
+    // allocate space for texture
+    image1 = (Image *) malloc(sizeof(Image));
+    if (image1 == NULL) {
+      	setParam(3, "No mem for DTEX");
+				return(0);
+    }
 
-		// Generate the OpenGL texture object
+    if (!loadDtex(filename, image1)) {
+        //ERROR!
+				setParam(3, "Couldn't load DTEX");
+				return(0);
+    }
+
+    // Create Texture
 		GLuint texture_id;
-		glGenTextures(1, &texture_id);
-		glBindTexture(GL_TEXTURE_2D, texture_id);
-		//GLenum texture_format = (color_type & PNG_COLOR_MASK_ALPHA) ? GL_RGBA : GL_RGB;
-		GLenum texture_format = GL_RGB;
+    glGenTextures(1, &texture_id);
+    glBindTexture(GL_TEXTURE_2D, texture_id);   // 2d texture (x and y size)
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img.w, img.h, 0, GL_RGBA,   GL_UNSIGNED_BYTE, img.data);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR); // scale linearly when image bigger than texture
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR); // scale linearly when image smalled than texture
+
+		/*
+    // 2d texture, level of detail 0 (normal), 3 components (red, green, blue), x size from image, y size from image,
+    // border 0 (normal), rgb color data, unsigned byte data, and finally the data itself.
+    glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, image1->internalFormat, image1->sizeX, image1->sizeY, 0,image1->dataSize, image1->data
+    );
+		*/
+
+		//GLenum texture_format = (color_type & PNG_COLOR_MASK_ALPHA) ? GL_RGBA : GL_RGB;
+		GLenum format = GL_RGBA;
+
+		if (image1->internalFormat == GL_UNSIGNED_SHORT_1_5_5_5_REV_TWID_KOS){
+			format = GL_BGRA;
+			}
+
+		glTexImage2D(GL_TEXTURE_2D, 0,
+				GL_RGBA, image1->sizeX, image1->sizeY, 0,
+				format, image1->internalFormat, image1->data);
 
 		tex->id = texture_id;
-		tex->w = img.w;
-		tex->h = img.h;
+		tex->w = image1->sizeX;
+		tex->h = image1->sizeY;
 		tex->u = 0.f;
 		tex->v = 0.f;
-		tex->a = 1;
+		tex->a = tex->light = 1;
+		tex->color[0] = tex->color[1] = tex->color[2] = 1.0f;
 		tex->uSize = tex->vSize = 1.f;
 		tex->xScale = tex->yScale = 1.f;
-		tex->format = GL_RGBA;
-		tex->min_filter = tex->mag_filter = GL_NEAREST;
+		tex->format = image1->internalFormat;
+		tex->min_filter = tex->mag_filter = GL_LINEAR;
+		tex->blend_source = GL_SRC_ALPHA;
+		tex->blend_dest = GL_ONE_MINUS_SRC_ALPHA;
+		strcpy(tex->path, filename);
 
-		return ret;
+		//free(image1);
+		return(1);
+};
+
+int loadDtex(char *filename, Image *image) {
+    FILE* file = NULL;
+
+    // make sure the file is there.
+    if ((file = fopen(filename, "rb")) == NULL)
+    {
+      	setParam(3, "DTEX : Couldn't find file");
+        return 0;
+    }
+
+    struct {
+        char	id[4];	// 'DTEX'
+        GLushort	width;
+        GLushort	height;
+        GLuint		type;
+        GLuint		size;
+    } header;
+
+    fread(&header, sizeof(header), 1, file);
+
+    GLboolean twiddled = (header.type & (1 << 26)) < 1;
+    GLboolean compressed = (header.type & (1 << 30)) > 0;
+    GLboolean mipmapped = (header.type & (1 << 31)) > 0;
+    GLboolean strided = (header.type & (1 << 25)) > 0;
+    GLuint format = (header.type >> 27) & 0b111;
+
+    image->data = (char *) malloc (header.size);
+    image->sizeX = header.width;
+    image->sizeY = header.height;
+    image->dataSize = header.size;
+
+    GLuint expected = 2 * header.width * header.height;
+    GLuint ratio = (GLuint) (((GLfloat) expected) / ((GLfloat) header.size));
+
+    fread(image->data, image->dataSize, 1, file);
+    fclose(file);
+
+		if(compressed) {
+				if(twiddled) {
+						switch(format) {
+								case 0: {
+										if(mipmapped) {
+												image->internalFormat = GL_COMPRESSED_ARGB_1555_VQ_MIPMAP_TWID_KOS;
+										} else {
+												image->internalFormat = GL_COMPRESSED_ARGB_1555_VQ_TWID_KOS;
+										}
+								} break;
+								case 1: {
+										if(mipmapped) {
+												image->internalFormat = GL_COMPRESSED_RGB_565_VQ_MIPMAP_TWID_KOS;
+										} else {
+												image->internalFormat = GL_COMPRESSED_RGB_565_VQ_TWID_KOS;
+										}
+								} break;
+								case 2: {
+										if(mipmapped) {
+												image->internalFormat = GL_COMPRESSED_ARGB_4444_VQ_MIPMAP_TWID_KOS;
+										} else {
+												image->internalFormat = GL_COMPRESSED_ARGB_4444_VQ_TWID_KOS;
+										}
+								}
+								break;
+								default:
+										fprintf(stderr, "Invalid texture format");
+										return 0;
+						}
+				} else {
+						switch(format) {
+								case 0: {
+										if(mipmapped) {
+												image->internalFormat = GL_COMPRESSED_ARGB_1555_VQ_MIPMAP_KOS;
+										} else {
+												image->internalFormat = GL_COMPRESSED_ARGB_1555_VQ_KOS;
+										}
+								} break;
+								case 1: {
+										if(mipmapped) {
+												image->internalFormat = GL_COMPRESSED_RGB_565_VQ_MIPMAP_KOS;
+										} else {
+												image->internalFormat = GL_COMPRESSED_RGB_565_VQ_KOS;
+										}
+								} break;
+								case 2: {
+										if(mipmapped) {
+												image->internalFormat = GL_COMPRESSED_ARGB_4444_VQ_MIPMAP_KOS;
+										} else {
+												image->internalFormat = GL_COMPRESSED_ARGB_4444_VQ_KOS;
+										}
+								}
+								break;
+								default:
+										fprintf(stderr, "Invalid texture format");
+										return 0;
+						}
+				}
+		} else {
+			if(twiddled) {
+					switch(format) {
+							case 0: {
+								image->internalFormat = GL_UNSIGNED_SHORT_1_5_5_5_REV_TWID_KOS;
+								break;
+							}
+							case 1: {
+								image->internalFormat = GL_UNSIGNED_SHORT_5_6_5_TWID_KOS;
+								break;
+							}
+							case 2: {
+								image->internalFormat = GL_UNSIGNED_SHORT_4_4_4_4_REV_TWID_KOS;
+								break;
+							}
+							default:
+									fprintf(stderr, "Invalid texture format");
+									return 0;
+					}
+			} else {
+					switch(format) {
+							case 0: {
+									image->internalFormat = GL_UNSIGNED_SHORT_1_5_5_5_REV;
+							}
+							break;
+							case 1: {
+									image->internalFormat = GL_UNSIGNED_SHORT;
+									}
+							break;
+							case 2: {
+									image->internalFormat = GL_UNSIGNED_SHORT_4_4_4_4_REV;
+									}
+							break;
+							default:
+									fprintf(stderr, "Invalid texture format");
+									return 0;
+					}
+			}
+		}
+		char *m = "";
+		sprintf(m, "Twid=%u Format=%u", twiddled, format);
+		setParam(4, m);
+    // we're done.
+    return 1;
 }
-*/
-
 
 int getAtlasData(texture *t, char *path) {
   lua_getglobal(t_data, "loadJSON");
@@ -317,12 +480,16 @@ void draw_textured_quad(texture *tex, float x, float y, float z) {
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
+	//glEnableClientState(GL_COLOR_MATERIAL);
 
-	glVertexPointer(3, GL_FLOAT, 0, vertex_data);
-	glTexCoordPointer(2, GL_FLOAT, 0, uv_data);
-	glNormalPointer(GL_FLOAT, 0, normal_data);
-	glColorPointer(4, GL_FLOAT, 0, color_data);
-	//glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT);
+	glVertexPointer			(3, GL_FLOAT, 0, vertex_data);
+	glTexCoordPointer		(2, GL_FLOAT, 0, uv_data);
+	glNormalPointer			(GL_FLOAT, 0, normal_data);
+	glColorPointer			(4, GL_FLOAT, 0, color_data);
+	//glColorMaterial			(GL_FRONT_AND_BACK, GL_AMBIENT);
+	//glMaterialfv(GL_FRONT, GL_EMISSION, material_ambient);
+
+	/*
 	switch (light_type) {
 		case 0:
 			glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, material_ambient);
@@ -331,6 +498,7 @@ void draw_textured_quad(texture *tex, float x, float y, float z) {
 			glMaterialfv(GL_FRONT, GL_EMISSION, material_ambient);
 			break; //text case
 	}
+	*/
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -340,38 +508,58 @@ void draw_textured_quad(texture *tex, float x, float y, float z) {
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	glDisableClientState(GL_NORMAL_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
+	//glDisableClientState(GL_COLOR_MATERIAL);
 }
 
 void blackScreen(float a) {
-	float texW = 1000;
-	float texH = 480;
 	float x0 = -200;
 	float y0 = 0;
 	float x1 = 1000;
 	float y1 = 480;
-	float u = 0;
-	float v = 0;
-	float xS = 1;
-	float yS = 1;
 
-	float vertex_data[] = {
+	float z = 20;
+
+	GLfloat vertex_data[] = {
 		/* 2D Coordinate, texture coordinate */
-		x0, y1,  u, v + yS,
-		x0, y0,  u, v,
-		x1, y1,  u + xS, v + yS,
-		x1, y0,  u + xS, v,
+		x0, y1, z,
+		x1, y1, z,
+		x1, y0, z,
+		x0, y0, z
 	};
 
-	//glEnable(GL_TEXTURE_2D);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glVertexPointer  (2, GL_FLOAT, 4 * sizeof(float), vertex_data);
+	GLfloat normal_data[] = {
+		/* 2D Coordinate, texture coordinate */
+		0.0, 0.0, 1.0,
+		0.0, 0.0, 1.0,
+		0.0, 0.0, 1.0,
+		0.0, 0.0, 1.0
+	};
 
-	glColor4f(0.0f,0.0f,0.0f, a);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	GLfloat color_data[] = {
+		/* 2D Coordinate, texture coordinate */
+		0.0f, 0.0f, 0.0f, 1.0f,
+		0.0f, 0.0f, 0.0f, 1.0f,
+		0.0f, 0.0f, 0.0f, 1.0f,
+		0.0f, 0.0f, 0.0f, 1.0f
+	};
+
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
+
+	glVertexPointer		(3, GL_FLOAT, 0, vertex_data);
+	glColorPointer		(4, GL_FLOAT, 0, color_data);
+	glNormalPointer		(GL_FLOAT, 0, normal_data);
+
+	//glColorMaterial		(GL_FRONT_AND_BACK, GL_AMBIENT);
+	glMaterialfv			(GL_FRONT, GL_EMISSION, material_ambient);
+	glBlendFunc				(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDrawArrays			(GL_QUADS, 0, 4);
 
 	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_NORMAL_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
 }
 
 void draw_textured_quad2(texture *tex, float x, float y) {

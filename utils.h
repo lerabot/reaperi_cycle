@@ -15,5 +15,13 @@ void    renderMenu();
 int     getTime();
 float   getFrameTime();
 void    quitGame();
+void    limitScreen(int width, int height);
+
+//MATH//////////////
+double distance(float x1,float y1,float x2,float y2);
+
+//CYCLE/////////////
+void loadCycle();
+void renderCycle();
 
 #endif

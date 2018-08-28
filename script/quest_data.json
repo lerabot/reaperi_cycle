@@ -1,0 +1,121 @@
+{
+  "quest": [
+    {
+      "id": 0,
+      "name": "NoQuest",
+      "desc": "id = quest number, super important",
+      "active": 0,
+      "completed": 0,
+      "dev_complete": 0,
+      "note": ""
+    },
+    {
+      "id": 1,
+      "name": "Awake",
+      "desc": "Meet with the magician",
+      "active": 0,
+      "completed": 0,
+      "dev_complete": 0,
+      "note": ""
+    },
+    {
+      "id": 2,
+      "name": "Find the scroll",
+      "desc": "Search the missing scroll in the basement.",
+      "active": 0,
+      "completed": 0,
+      "dev_complete": 0,
+      "note": ""
+    },
+    {
+      "id": 3,
+      "name": "Decypher",
+      "desc": "Bring the scroll back to the magician.",
+      "active": 0,
+      "completed": 0,
+      "dev_complete": 0,
+      "note": ""
+    },
+    {
+      "id": 4,
+      "name": "Golem Spit",
+      "desc": "Find you way out of the desert.",
+      "active": 0,
+      "completed": 0,
+      "dev_complete": 0,
+      "note": ""
+    },
+    {
+      "id": "",
+      "name": "",
+      "desc": "",
+      "active": "",
+      "completed": "",
+      "dev_complete": "",
+      "note": ""
+    },
+    {
+      "id": "",
+      "name": "",
+      "desc": "",
+      "active": "",
+      "completed": "",
+      "dev_complete": "",
+      "note": ""
+    },
+    {
+      "id": 50,
+      "name": "Coin0",
+      "desc": "The marchant knows about a old amulet that the golem swallowed. Find it.",
+      "active": 0,
+      "completed": 0,
+      "dev_complete": "",
+      "note": "on doit etre un mini golem pour rapporter l'amulette."
+    },
+    {
+      "id": 51,
+      "name": "Coin",
+      "desc": "",
+      "active": "",
+      "completed": "",
+      "dev_complete": "",
+      "note": ""
+    },
+    {
+      "id": 99,
+      "name": "Random",
+      "desc": "",
+      "active": "",
+      "completed": "",
+      "dev_complete": "",
+      "note": ""
+    },
+    {
+      "id": "",
+      "name": "Tile",
+      "desc": "Push the tiles blabla",
+      "active": "",
+      "completed": "",
+      "dev_complete": "",
+      "note": ""
+    },
+    {
+      "id": 90,
+      "name": "Hideout",
+      "desc": "Explore the guild hideout",
+      "active": 0,
+      "completed": 0,
+      "dev_complete": 0,
+      "note": ""
+    },
+    {
+      "id": 91,
+      "name": "Mysterious cube",
+      "desc": "Unlock the mysterious cube",
+      "active": 0,
+      "completed": 0,
+      "dev_complete": 0,
+      "note": ""
+    }
+  ]
+}

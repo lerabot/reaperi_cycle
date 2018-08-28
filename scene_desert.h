@@ -7,5 +7,6 @@
 void loadDesert(scene *s);
 void freeDesert(scene *s);
 void updateDesert(scene *self);
+void renderDesert(scene *self);
 
 #endif

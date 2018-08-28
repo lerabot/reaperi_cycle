@@ -5,12 +5,6 @@
 #include "lib/scene.h"
 #include "lua.h"
 
-//Game States
-#define EXPLORATION 1
-#define MENU 4
-#define DIALOG 2
-#define INVENTORY 3
-
 extern lua_State    *L;               //game data
 extern lua_State    *t_data;          //texture data
 extern uint64       e_time, s_time;   //time stuff

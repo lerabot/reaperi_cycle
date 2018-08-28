@@ -25,17 +25,18 @@ int npc_num = 0;
 
 int symbole = 0;
 
-GLfloat l1_pos[] = {320.0, 240.0, 1.0, 1.0};
-GLfloat l1_diff[] = {1.0, 0.8, 0.2, 1.0};
-GLfloat l1_amb[] = {0.5, 0.5, 0.5, 1.0};
+GLfloat l1_pos[] = {320.0, 240.0, 5.0, 1.0};
+GLfloat l1_diff[] = {0.6, 0.5, 0.33, 0.1};
+GLfloat l1_amb[] = {0.05, 0.05, 0.05, 0.1};
 
 void loadSoussol(scene* self) {
   mount_romdisk("/asset/rd_soussol.img.gz", "/rd");
   //load map via JSON+XML
   loadMapData(self, "/rd/map_soussol.svg");
-  setPosition(1852, 2100);
+  setPosition(0, 0);
 
   self->obj[0] = createObject("/rd/soussol_floor.png", -1000, -1000, 1);
+  setScale(&self->obj[0].t, 2);
   generateFloor(self, 0);
 
   png_to_gl_texture(&torche_tex, "/rd/lantern_anim.png");
@@ -73,8 +74,10 @@ void loadSoussol(scene* self) {
 
   //light related
   glDisable(GL_LIGHT0);
-  glLightfv(GL_LIGHT1, GL_AMBIENT, l1_amb);
-  glLightfv(GL_LIGHT1, GL_DIFFUSE, l1_diff);
+  glLightfv(GL_LIGHT1, GL_AMBIENT,  l1_amb);
+  glLightfv(GL_LIGHT1, GL_DIFFUSE,  l1_diff);
+  glLightfv(GL_LIGHT1, GL_POSITION, l1_pos);
+  glLightf (GL_LIGHT1, GL_SPOT_CUTOFF, 3.0);
   glEnable(GL_LIGHT1);
 
   //music--
@@ -117,38 +120,32 @@ void updateEnigme(scene *self) {
 
 }
 
-void updateDesc(scene *self) {
-  for(int i = 0; i < desc_num; i++) {
-    if(clicked(descObj[i], CONT_A))
-      setDescription(descObj[i]->desc);
-  }
-  /*
-  for(int i = 0; i < npc_num; i++) {
-    if(clicked(npcObj[i], CONT_A))
-      //setDescription("whoughhh");
-      activateNPC(npcObj[i]->npcID, "");
-  }
-  */
-}
-
 void updateSoussol(scene *self){
   updateEnigme(self);
-  updateDesc(self);
+  //updateDesc(self);
 
-  //GLfloat pos[] = {p1.obj.x, p1.obj.y, 5.0f, 1.0f};
-  //glLightfv(GL_LIGHT1, GL_POSITION, pos);
+
+  GLfloat pos[] = {p1.obj.x, p1.obj.y, 100, 1.0f};
+
+  glLoadIdentity();
+  glPushMatrix();
+  glTranslated((int)displayPos[0], (int)displayPos[1], (int)displayPos[2]);
+  glEnable(GL_LIGHTING);
+  glLightfv(GL_LIGHT1, GL_POSITION, pos);
+  glPopMatrix();
 
   /*
-  for(int i = 0; i < 9; i++) {
+  for(int i = 0; i < 4; i++) {
     if(torche_active[i] == 1) {
-      GLfloat pos[] = {torche[i]->x, torche[i]->y, 10.0f, 1.0f};
-      glLightfv(GL_LIGHT1 + i, GL_POSITION, pos);
+      GLfloat pos[] = {torche[i]->x, torche[i]->y, 75.0f, 1.0f};
       glEnable(GL_LIGHT1  + i);
-      glLightfv(GL_LIGHT1 + i, GL_AMBIENT, l1_amb);
+      glLightfv(GL_LIGHT1 + i, GL_POSITION, pos);
+      //glLightfv(GL_LIGHT1 + i, GL_AMBIENT, l1_amb);
       glLightfv(GL_LIGHT1 + i, GL_DIFFUSE, l1_diff);
     }
   }
   */
+
 
   /*
   //TEMPLE

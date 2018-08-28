@@ -1,0 +1,84 @@
+{"frames": [
+
+{
+	"filename": "brique1.png",
+	"frame": {"x":1,"y":418,"w":235,"h":111},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":235,"h":111},
+	"sourceSize": {"w":235,"h":111},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "brique2.png",
+	"frame": {"x":303,"y":254,"w":152,"h":62},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":152,"h":62},
+	"sourceSize": {"w":152,"h":62},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "flag1.png",
+	"frame": {"x":427,"y":1,"w":15,"h":89},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":89},
+	"sourceSize": {"w":15,"h":89},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "fontaine.png",
+	"frame": {"x":339,"y":488,"w":88,"h":68},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":68},
+	"sourceSize": {"w":88,"h":68},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "orgue.png",
+	"frame": {"x":238,"y":488,"w":99,"h":165},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":99,"h":165},
+	"sourceSize": {"w":99,"h":165},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "palmier.png",
+	"frame": {"x":303,"y":318,"w":124,"h":168},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":168},
+	"sourceSize": {"w":124,"h":168},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "statue_tete.png",
+	"frame": {"x":1,"y":254,"w":300,"h":162},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":300,"h":162},
+	"sourceSize": {"w":300,"h":162},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "tent_small.png",
+	"frame": {"x":1,"y":1,"w":424,"h":251},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":424,"h":251},
+	"sourceSize": {"w":424,"h":251},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "spritesheet.png",
+	"format": "RGBA5551",
+	"size": {"w":512,"h":1024},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:53a58ff49bd855cb31dc034f3760753e:ad7e2d47754558ddfdd52f54e3961847:729adc6043343cfda41c447ce8f464d6$"
+}
+}

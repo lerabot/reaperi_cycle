@@ -1,0 +1,137 @@
+{
+  "temple": [
+    {
+      "npc": "golem",
+      "questName": "Awake",
+      "textID": "Awake",
+      "nextID": "",
+      "text": [
+        "-- the golem doesn't seem to care --"
+      ],
+      "result": [
+        ""
+      ],
+      "condition": ""
+    },
+    {
+      "npc": "golem",
+      "questName": "Golem Spit",
+      "textID": "desert",
+      "nextID": "",
+      "text": [
+        "-- the golem slowly turn it's head toward you --",
+        "-- the golem starts inhaling deeply --"
+      ],
+      "result": [
+        ""
+      ],
+      "condition": ""
+    },
+    {
+      "npc": "magicienne",
+      "questName": "Awake",
+      "textID": "Awake",
+      "nextID": "intro1",
+      "text": [
+        "From the fire you woke again!\nDo you remember anything?",
+        "Of course not...\nYou're just a spirit.\nVolatile.",
+        "Anyway, let me get this straight. \nThe fiery bird is almost here and the temple is a mess!",
+        "We haven't received neither the myrrhe nor the silk, the main altar is broken and that stupid old golem isn't helping either.",
+        "I need to summon another one but it seems that I've forgotten a scroll somewhere.\nThe librarian can't find it either. It must be in the basement."
+      ],
+      "result": [
+        ""
+      ],
+      "condition": ""
+    },
+    {
+      "npc": "magicienne",
+      "questName": "Awake",
+      "textID": "intro1",
+      "nextID": "",
+      "text": [
+        "You found not basement!\nDon't be shy, go downstair and figure out where that scroll is.",
+        "Oh, and the basement is dark,\nso you'll have to light it up.",
+        "Since you're a spirit, turning into a source of fire shouldn't be too hard.\nIf you stay near a flame, you shall turn into one."
+      ],
+      "result": [
+        "completeQuest",
+        1,
+        "addQuest",
+        2
+      ],
+      "condition": ""
+    },
+    {
+      "npc": "marchand",
+      "questName": "Awake",
+      "textID": "Awake",
+      "nextID": "intro1",
+      "text": [
+        "Oh my! A spirit!\nAnd quite a pretty one!",
+        "It seems like you just arrived here, right?\nDon't worry, it feels wierd at first, but you'll get used to it.",
+        "Let me introduce myself:\nI'm the merchant!",
+        "Quite a fitting name, I know.\nI like to collect the things that human makes."
+      ],
+      "result": [
+        ""
+      ],
+      "condition": ""
+    },
+    {
+      "npc": "marchand",
+      "questName": "Awake",
+      "textID": "intro1",
+      "nextID": "",
+      "text": [
+        "Coins, jewelry, hats!\nI'll take everything!"
+      ],
+      "result": [
+        ""
+      ],
+      "condition": ""
+    },
+    {
+      "npc": "marchand",
+      "questName": "Coin0",
+      "textID": "findcoin0",
+      "nextID": "",
+      "text": [
+        "Perhaps you could help me?",
+        "There's still a bunch of coins to find."
+      ],
+      "result": [
+        "item=coin0"
+      ],
+      "condition": ""
+    },
+    {
+      "npc": "marchand",
+      "questName": "Random",
+      "textID": "random",
+      "nextID": "",
+      "text": [
+        "The more I collect, the more I'm human!"
+      ],
+      "result": [
+        ""
+      ],
+      "condition": ""
+    },
+    {
+      "npc": "marchand",
+      "questName": "Random",
+      "textID": "random",
+      "nextID": "",
+      "text": [
+        "I freed myself from my glass house a long time ago.",
+        "The crazed woman who made got sick from the fumes\nAnd I pushed myself off the table.",
+        "Reckless, I know."
+      ],
+      "result": [
+        ""
+      ],
+      "condition": ""
+    }
+  ]
+}

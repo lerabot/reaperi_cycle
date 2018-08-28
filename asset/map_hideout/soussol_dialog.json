@@ -1,0 +1,33 @@
+{
+  "soussol": [
+    {
+      "npc": "scroll",
+      "questName": "Find the scroll",
+      "textID": "Find the scroll",
+      "nextID": "",
+      "text": [
+        "You notice the scrolls lying around the printing press."
+      ],
+      "result": [
+        "completeQuest",
+        2,
+        "addQuest",
+        3
+      ],
+      "condition": ""
+    },
+    {
+      "npc": "scroll",
+      "questName": "Decypher",
+      "textID": "Decypher",
+      "nextID": "",
+      "text": [
+        "You now feel like you know the scroll content"
+      ],
+      "result": [
+        ""
+      ],
+      "condition": ""
+    }
+  ]
+}

@@ -16,20 +16,18 @@ int intro = 0;
 int to_soussol = 0;
 
 void loadTemple(scene* self) {
-  mount_romdisk("asset/rd_temple.img.gz", "/rd");
+  mount_romdisk("/asset/rd_temple.img.gz", "/rd");
   loadMapData(self, "/rd/map_temple_v7.svg");
 
   self->obj[0] = createObject("/rd/floor.png", -1000, -1000, 1);
   generateFloor(self, 0);
-  setPosition(200, 1300);
+  setPosition(200, 300);
 
   marchand = malloc(sizeof(gameObject));
   *marchand = createObject("/rd/marchand_mini.png", 935, 548, 1);
   golem = malloc(sizeof(gameObject));
   *golem = createObject("/rd/golem_ingame.png", 625, 2130, 1);
   flipU(&golem->t);
-
-  //loadLuaFile(L, "/rd/temple.lua");
 
   ////////////////////////////////////////////////
   for (int i = 0 ; i < self->objNum; i++) {
@@ -45,10 +43,8 @@ void loadTemple(scene* self) {
   game_state = EXPLORATION;
   p1.currentMap = MAP_TEMPLE;
 
-  setInt(0, self->activeNum);
-
   LUA_loadDialog("/rd/temple_dialog.json");
-  LUA_addQuest(2);
+  LUA_addQuest(1);
 
   self->freeScene = freeTemple;
   self->updateScene = updateTemple;
@@ -56,10 +52,7 @@ void loadTemple(scene* self) {
 }
 
 void updateTemple(scene *self){
-  //char* buf;
   char *buf = "";
-  snprintf(buf, 16, "x-%d y-%d", (int)p1.obj.x, (int)p1.obj.y);
-  setParam(5, buf);
 
   if(intro == 0){
     //playROQvideo("/pc/video/fiole_squared.roq");

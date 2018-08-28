@@ -9,8 +9,8 @@
 #include "tilemap.h"
 #include "debug_screen.h"
 
-int rMap = 300;
-int mapData2[300][300];
+int rMap = 25;
+int mapData2[25][25];
 
 void generateFloor(scene* self, int texNum) {
   //setUV(&self->obj[texNum].t, 0.25, 0.25);
@@ -28,9 +28,9 @@ void drawMap(texture *t, int x, int y) {
   int xPos, yPos, xOffset, yOffset;
   float xCenter, yCenter;
   float xTile = t->w * t->uSize * t->xScale;
-  float yTile = t->h * t->vSize * t->yScale;
-  int maxTile = 6;
-
+  float yTile = t->h * t->vSize * t->yScale * 0.82;
+  int maxTile = (1000 / xTile) + 2;
+  maxTile = 8;
   xPos = yPos = 0;
 
   xOffset = -displayPos[0] / xTile;
@@ -46,7 +46,7 @@ void drawMap(texture *t, int x, int y) {
       xPos = (_i * xTile) - xTile;
       yPos = (_j * yTile) - ((i%2)  * (yTile/2));
 
-      setAnim(t, mapData2[_j][_i]);
+      //setAnim(t, mapData2[_j][_i]);
       drawHex(t, xPos, yPos);
       //sprintf(buf, "%i", _i + (_j * maxTile));
       //writeFont(buf, xPos, yPos);
@@ -59,9 +59,9 @@ void drawHex(texture *tex, float x, float y) {
   float texW = tex->w * tex->uSize * tex->xScale;
   float texH = tex->h * tex->vSize * tex->yScale;
   float x0 = x - texW;
-  float y0 = y - texH / 2;
+  float y0 = y - texH / 2.4;
   float x1 = x + texW;
-  float y1 = y + texH / 2;
+  float y1 = y + texH / 2.4;
   float u = tex->u;
   float v = tex->v;
   float xS = tex->uSize;

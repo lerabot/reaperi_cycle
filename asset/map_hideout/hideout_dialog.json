@@ -1,0 +1,46 @@
+{
+  "hideout": [
+    {
+      "npc": "scroll_mystere",
+      "questName": "Hideout",
+      "textID": "Hideout",
+      "nextID": "",
+      "text": [
+        "Could this be the strange cube floating in the middle of the room?",
+        "There's mentions of unlocking it.\nThat only the worthy one could decypher the meaning of those strange symbols."
+      ],
+      "result": [
+        ""
+      ],
+      "condition": ""
+    },
+    {
+      "npc": "scroll_sable",
+      "questName": "Hideout",
+      "textID": "Hideout",
+      "nextID": "",
+      "text": [
+        "This looks likes a fresh scroll,\nThe hand is holding some kind of device."
+      ],
+      "result": [
+        ""
+      ],
+      "condition": ""
+    },
+    {
+      "npc": "book1",
+      "questName": "Hideout",
+      "textID": "Hideout",
+      "nextID": "",
+      "text": [
+        "The Element of Fire.\nThe fire is the purest and most noble of all elements.",
+        "All fires are truly divines",
+        "All the books on this piles seem related to fire somehow."
+      ],
+      "result": [
+        ""
+      ],
+      "condition": ""
+    }
+  ]
+}

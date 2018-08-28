@@ -2,6 +2,7 @@
 #include "player.h"
 #include "../global_var.h"
 #include "../utils.h"
+#include "../header.h"
 #include "lua_binds.h"
 #include "debug_screen.h"
 #include "gl_font.h"
@@ -11,6 +12,7 @@ int     currentItem = 0;
 int     edgeSize = 120;
 float   velocity[2] = {0, 1};
 float   direction[2] = {0, 1};
+char*   posString = "";
 
 texture spirit_base;
 texture spirit_outer;
@@ -63,7 +65,7 @@ player      initPlayer(int playerNum) {
 void        movePlayer() {
   int cursorSpeed = p1.cSpeed;
 
-  if (game_state == EXPLORATION) {
+  if (game_state == EXPLORATION || game_state == ENIGME) {
     if (p1.state->buttons & CONT_DPAD_DOWN)
       p1.obj.y -= cursorSpeed;
     if (p1.state->buttons & CONT_DPAD_UP)
@@ -76,26 +78,29 @@ void        movePlayer() {
     p1.obj.x += (int)p1.state->joyx / (128 / p1.cSpeed);
     p1.obj.y -= (int)p1.state->joyy / (128 / p1.cSpeed);
 
-    if (p1.obj.x > currentScene->mapSize[0] - edgeSize * 1.5)
+    if (p1.obj.x > currentScene->mapSize[0])
       p1.obj.x -= cursorSpeed;
-    if (p1.obj.x < 0 + edgeSize * 1.5)
+    if (p1.obj.x < 0)
       p1.obj.x += cursorSpeed;
-    if (p1.obj.y > currentScene->mapSize[1] - edgeSize)
+    if (p1.obj.y > currentScene->mapSize[1])
       p1.obj.y -= cursorSpeed;
-    if (p1.obj.y < 0 + edgeSize)
+    if (p1.obj.y < 0)
       p1.obj.y += cursorSpeed;
   }
-  direction[0] = 320 - displayPos[0] - p1.obj.x;
-  direction[1] = 240 - displayPos[1] - p1.obj.y;
 
-  velocity[0] = direction[0] / 100 * 2.5;
-  velocity[1] = direction[1] / 100 * 2.5;
+  if (game_state == EXPLORATION) {
+    direction[0] = 320 - displayPos[0] - p1.obj.x;
+    direction[1] = 240 - displayPos[1] - p1.obj.y;
 
-  displayPos[0] += velocity[0];
-  displayPos[1] += velocity[1];
+    velocity[0] = direction[0] / 100 * 2.5;
+    velocity[1] = direction[1] / 100 * 2.5;
 
-  velocity[0] *= 0.99;
-  velocity[1] *= 0.99;
+    displayPos[0] += velocity[0];
+    displayPos[1] += velocity[1];
+
+    velocity[0] *= 0.99;
+    velocity[1] *= 0.99;
+  }
 }
 
 void        updateController() {
@@ -106,9 +111,11 @@ void        updateController() {
 }
 
 void        updateItem() {
+  /*
   if(buttonPressed(CONT_B))
     dropItem();
   switchItem();
+  */
 
   if(p1.currentItem != NULL) {
     p1.currentItem->x = p1.obj.x;
@@ -212,8 +219,6 @@ int         buttonPressed(uint16 key) {
       return(1);
     }
   }
-  //else
-    //p1.pstate.buttons |= p1.state->buttons; // MIGHT BE SLOW?
   return(0);
 }
 
@@ -256,6 +261,11 @@ void        setPosition(int x, int y) {
   p1.obj.y = y;
   displayPos[0] = -x + 320;
   displayPos[1] = -y + 240;
+}
+
+char*       getPositionString() {
+  sprintf(posString, "x%0.0f-y%0.0f", (double)p1.obj.x, (double)p1.obj.y);
+  return(posString);
 }
 
 void        hideController(){

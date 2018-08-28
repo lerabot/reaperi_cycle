@@ -33,6 +33,7 @@ void  loadMapData(scene *self, char* filename);
 void  setMapInfo(scene *s, int x, int y, int xStart, int yStart);
 void  renderScene(scene *self);
 void  updateScene(scene *self);
+void  updateActiveObj(scene *self);
 void  freeSpritesheet();
 
 #endif

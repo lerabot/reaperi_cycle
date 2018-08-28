@@ -1,7 +1,7 @@
 TARGET = main.elf
 OBJS = main.o utils.o
 
-OBJS += scene_temple.o scene_test.o scene_desert.o scene_soussol.o scene_jardin.o scene_menu.o
+OBJS += scene_temple.o scene_test.o scene_desert.o scene_soussol.o scene_jardin.o scene_menu.o scene_hideout.o
 
 REAP_LIBS = $(addprefix lib/, $(REAP_OBJ))
 REAP_OBJ  = gl_png.o debug_screen.o game_object.o scene.o particule.o gl_font.o  tilemap.o gl_pvr_texture.o dreamroqlib.o player.o lua_binds.o vmu.o
@@ -32,8 +32,9 @@ romdisk.img:
 	$(KOS_GENROMFS) -f asset/rd_desert.img -d asset/map_desert
 	$(KOS_GENROMFS) -f asset/rd_menu.img -d asset/map_menu
 	$(KOS_GENROMFS) -f asset/rd_test.img -d asset/map_test
+	$(KOS_GENROMFS) -f asset/rd_hideout.img -d asset/map_hideout
 
-	gzip -f -9 asset/rd_temple.img asset/rd_desert.img asset/rd_soussol.img asset/rd_jardin.img asset/rd_test.img asset/rd_menu.img
+	gzip -f -9 asset/rd_temple.img asset/rd_desert.img asset/rd_soussol.img asset/rd_jardin.img asset/rd_test.img asset/rd_menu.img asset/rd_hideout.img
 	#mkisofs -o ../phenix_data.iso fiole intro sounds
 
 romdisk.o: romdisk.img

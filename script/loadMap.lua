@@ -3,6 +3,7 @@ package.path = package.path .. ";cd/script/?.lua" .. ";pc/script/?.lua" .. ";../
 sprite_data = {}
 xml_data = {}
 textures = {}
+quads = {}
 t_string = "super string!"
 num = 4;
 x_map, y_map = 0
@@ -87,11 +88,21 @@ function createObject(i)
   textures[i].file, textures[i].npcID
 end
 
+--[[
+function getQuads(i)
+  local paths = xml_data.svg.g.path
+  quads[i] = {}
+
+  local vertex_raw = path[i].d
+end
+--]]
+
 function getMapInfo()
   x_map = xml_data.svg["@width"]
   y_map = xml_data.svg["@height"]
-  local map_name = xml_data.svg.mapName
-  local obj_num = #xml_data.svg.g.image
+  local map_name  = xml_data.svg.mapName
+  local obj_num   = #xml_data.svg.g.image
+  --local path_num  = #xml_data.svg.g.path
   return x_map, y_map, obj_num
 end
 

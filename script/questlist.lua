@@ -6,7 +6,7 @@ quest_data = {}
 function addQuest(questNum)
   local quest_raw = {}
   local json = assert(require "json")
-  local file = assert(io.open("pc/script/quest_data.json", "r"))
+  local file = assert(io.open("cd/script/quest_data.json", "r"))
   if not file then
     return "No JSON quest_data"
   end

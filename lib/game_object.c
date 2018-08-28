@@ -36,15 +36,21 @@ gameObject createObject(char *path, float x, float y, int visible){
 gameObject createObjectDTEX(char *path, float x, float y, int visible){
   gameObject temp;
 
-  load_dtex(path, &temp.t);
+  dtex_to_gl_texture(&temp.t, path);
   temp.x = x;
   temp.y = y;
+  temp.z = 0;
   temp.visible = visible;
   temp.t.a = visible;
   temp.size = 1;
   temp.frames = 1;
   temp.cFrame = 0;
-
+  temp.active = 1;
+  temp.emitLight = 0;
+  temp.name = "";
+  temp.desc = "";
+  temp.npcID = "";
+  temp.portraitID = "";
   return(temp);
 }
 
@@ -79,9 +85,6 @@ int activate(gameObject *object, lua_State *L){
 int mouseOver(gameObject *cursor, gameObject *target){
   float xSize = target->t.size[0];
   float ySize = target->t.size[1];
-
-  setFloat(1, xSize);
-	setFloat(2, ySize);
 
   if (  (cursor->x > target->x-xSize/2) &&
         (cursor->x < target->x+xSize/2) &&

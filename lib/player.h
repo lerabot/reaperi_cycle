@@ -52,5 +52,6 @@ void  drawShadow();
 void  hideController();
 void  showController();
 void  setPosition(int x, int y);
+char* getPositionString();
 
 #endif

@@ -4,14 +4,14 @@
 #include "tilemap.h"
 #include "../global_var.h"
 #include "../utils.h"
+#include "gl_font.h"
 #include "debug_screen.h"
 
 gameObject spritesheet;
 
 void loadMapData(scene *self, char* filename) {
-  loadLuaFile(t_data, findFile("/script/loadMap.lua"));
-
-  spritesheet = createObject("/rd/spritesheet.png", -1000, -1000, 1);
+  //spritesheet = createObject("/rd/spritesheet.png", -1000, -1000, 1);
+  spritesheet = createObjectDTEX("/rd/spritesheet.tex", -1000, -1000, 1);
 
   //get general map info - SIZE / OBJNUM / name
   lua_getglobal(t_data, "loadXML");
@@ -71,6 +71,7 @@ void loadMapData(scene *self, char* filename) {
       self->activeObj[j++] = &self->obj[i];
     }
   }
+  setInt(0, self->activeNum);
 }
 
 void setMapInfo(scene *s, int x, int y, int xStart, int yStart){
@@ -82,10 +83,15 @@ void setMapInfo(scene *s, int x, int y, int xStart, int yStart){
 void updateScene(scene *self) {
   self->updateScene(self);
 
+  char* message = "";
+  char  png[32];
   if (self->activeNum > 0) {
     for(int i = 0; i < self->activeNum; i++) {
-      if(clicked(self->activeObj[i], CONT_A))
-        activateNPC(self->activeObj[i]->npcID, "");
+      if(clicked(self->activeObj[i], CONT_A)) {
+        sprintf(png, "/rd/%s.png", self->activeObj[i]->npcID);
+        activateNPC(self->activeObj[i]->npcID, png);
+        //setParam(4, png);
+      }
     }
   }
 }
@@ -100,9 +106,10 @@ void renderScene(scene *self){
       drawMap(&self->obj[self->floorTex].t, self->mapSize[0]/2, self->mapSize[1]/2);
 
     drawShadow();
-    
+
     for (int i = 0; i < self->objNum; i++){
-      drawObject(&self->obj[i]);
+      if(distance(p1.obj.x, p1.obj.y, self->obj[i].x, self->obj[i].y) < 750)
+        drawObject(&self->obj[i]);
     }
     self->renderScene(self);
   }

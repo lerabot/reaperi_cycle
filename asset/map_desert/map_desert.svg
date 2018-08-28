@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="5000"
+   height="5000"
+   viewBox="0 0 5000 5000"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 (unknown)"
+   sodipodi:docname="map_desert.svg"
+   mapName="Desert"
+   setCursor="34 198">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35254061"
+     inkscape:cx="903.40284"
+     inkscape:cy="778.51761"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1028"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     units="px"
+     inkscape:snap-global="false"
+     showguides="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/arc.png"
+       xlink:href="arc.png"
+       width="165"
+       height="198"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1113"
+       x="-571.90204"
+       y="1913.0345" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/brique2.png"
+       xlink:href="brique2.png"
+       width="152"
+       height="62"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1135"
+       x="-594.13641"
+       y="1569.1296" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146"
+       x="1095.4076"
+       y="3850.2271" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
+       xlink:href="palmier.png"
+       width="124"
+       height="168"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1179"
+       x="1003.5972"
+       y="3671.2007" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/orgue.png"
+       xlink:href="orgue.png"
+       npcID="orgue"
+       width="99"
+       height="165"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1168"
+       x="957.01361"
+       y="3758.0825" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="4334.8872"
+       x="2810.4602"
+       id="image1146-7"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
+       xlink:href="palmier.png"
+       transform="scale(-1,1)"
+       y="4364"
+       x="-3250.0383"
+       id="image1179-2-3"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="168"
+       width="124" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/tent_small.png"
+       xlink:href="tent_small.png"
+       width="424"
+       height="251"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1212"
+       x="4267.2153"
+       y="884.94843" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
+       xlink:href="palmier.png"
+       transform="scale(-1,1)"
+       y="3689.2522"
+       x="-955.10303"
+       id="image1179-6"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="168"
+       width="124" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="3785.4648"
+       x="897.36737"
+       id="image1146-3"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="3861.3423"
+       x="876.0932"
+       id="image1146-6"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/orgue.png"
+       xlink:href="orgue.png"
+       y="1643.123"
+       x="-812.46039"
+       id="image1168-5"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="165"
+       width="99" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="4258.0908"
+       x="2941.3623"
+       id="image1146-3-3"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="4418.2095"
+       x="2777.6802"
+       id="image1146-6-5"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
+       xlink:href="palmier.png"
+       y="1629.9766"
+       x="1860.5288"
+       id="image1179-2"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="168"
+       width="124" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/brique1.png"
+       xlink:href="brique1.png"
+       y="1741.8186"
+       x="1751.8669"
+       id="image1124-9"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="111"
+       width="235" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/fontaine.png"
+       xlink:href="fontaine.png"
+       npcID="hand"
+       y="1803.7676"
+       x="1905.0022"
+       id="image1157-1"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="68"
+       width="88" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="1799.6846"
+       x="2005.0273"
+       id="image1146-7-2"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="1744.9509"
+       x="1871.1711"
+       id="image1146-3-3-7"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="1718.5356"
+       x="1984.282"
+       id="image1146-6-5-0"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/statue_tete.png"
+       xlink:href="statue_tete.png"
+       npcID="head"
+       width="300"
+       height="162"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1346"
+       x="2805.0098"
+       y="4310.022" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
+       xlink:href="palmier.png"
+       y="4286.9648"
+       x="3015.3601"
+       id="image1179-2-9"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="168"
+       width="124" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
+       xlink:href="palmier.png"
+       width="124"
+       height="168"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1179-2-6"
+       x="4144.7573"
+       y="897.90521" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-6-5-0-0"
+       x="4302.5488"
+       y="994.97388" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-6-5-0-0-6"
+       x="4308.7495"
+       y="1123.7241" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-6-5-0-0-61"
+       x="4127.21"
+       y="1081.1758" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-6-5-0-0-8"
+       x="4436.3945"
+       y="1200.311" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
+       xlink:href="palmier.png"
+       width="124"
+       height="168"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1179-2-3-7"
+       x="-4559.7891"
+       y="1041.6758"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="3396.6902"
+       x="905.91937"
+       id="image1146-6-5-0-0-61-9"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="3322.9397"
+       x="1002.3623"
+       id="image1146-6-5-0-0-61-2"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="1296.7538"
+       x="4036.4404"
+       id="image1146-6-5-0-0-61-0"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="4112.2241"
+       x="1622.7323"
+       id="image1146-6-5-0-0-61-23"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:0.45899999;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ffe680;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4.8717351;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852"
+       cx="-1596.0094"
+       cy="-1755.3198"
+       r="1200" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-6-5-0-0-61-2-3"
+       x="1476.0665"
+       y="2412.4062" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-6-5-0-0-61-2-6"
+       x="2922.7085"
+       y="1533.0751" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-6-5-0-0-61-2-7"
+       x="3467.3264"
+       y="1442.3054" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-6-5-0-0-61-2-5"
+       x="3251.7485"
+       y="3802.3171" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-6-5-0-0-61-2-35"
+       x="3569.4424"
+       y="2395.387" />
+  </g>
+</svg>
