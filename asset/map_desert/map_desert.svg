@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35254061"
-     inkscape:cx="903.40284"
-     inkscape:cy="778.51761"
+     inkscape:zoom="0.17627031"
+     inkscape:cx="2724.9358"
+     inkscape:cy="3657.9377"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -50,7 +50,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -76,8 +76,26 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1135"
-       x="-594.13641"
-       y="1569.1296" />
+       x="3257.9021"
+       y="4065.2959" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:0.2857143;fill-rule:nonzero;stroke:none;stroke-width:4.05977917;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-9-6-5"
+       cx="3618.3362"
+       cy="3096.0566"
+       r="1000" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:0.2857143;fill-rule:nonzero;stroke:none;stroke-width:4.05977917;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-9-6"
+       cx="2438.9866"
+       cy="4101.4258"
+       r="1000" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:0.2857143;fill-rule:nonzero;stroke:none;stroke-width:4.05977917;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-9"
+       cx="1025.2253"
+       cy="3776.1033"
+       r="1000" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
@@ -110,27 +128,6 @@
        x="957.01361"
        y="3758.0825" />
     <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
-       xlink:href="flag1.png"
-       y="4334.8872"
-       x="2810.4602"
-       id="image1146-7"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="89"
-       width="15" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
-       xlink:href="palmier.png"
-       transform="scale(-1,1)"
-       y="4364"
-       x="-3250.0383"
-       id="image1179-2-3"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="168"
-       width="124" />
-    <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/tent_small.png"
        xlink:href="tent_small.png"
        width="424"
@@ -138,8 +135,8 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1212"
-       x="4267.2153"
-       y="884.94843" />
+       x="6808.7666"
+       y="-896.40649" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
        xlink:href="palmier.png"
@@ -182,30 +179,10 @@
        height="165"
        width="99" />
     <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
-       xlink:href="flag1.png"
-       y="4258.0908"
-       x="2941.3623"
-       id="image1146-3-3"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="89"
-       width="15" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
-       xlink:href="flag1.png"
-       y="4418.2095"
-       x="2777.6802"
-       id="image1146-6-5"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="89"
-       width="15" />
-    <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
        xlink:href="palmier.png"
-       y="1629.9766"
-       x="1860.5288"
+       y="3365.9468"
+       x="5582.0859"
        id="image1179-2"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
@@ -214,8 +191,8 @@
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/brique1.png"
        xlink:href="brique1.png"
-       y="1741.8186"
-       x="1751.8669"
+       y="3477.7888"
+       x="5473.4238"
        id="image1124-9"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
@@ -225,8 +202,8 @@
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/fontaine.png"
        xlink:href="fontaine.png"
        npcID="hand"
-       y="1803.7676"
-       x="1905.0022"
+       y="3539.7378"
+       x="5626.5591"
        id="image1157-1"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
@@ -235,8 +212,8 @@
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
-       y="1799.6846"
-       x="2005.0273"
+       y="3535.6548"
+       x="5726.5845"
        id="image1146-7-2"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
@@ -245,8 +222,8 @@
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
-       y="1744.9509"
-       x="1871.1711"
+       y="3480.9211"
+       x="5592.728"
        id="image1146-3-3-7"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
@@ -255,34 +232,13 @@
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
-       y="1718.5356"
-       x="1984.282"
+       y="3454.5059"
+       x="5705.8389"
        id="image1146-6-5-0"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
        height="89"
        width="15" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/statue_tete.png"
-       xlink:href="statue_tete.png"
-       npcID="head"
-       width="300"
-       height="162"
-       preserveAspectRatio="none"
-       style="image-rendering:optimizeSpeed"
-       id="image1346"
-       x="2805.0098"
-       y="4310.022" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
-       xlink:href="palmier.png"
-       y="4286.9648"
-       x="3015.3601"
-       id="image1179-2-9"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="168"
-       width="124" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
        xlink:href="palmier.png"
@@ -291,8 +247,8 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1179-2-6"
-       x="4144.7573"
-       y="897.90521" />
+       x="6686.3086"
+       y="-883.44971" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
@@ -301,8 +257,8 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1146-6-5-0-0"
-       x="4302.5488"
-       y="994.97388" />
+       x="6844.1001"
+       y="-786.3811" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
@@ -311,8 +267,8 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1146-6-5-0-0-6"
-       x="4308.7495"
-       y="1123.7241" />
+       x="6850.3008"
+       y="-657.63086" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
@@ -321,8 +277,8 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1146-6-5-0-0-61"
-       x="4127.21"
-       y="1081.1758" />
+       x="6668.7612"
+       y="-700.1792" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
@@ -331,8 +287,8 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1146-6-5-0-0-8"
-       x="4436.3945"
-       y="1200.311" />
+       x="6977.9458"
+       y="-581.04395" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
        xlink:href="palmier.png"
@@ -341,8 +297,8 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1179-2-3-7"
-       x="-4559.7891"
-       y="1041.6758"
+       x="-7101.3398"
+       y="-739.6792"
        transform="scale(-1,1)" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
@@ -367,8 +323,8 @@
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
-       y="1296.7538"
-       x="4036.4404"
+       y="-484.60135"
+       x="6577.9917"
        id="image1146-6-5-0-0-61-0"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
@@ -377,18 +333,30 @@
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
-       y="4112.2241"
-       x="1622.7323"
+       y="4068.0977"
+       x="1654.8242"
        id="image1146-6-5-0-0-61-23"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
        height="89"
        width="15" />
     <circle
-       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:0.45899999;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ffe680;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4.8717351;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ff00ff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.92528915;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-0-2-6"
+       cx="-16111.618"
+       cy="6611.1621"
+       r="2198.4666" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ff00ff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.92528915;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-0-2"
+       cx="-13751.607"
+       cy="6543.085"
+       r="2198.4666" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4.8717351;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
        id="path852"
-       cx="-1596.0094"
-       cy="-1755.3198"
+       cx="-15830.092"
+       cy="6519.5601"
        r="1200" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
@@ -398,8 +366,8 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1146-6-5-0-0-61-2-3"
-       x="1476.0665"
-       y="2412.4062" />
+       x="4635.9863"
+       y="3660.4895" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
@@ -408,8 +376,8 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1146-6-5-0-0-61-2-6"
-       x="2922.7085"
-       y="1533.0751" />
+       x="6644.2656"
+       y="3269.0452" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
@@ -418,8 +386,8 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1146-6-5-0-0-61-2-7"
-       x="3467.3264"
-       y="1442.3054" />
+       x="6008.8774"
+       y="-339.04959" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
@@ -428,8 +396,8 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1146-6-5-0-0-61-2-5"
-       x="3251.7485"
-       y="3802.3171" />
+       x="2752.0071"
+       y="3290.3613" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
        xlink:href="flag1.png"
@@ -438,7 +406,427 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1146-6-5-0-0-61-2-35"
-       x="3569.4424"
-       y="2395.387" />
+       x="7290.9995"
+       y="4131.3569" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-6-5-0-0-61-23-6"
+       x="2668.1646"
+       y="4129.1328" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
+       xlink:href="palmier.png"
+       width="124"
+       height="168"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1179-2-36"
+       x="5860.0181"
+       y="1106.757" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/brique1.png"
+       xlink:href="brique1.png"
+       width="235"
+       height="111"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1124-9-7"
+       x="5751.356"
+       y="1218.599" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/fontaine.png"
+       xlink:href="fontaine.png"
+       width="88"
+       height="68"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1157-1-5"
+       x="5904.4912"
+       y="1280.548"
+       npcID="hand" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-7-2-3"
+       x="6004.5166"
+       y="1276.465" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-3-3-7-5"
+       x="5870.6602"
+       y="1221.7313" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-6-5-0-6"
+       x="5983.771"
+       y="1195.316" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="1889.1866"
+       x="5475.5557"
+       id="image1146-6-5-0-0-61-2-3-2"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="1009.8554"
+       x="6922.1978"
+       id="image1146-6-5-0-0-61-2-6-9"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ff00ff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.92528915;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-0-2-1-9"
+       cx="-9780.4336"
+       cy="3320.7607"
+       r="2198.4666" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ff00ff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.92528915;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-0-2-8"
+       cx="-12163.138"
+       cy="2481.1414"
+       r="2198.4666" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ff00ff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.92528915;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-0-2-1"
+       cx="-11868.136"
+       cy="4773.0762"
+       r="2198.4666" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.56857967;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-1"
+       cx="-14438.314"
+       cy="5899.8428"
+       r="632.68945" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4.8717351;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2"
+       cx="-12055.61"
+       cy="5230.4165"
+       r="1200" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ff00ff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.92528915;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-0-2-9"
+       cx="-6512.7251"
+       cy="1323.8279"
+       r="2198.4666" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ff00ff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.92528915;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-0-2-7"
+       cx="-9893.8955"
+       cy="1437.2898"
+       r="2198.4666" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ff00ff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.92528915;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-0-2-7-5"
+       cx="-15703.154"
+       cy="-332.7189"
+       r="2198.4666" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ff00ff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.92528915;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-0-2-7-7"
+       cx="-15067.768"
+       cy="1278.443"
+       r="2198.4666" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4.8717351;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-7"
+       cx="-12265.253"
+       cy="3048.4519"
+       r="1200" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ff00ff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.92528915;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-0-2-9-8"
+       cx="-9213.123"
+       cy="-1308.4929"
+       r="2198.4666" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4.8717351;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-0"
+       cx="-10699.477"
+       cy="1505.3672"
+       r="1200" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.31523252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-3"
+       cx="-9309.5664"
+       cy="1363.5397"
+       r="570.28534" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.31523252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-3-6"
+       cx="-8328.1182"
+       cy="1323.8279"
+       r="570.28534" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.56857967;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-1-2"
+       cx="-13411.221"
+       cy="5680.7725"
+       r="632.68945" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4.8717351;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-7-0"
+       cx="-14046.608"
+       cy="1868.446"
+       r="1200" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.31523252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-3-2"
+       cx="-15113.152"
+       cy="756.51733"
+       r="570.28534" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.31523252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-3-6-3"
+       cx="-15521.615"
+       cy="-151.17953"
+       r="570.28534" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4.8717351;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-9-2"
+       cx="-3082.2896"
+       cy="-8906.3857"
+       r="1200"
+       transform="rotate(-63.591262)" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.31523252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-3-6-2"
+       cx="-4636.7192"
+       cy="-9008.502"
+       r="570.28534"
+       transform="rotate(-63.591262)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/orgue.png"
+       xlink:href="orgue.png"
+       y="4010.9031"
+       x="2369.4292"
+       id="image1168-3"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="165"
+       width="99"
+       npcID="orgue" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-7-3"
+       x="3463.0752"
+       y="2895.4963" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
+       xlink:href="palmier.png"
+       width="124"
+       height="168"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1179-2-3-5"
+       x="-3902.6531"
+       y="2924.6091"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-3-3-6"
+       x="3593.9773"
+       y="2818.7" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       width="15"
+       height="89"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-6-5-2"
+       x="3430.2952"
+       y="2978.8186" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/statue_tete.png"
+       xlink:href="statue_tete.png"
+       y="2870.6311"
+       x="3457.6248"
+       id="image1346-9"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="162"
+       width="300"
+       npcID="head" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
+       xlink:href="palmier.png"
+       width="124"
+       height="168"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1179-2-9-1"
+       x="3667.9749"
+       y="2847.574" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:0.2857143;fill-rule:nonzero;stroke:none;stroke-width:4.05977917;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-9-6-5-2-9"
+       cx="2597.9517"
+       cy="1314.3235"
+       r="1000" />
+    <circle
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#88bddb;fill-opacity:0.2857143;fill-rule:nonzero;stroke:none;stroke-width:4.05977917;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="path852-2-9-6-5-2"
+       cx="4176.8179"
+       cy="1779.3428"
+       r="1000" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
+       xlink:href="palmier.png"
+       y="1739.0919"
+       x="4115.9487"
+       id="image1179-2-36-3"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="168"
+       width="124" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/brique1.png"
+       xlink:href="brique1.png"
+       y="1850.934"
+       x="4007.2864"
+       id="image1124-9-7-6"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="111"
+       width="235" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/fontaine.png"
+       xlink:href="fontaine.png"
+       npcID="hand"
+       y="1912.8829"
+       x="4160.4219"
+       id="image1157-1-5-0"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="68"
+       width="88" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="1908.7999"
+       x="4260.4473"
+       id="image1146-7-2-3-6"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="1854.0663"
+       x="4126.5908"
+       id="image1146-3-3-7-5-2"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="1827.651"
+       x="4239.7017"
+       id="image1146-6-5-0-6-6"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/palmier.png"
+       xlink:href="palmier.png"
+       y="1081.0117"
+       x="2572.864"
+       id="image1179-2-36-1"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="168"
+       width="124" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/brique1.png"
+       xlink:href="brique1.png"
+       y="1192.8538"
+       x="2464.2019"
+       id="image1124-9-7-8"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="111"
+       width="235" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/fontaine.png"
+       xlink:href="fontaine.png"
+       npcID="hand"
+       y="1254.8027"
+       x="2617.3372"
+       id="image1157-1-5-7"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="68"
+       width="88" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="1250.7197"
+       x="2717.3625"
+       id="image1146-7-2-3-9"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="1195.9861"
+       x="2583.5061"
+       id="image1146-3-3-7-5-20"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_desert/flag1.png"
+       xlink:href="flag1.png"
+       y="1169.5708"
+       x="2696.6169"
+       id="image1146-6-5-0-6-2"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="89"
+       width="15" />
   </g>
 </svg>

@@ -11,18 +11,21 @@
 font f;
 texture box;
 texture portrait;
-char *portraitFile = "";
-char *active_npc = "";
-char boxText[196] = "";
+char *portraitFile   = "";
+char activeNPC[64];
+char boxText[196]    = "";
 
-int textActive = 0;
+int dialogActive = 0;
 int showDialog = 0;
 int showPortrait = 0;
 int portraitX, portraitY;
 float frame;
 float screenAlpha;
 
-int len; //longeur du texte actuel
+int tLength = 0; //text length
+int cLength = 0; //current length
+
+int len = 0; //longeur du texte actuel
 
 //probablement chercke si retourner un font tmp est une bonne chose pour la mémoire.
 font    loadFont(char *path){
@@ -34,13 +37,12 @@ font    loadFont(char *path){
   showDialog = 0;
 
   png_to_gl_texture(&portrait, "/rd/trans32.png");
-  portraitFile = "No Portrait";
-
   png_to_gl_texture(&box, "/rd/box_raw.png");
   box.a = 0;
 
   png_to_gl_texture(&tmp.txtFont, path);
   tmp.glyphSize   = 16;
+  tmp.cellSize    = 10;
   tmp.glyphScale  = 1;
   setUV(&tmp.txtFont, 0.0625, 0.0625);
   tmp.txtFont.mag_filter = GL_NEAREST;
@@ -50,147 +52,154 @@ font    loadFont(char *path){
 
 //main rendering fonction
 void    renderDialog() {
-  float speed = 3;
-  float aSpeed = 0.010;
-  int margin = 36;
-  int x = 56 + margin * 2;
-  int y = 100 + 64 - margin;
+  float speed =   3.7;
+  float aSpeed =  0.012;
+  int margin =    36;
+  int x =         56 + margin * 2;
+  int y =         100 + 64 - margin;
 
+  //LOGIC FUR BUTTONS
   if(buttonPressed(CONT_A)) {
     //check for NPC
-    if (showDialog == 1)
-      setDialog(LUA_getDialog(active_npc));
-    else
-      textActive = 0;
+    if (cLength < tLength)
+      cLength = tLength;
+    else {
+      dialogActive = setDialog(LUA_getDialog(activeNPC));
+    }
   }
 
   if(buttonPressed(CONT_B)) {
-    textActive = 0;
+    dialogActive = 0;
   }
 
-  //show dialog animation
-  if(textActive != 0 && frame < 90) {
-    portraitY = sin(frame * (3.1416 / 180)) * 240;
-    frame += speed;
-    box.a += aSpeed;
-    textActive = 1;
-    blackScreen(aSpeed);
-    hideController();
-  }
+  if (game_state == DIALOG) {
+    //show dialog animation
+    if(dialogActive != 0 && frame < 90) {
+      portraitY = sin(frame * (3.1416 / 180)) * 240;
+      frame += speed;
+      box.a += aSpeed;
+      dialogActive = 1;
+      //blackScreen(aSpeed);
+      hideController();
+    }
 
-  //Remove dialog animation
-  if(textActive == 0 && frame > -90) {
-    portraitY = sin(frame * (3.1416 / 180)) * 240;
-    frame -= speed;
-    box.a -= aSpeed;
-    blackScreen(aSpeed);
-    showController();
-  }
+    //Remove dialog animation
+    if(dialogActive == 0 && frame > -90) {
+      portraitY = sin(frame * (3.1416 / 180)) * 240;
+      frame -= speed;
+      box.a -= aSpeed;
+      //blackScreen(aSpeed);
+      showController();
+    }
 
-  //Return to the exploration state once the animation is done
-  if (textActive == 0 && frame <= -90) { //
-    game_state = EXPLORATION;
-  }
+    //Return to the exploration state once the animation is done
+    if (dialogActive == 0 && frame <= -90) { //
+      game_state = EXPLORATION;
+    }
 
-  //draw the portait
-  if(showPortrait)
-    draw_textured_quad(&portrait, portraitX, portraitY, 5.0);
+    //draw the portait
+    if(showPortrait)
+      draw_textured_quad(&portrait, portraitX, portraitY, 5.0);
 
-  if(showDialog) {
-    draw_textured_quad(&box, 320, 100, 5.0);
-    if(frame > 40)
-      writeFontDelay(boxText, x, y, 6);
+    //if(dialogActive) {
+      draw_textured_quad(&box, 320, 100, 5.0);
+      if(frame > 40)
+        writeFontDelay(boxText, x, y, 4);
+    //}
   }
 }
 
 //activate a NPC portait and trigger thier dialog
-int    activateNPC (char *npc_name, char *filename) {
+int     activateNPC (const  char *npc_name, char *filename) {
+  game_state = DIALOG;
+  //Get the portrait
   showPortrait = setPortrait(filename);
-  setDialog(LUA_getDialog(npc_name));
-  active_npc = npc_name;
-  return(textActive);
+  //Get the textID
+  dialogActive = setDialog(LUA_getDialog(npc_name));
+
+  strcpy(activeNPC, npc_name);
+  //activeNPC = npc_name;
+  return(dialogActive);
 }
 
 //set the portrait / image. 1 = new image, 0 = not new image
 int     setPortrait (char *filename) {
   char message[256];
-  //sprintf(message, "Old Portrait %s ,\nPortrait %s", portraitFile, filename);
-  sprintf(message, "Old Portrait %s ,\nNew Portrait %s", portraitFile, filename);
+  file_t file;
 
-  //check if the portrait is empty
-  if (strcmp(filename, "") == 0) {
-    strcat(message, " is empty.");
-    setParam(5, message);
+  //check if file exists
+  if ((file = fs_open(filename, O_RDONLY)) != -1){
+    fs_close(file);
+    sprintf(message, "Found %s", filename);
+
+    //check if the portrait is the same
+    if (strcmp(filename, portraitFile) == 0) {
+      printf("Same portrait\n");
+      return (1);
+    }
+
+    //if the portrait is different
+    if (strcmp(filename, portraitFile)) {
+      glDeleteTextures(1, &portrait.id);
+      png_to_gl_texture(&portrait, filename);
+      strcpy(portraitFile, filename);
+      return(1);
+    }
+  //if the file doesn't exist
+  } else {
+    strcpy(portraitFile, "");
     return(0);
   }
-
-  //check if the portrait has changed
-  if  (strcmp(filename, portraitFile) == 0) {
-    //strcat(message, " is old.");
-    setParam(5, message);
-    return (1);
-  }
-
-  //if they're different
-  if (strcmp(filename, portraitFile)) {
-    //delete the old tecture
-    if(strlen(filename) > 2)
-      glDeleteTextures(1, &portrait.id);
-    png_to_gl_texture(&portrait, filename);
-    strcpy(portraitFile, filename);
-    strcat(message, " is New!");
-    setParam(5, message);
-    return(1);
-  }
-
   return(0);
 }
 
 void    resetPortrait() {
+  /*
   if(strcmp(portraitFile, "") != 0) {
     glDeleteTextures(1, &portrait.id);
-    portraitFile = "";
+    strcpy(portraitFile, '\0');
   }
+  */
   showPortrait = 0;
 }
 
+void    resetActiveNPC() {
+  activeNPC[0] = '\0';
+}
+
+char*   getActiveNPC() {
+  return(activeNPC);
+}
+
+//returns 1 if there's a dialog
 int     setDialog (char *dialog) {
-  //Check for the dialog length for valid text
-  if (strlen(dialog) > 2) {
-    memcpy(boxText, dialog, strlen(dialog));
-    boxText[strlen(dialog)] = '\0';
-    showDialog = 1;
-    textActive = 1;
-    game_state = DIALOG;
-    len = 0;
+  cLength = tLength = 0;
+  if(strlen(dialog) > 2) {
+    strcpy(boxText, dialog);
     return(1);
-  } else { //otherwise, go back to exploration
-    boxText[0] = '\0';
-    textActive = 0;
-    showDialog = 0;
-    active_npc = "";
   }
-  len = 0;
-  return(0);
+  boxText[0] = '\0';
+  cLength = tLength = 0;
+  return (0);
 }
 
 int     setDescription (char *dialog) {
   //reset both the portrait and the current npc
   resetPortrait();
-  active_npc = "";
+  resetActiveNPC();
 
   //Check for the dialog length for valid text
   if (strlen(dialog) > 2) {
     memcpy(boxText, dialog, strlen(dialog));
     boxText[strlen(dialog)] = '\0';
     showDialog = 1;
-    textActive = 1;
+    dialogActive = 1;
     game_state = DIALOG;
     len = 0;
     return(1);
   } else { //otherwise, go back to exploration
     boxText[0] = '\0';
-    textActive = 0;
+    dialogActive = 0;
     showDialog = 0;
     game_state = EXPLORATION;
   }
@@ -218,6 +227,10 @@ void    resetFontScale() {
   setScale(&f.txtFont, 1.0);
 }
 
+int     getCellSize() {
+  return(f.cellSize);
+}
+
 void    writeFont(char *string, int x, int y){
   float cellSize = 10 * f.glyphScale; //char width
   int maxGlyph = 36;
@@ -242,21 +255,21 @@ void    writeFont(char *string, int x, int y){
 }
 
 int     writeFontDelay(char *string, int x, int y, int delay){
-  float cellSize = 10 * f.glyphScale; //char width
-  int maxGlyph = 36;
-  int c = 0; //char number
-  int line = 0;
-  int l = strlen(string);
-  char glyph;
-  char nString[len];
+  float cellSize  = 10 * f.glyphScale; //char width
+  int   maxGlyph  = 36;
+  int   line      = 0;
+  int   c         = 0; //current char;
+  char  glyph;
+  char  nString[cLength];
 
-  strncpy(nString, string, len);
-  for (int i = 0; i < len; i++){
+  tLength = strlen(string);
+  strncpy(nString, string, cLength);
+  for (int i = 0; i < cLength; i++){
     glyph = nString[i];
     setChar(glyph);
     draw_textured_quad(&f.txtFont, x + (c * cellSize), y - (line * 16), 9);
     c++;
-    if (c == l)
+    if (c == cLength)
       c = line = 0;
     if (glyph == '\n' || (c > maxGlyph && glyph == ' ' )) {
       line++;
@@ -264,10 +277,10 @@ int     writeFontDelay(char *string, int x, int y, int delay){
     }
   }
 
-  if (frameCount % delay == 0 && len < l)
-    len++;
+  if (frameCount % delay == 0 && cLength < tLength)
+    cLength++;
 
-  if (len == l)
+  if (cLength == tLength)
     return(0);
   else
     return(1);

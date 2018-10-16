@@ -14,5 +14,7 @@ extern scene        *tempScene;       //... to load shit
 extern float        displayPos[3];    //glTranslate vector
 extern long         frameCount;       //number of Frame
 extern int          game_state;       //general state machine for controller
+extern int          render_map;       //render the map/environnement
+extern char         *loadPath;        ///cd or /pc
 
 #endif

@@ -11,7 +11,8 @@
 typedef struct _font
 {
   texture   txtFont;
-  int       glyphSize;
+  int       glyphSize; //&???
+  int       cellSize; //width or each letter
   float     glyphScale;
 } font;
 
@@ -21,11 +22,14 @@ char**  loadText2(char *path);
 //DIALOG////////////////////////
 int     toggleDialog();
 void    renderDialog();
-int     activateNPC (char *npc_name, char *filename);
+int     activateNPC (const char *npc_name, char *filename);
+char*   getActiveNPC();
+void    resetActiveNPC();
 int     setDialog(char *dialog);
 int     setDescription (char *dialog);
 char*   getLuaDialog(char *npc_name);
 int     setPortrait (char *filename);
+void    resetPortrait();
 void    textBox(char *string);
 //MENU////////////////////////
 void    displayMenu();
@@ -35,6 +39,7 @@ int     writeFontDelay(char *string, int x, int y, int delay);
 void    setFontAlpha(float a);
 void    setChar(int c);
 void    resetText();
+int     getCellSize();
 //FONT COLOR///////////////////////
 void    fontColor(float r, float g, float b);
 void    resetFontColor();

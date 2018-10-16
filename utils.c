@@ -2,18 +2,26 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <dirent.h>
 #include <zlib/zlib.h>
+#include <GL/glkos.h>
 #include "header.h"
-#include "lib/vmu.h"
+#include "vmu.h"
 
-int   l_game_state;
+
+time_t  master_time;
+int     l_game_state;
 
 void  initGL() // We call this right after our OpenGL window is created.
 {
+  srand((unsigned) time(&master_time));
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// This Will Clear The Background Color To Black
   glClearDepth(1.0);				// Enables Clearing Of The Depth Buffer
+
+  //glDepthFunc(GL_LEQUAL);				// The Type Of Depth Test To Do
   //glEnable(GL_DEPTH_TEST);			// Enables Depth Testing
-  //glDepthFunc(GL_EQUAL);				// The Type Of Depth Test T
+  glDisable(GL_NEARZ_CLIPPING_KOS);
+
   glShadeModel(GL_SMOOTH);			// Enables Smooth Color Shading
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -55,59 +63,64 @@ void  limitScreen(int width, int height) {
 
 char* findFile(char *filename) {
   file_t  file;
-  char  *path = "";
-  char  *dest[3];
+  char  *path[50];
+  char  *dest[4];
 
+  sprintf(path, "%s%s", loadPath, filename);
+  return(path);
+
+  /*
   dest[0] = "/cd";
   dest[1] = "/pc";
-  dest[2] = "/sd";
+  dest[2] = "/rd";
+  dest[3] = "/sd";
 
   for(int i = 0; i < 3; i ++){
-    snprintf(path, 50, "%s%s", dest[i], filename);
+    sprintf(path, "%s%s", dest[i], filename);
     if ((file = fs_open(path, O_RDONLY)) != -1){
+      printf("Found file %s at %s\n", filename, dest[i]);
       fs_close(file);
-      setParam(5, path);
       return(path);
     }
+    fs_close(file);
   }
-  return("No File!");
+
+  return("");
+  */
 }
 
 int   mount_romdisk(char *filename, char *mountpoint){
   void  *buffer;
-  char  path[50];
-  int   length;
+  char  path[100];
+  int   length = 0;
   char  *dest[3];
+  file_t f;
 
   dest[0] = "/cd";
   dest[1] = "/pc";
   dest[2] = "/sd";
 
   for(int i = 0; i < 3; i ++){
-    snprintf(path, 50, "%s%s", dest[i], filename);
-    length = zlib_getlength(path);
-    if(length != 0)
+    sprintf(path, "%s%s", dest[i], filename);
+    f = fs_open(path, O_RDONLY);
+    if(f != -1) {
+      length = fs_total(f);
+      printf("Found romdisk at %s -> size : %u\n", dest[i], length);
       break;
+    } else {
+    }
   }
+  fs_close(f);
 
-  //strcpy(path, filename);
-  //length = zlib_getlength(path);
-
-  // Open file
-  gzFile file = gzopen(path, "rb");
-  if(!file)
-      return 0;
-
-  // Allocate memory, read file
-  buffer = malloc(length);
-  gzread(file, buffer, length);
-  gzclose(file);
-
-  // Mount
-  fs_romdisk_mount(mountpoint, buffer, 1);
-  return 1;
+  ssize_t size = fs_load(path, &buffer);
+  // Successfully read romdisk image
+  if(size != -1)
+  {
+    fs_romdisk_mount(mountpoint, buffer, 1);
+    printf("Romdisk mounted at %s\n", mountpoint);
+  }
 }
-
+  /*
 int   mount_gz_romdisk(char *filename, char *mountpoint){
     void *buffer;
     int length;
@@ -130,6 +143,7 @@ int   mount_gz_romdisk(char *filename, char *mountpoint){
     fs_romdisk_mount(mountpoint, buffer, 1);
     return 1;
 }
+  */
 
 int   loadFile(char *filename) {
   void *buffer;
@@ -168,21 +182,22 @@ void  renderMenu() {
     if(buttonPressed(CONT_DPAD_UP) && cMenu > 0)
       cMenu--;
 
-    if(buttonPressed(CONT_A))
-    switch(cMenu) {
-      case 0:
-        currentScene->freeScene(currentScene);
-        loadMenu(tempScene);
-        break;
-      case 1:
-        VMU_saveGame();
-        break;
-      case 2:
-        VMU_loadGame();
-        break;
-      case 3:
-        quitGame();
-        break;
+    if(buttonPressed(CONT_A)) {
+      switch(cMenu) {
+        case 0:
+          currentScene->freeScene(currentScene);
+          loadMenu(tempScene);
+          break;
+        case 1:
+          VMU_saveGame();
+          break;
+        case 2:
+          VMU_loadGame();
+          break;
+        case 3:
+          quitGame();
+          break;
+      }
     }
 
     float cellSize = 10;
@@ -195,12 +210,6 @@ void  renderMenu() {
       resetFontColor();
     }
 
-    fontColor(0.3, 0.46, 0.9);
-    setFontScale(1.5);
-    writeFont(p1.questName, 320 - (strlen(p1.questName)/2 * cellSize * 1.5), 310);
-    resetFontScale();
-    writeFont(p1.questDesc, 320 - (strlen(p1.questDesc)/2 * cellSize), 280);
-    resetFontColor();
   }
 }
 
@@ -217,13 +226,13 @@ double distance(float x1,float y1,float x2,float y2) {
 }
 
 gameObject cycle;
-void    loadCycle() {
+void   loadCycle() {
   cycle = createObject("/rd/horloge_v1.png", 0,0, 1);
   //setAlpha(&cycle, 0.7);
 }
 
 float angle;
-void   renderCycle() {
+void  renderCycle() {
   if(game_state == EXPLORATION) {
     glPushMatrix();
     glTranslatef(320, 480 + 64, -5);
@@ -234,8 +243,12 @@ void   renderCycle() {
   }
 }
 
-void quitGame(){
+void  quitGame(){
     exit(1);
+}
+
+int   getRand(int modulo){
+  return rand() % modulo;
 }
 
 clock_t cTime, lTime;
@@ -251,4 +264,3 @@ float getFrameTime() {
   }
   return (float)avgTime/CLOCKS_PER_SEC/60;
 }
-

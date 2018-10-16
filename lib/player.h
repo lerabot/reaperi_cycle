@@ -13,8 +13,8 @@ typedef struct _player
   int             inventorySize;
   float           cSpeed;     //speed of cursor
 
-  char*           questDesc;  //quest description
-  char*           questName;  //quest title in quest list
+  char            questDesc[256];  //quest description
+  char            questName[128];  //quest title in quest list
   int             questID;    //int define in header
 
   maple_device_t  *cont;      //controller adress

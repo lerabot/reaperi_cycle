@@ -2,7 +2,6 @@
 #include <unistd.h>
 #include <time.h>
 #include <stdlib.h>
-#include <kos/string.h>
 #include <stdio.h>
 #include <png/png.h>
 #include <zlib/zlib.h>
@@ -11,7 +10,6 @@
 #include <malloc.h>
 #include <oggvorbis/sndoggvorbis.h>
 #include <mp3/sndserver.h>
-//#include <dc/sound/sound.h>
 
 #include "lua.h"
 #include "lauxlib.h"
@@ -21,24 +19,24 @@
 //game related
 #include "global_var.h"
 #include "utils.h"
-#include "lib/gl_font.h"
-#include "lib/debug_screen.h" //vital
-#include "lib/game_object.h" //vital
-#include "lib/gl_png.h"
-#include "lib/scene.h"
-#include "lib/tilemap.h"
-#include "lib/player.h"
-#include "lib/particule.h"
-#include "lib/lua_binds.h"
-#include "lib/dreamroqlib.h"
-#include "lib/vmu.h"
+#include "gl_font.h"
+#include "debug_screen.h" //vital
+#include "game_object.h" //vital
+#include "gl_png.h"
+#include "scene.h"
+#include "tilemap.h"
+#include "player.h"
+#include "quest.h"
+#include "lua_binds.h"
+#include "dreamroqlib.h"
+#include "vmu.h"
 
 /////////////////////////////
 //Game States
 #define EXPLORATION 1
-#define MENU 4
 #define DIALOG 2
 #define INVENTORY 3
+#define MENU 4
 #define ENIGME 5
 
 //////////////////////////////
@@ -51,6 +49,7 @@
 #include "scene_desert.h"
 #include "scene_test.h"
 #include "scene_hideout.h"
+#include "scene_illusion.h"
 
 #define MAP_NOID            0
 #define MAP_TEMPLE          1

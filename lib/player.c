@@ -14,6 +14,9 @@ float   velocity[2] = {0, 1};
 float   direction[2] = {0, 1};
 char*   posString = "";
 
+sfxhnd_t null_sfx[3];
+sfxhnd_t click_sfx[3];
+
 texture spirit_base;
 texture spirit_outer;
 texture ombre;
@@ -25,6 +28,7 @@ player      initPlayer(int playerNum) {
     temp.obj = createObject("", 320, 240, 1);
     setScale(&temp.obj.t, 0.5);
 
+    //VISUAL
     png_to_gl_texture(&ombre, "/rd/ombre.png");
     png_to_gl_texture(&spirit_base, "/rd/inside_blue.png");
     setScale(&spirit_base, 0.5);
@@ -38,14 +42,26 @@ player      initPlayer(int playerNum) {
     spirit_particule.z = 8;
     spirit_particule.t.a = 0.6;
 
-    //data
-    //temp.activeQuest = "";
+    //SOUND
+    null_sfx[0] = snd_sfx_load("/rd/neg1.wav");
+    null_sfx[1] = snd_sfx_load("/rd/neg2.wav");
+    null_sfx[2] = snd_sfx_load("/rd/neg3.wav");
+
+    //click_sfx[0] = snd_sfx_load("/rd/goodshit_3.wav");
+    //click_sfx[1] = snd_sfx_load("/rd/goodshit_4.wav");
+    //click_sfx[2] = snd_sfx_load("/rd/goodshit_5.wav");
+
+    //DATA
+    temp.questID = 0;
+    strcpy(temp.questName, "");
+    strcpy(temp.questDesc, "");
     temp.obj.z = 10;
     temp.cSpeed = 3;
     temp.cont = maple_enum_type(playerNum, MAPLE_FUNC_CONTROLLER);
+    p1.state = (cont_state_t *)maple_dev_status(p1.cont);
+
     temp.inventorySize = 0;
     temp.inventory = malloc(sizeof(gameObject) * MAX_ITEM);
-
     if(temp.inventory == 0)
       setParam(3, "Inventory Malloc Fail");
 
@@ -57,8 +73,6 @@ player      initPlayer(int playerNum) {
     temp.inventory[0].frames = 7;
     setScale(&temp.inventory[0].t, 0.5);
     temp.currentItem = &temp.inventory[0];
-
-    p1.state = (cont_state_t *)maple_dev_status(p1.cont);
     return(temp);
 }
 
@@ -87,6 +101,8 @@ void        movePlayer() {
     if (p1.obj.y < 0)
       p1.obj.y += cursorSpeed;
   }
+
+  setFloat(2, p1.state->joyx);
 
   if (game_state == EXPLORATION) {
     direction[0] = 320 - displayPos[0] - p1.obj.x;
@@ -121,6 +137,17 @@ void        updateItem() {
     p1.currentItem->x = p1.obj.x;
     p1.currentItem->y = p1.obj.y;
   }
+}
+
+void        updatePlayer() {
+  //LUA
+  LUA_updatePlayer();
+
+  //ENGINE
+  updateController();
+  updateItem();
+  movePlayer();
+  toggleDebug(p1.state);
 }
 
 //MIGHT HAVE SOME MEMORY PROBLEM HERE
@@ -185,17 +212,33 @@ int         hasItem() {
     return(1);
 }
 
+int noClickFlag = 0;
+int noClickDelay = 0;
+int         noClickSound() {
+  if(noClickFlag) {
+    noClickDelay = frameCount + 120;
+    snd_sfx_play(null_sfx[rand()%3], 150, 128);
+    noClickFlag = 0;
+  } else {
+    if(frameCount > noClickDelay)
+    noClickFlag = 1;
+  }
+}
+
 int         clicked(gameObject *target, uint16 key) {
   if (p1.state->buttons & key)
   {
     if (over(target) && !(p1.pstate.buttons & key))
     {
+      snd_sfx_play(null_sfx[1], 150, 128);
+      noClickFlag = 0;
       p1.pstate.buttons |= p1.state->buttons;
       return(1);
     }
+    //else
+    //if (!(p1.pstate.buttons & key))
+      //noClickSound();
   }
-  //else
-    //p1.pstate.buttons |= p1.state->buttons; // MIGHT BE SLOW?
   return(0);
 }
 
@@ -276,17 +319,6 @@ void        hideController(){
 void        showController(){
   p1.cSpeed = 3;
   p1.obj.visible = 1;
-}
-
-void        updatePlayer() {
-  //LUA
-  LUA_updatePlayer();
-
-  //ENGINE
-  updateController();
-  updateItem();
-  movePlayer();
-  toggleDebug(p1.state);
 }
 
 void        drawCursor() {

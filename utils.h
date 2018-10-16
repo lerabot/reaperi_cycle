@@ -13,9 +13,11 @@ void    initGL();
 void    basicLight();
 void    renderMenu();
 int     getTime();
+int     getRand(int modulo);
 float   getFrameTime();
 void    quitGame();
 void    limitScreen(int width, int height);
+void    quitGame();
 
 //MATH//////////////
 double distance(float x1,float y1,float x2,float y2);

@@ -1,12 +1,10 @@
 package.path = package.path .. ";cd/script/?.lua" .. ";pc/script/?.lua" .. ";../script/?.lua" .. ";/rd/?.lua"
 
-quest_data = {}
+quest_raw = {}
 
--- checks if the quest is active, if not, adds it to the player quest.
-function addQuest(questNum)
-  local quest_raw = {}
+function loadQuestData(filename)
   local json = assert(require "json")
-  local file = assert(io.open("cd/script/quest_data.json", "r"))
+  local file = assert(io.open(filename, "r"))
   if not file then
     return "No JSON quest_data"
   end
@@ -14,6 +12,10 @@ function addQuest(questNum)
   local raw = file:read("*all")
   file:close()
   quest_raw = json.decode(raw)
+end
+
+-- checks if the quest is active, if not, adds it to the player quest.
+function addQuest(questNum)
   local p = require "player"
   if p.quest[questNum] == nil then
     for k, v in pairs(quest_raw.quest) do

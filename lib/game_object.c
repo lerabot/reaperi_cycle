@@ -6,7 +6,6 @@
 #include "gl_font.h"
 #include "../global_var.h"
 #include "gl_png.h"
-#include "gl_pvr_texture.h"
 #include "game_object.h"
 #include "lua.h"
 #include "lauxlib.h"

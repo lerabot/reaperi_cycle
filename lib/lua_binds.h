@@ -8,7 +8,9 @@ void  LUA_initLua(); //sets up the luastate + load scrips
 void  LUA_addQuest(int questID);
 int   LUA_getQuest();
 void  LUA_loadDialog(char *filename);
+int   LUA_loadQuestData(char *filename);
 void  LUA_setQuest(char *quest, int questStatus);
+void  LUA_updatePlayer();
 
 char* LUA_getDialog(char *npc_name);
 int   LUA_getClock();

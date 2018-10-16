@@ -9,11 +9,11 @@ typedef struct game_object {
   int     size;
   int     frames, cFrame;
   int     active;
-  char    *script;
-  char    *name; //filename
-  char    *desc;
-  char    *npcID; //npcID for LUA dialog etc.
-  char    *portraitID;
+  const char    *script;
+  const char    *name; //filename
+  const char    *desc;
+  const char    *npcID; //npcID for LUA dialog etc.
+  const char    *portraitID;
   float   x, y, z, angle;
   float   emitLight;
   texture t;

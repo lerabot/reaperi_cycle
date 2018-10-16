@@ -66,7 +66,7 @@ void drawHex(texture *tex, float x, float y) {
   float v = tex->v;
   float xS = tex->uSize;
   float yS = tex->vSize;
-  float z = -5.0;
+  float z = 20.0;
   GLfloat material_ambient[] = {1.0, 1.0, 1.0, 1.0};
 
   GLfloat vertex_data[] = {

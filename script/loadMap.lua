@@ -1,4 +1,4 @@
-package.path = package.path .. ";cd/script/?.lua" .. ";pc/script/?.lua" .. ";../script/?.lua" .. ";/rd/?.lua"
+package.path = package.path .. ";cd/script/?.lua" .. ";pc/script/?.lua" .. ";../script/?.lua"
 
 sprite_data = {}
 xml_data = {}
@@ -6,7 +6,8 @@ textures = {}
 quads = {}
 t_string = "super string!"
 num = 4;
-x_map, y_map = 0
+x_map = 0
+y_map = 0
 
 
 function getTextureData(filename)
@@ -100,34 +101,44 @@ end
 function getMapInfo()
   x_map = xml_data.svg["@width"]
   y_map = xml_data.svg["@height"]
-  local map_name  = xml_data.svg.mapName
+  --local map_name  = xml_data.svg.mapName
   local obj_num   = #xml_data.svg.g.image
   --local path_num  = #xml_data.svg.g.path
   return x_map, y_map, obj_num
 end
 
-function loadXML(filename)
-  require "xml"
-  xml = newParser()
-  local file = assert(io.open(filename, "r"))
+function checkFile(filename)
+  local file = io.open(filename, "r")
   if not file then
-    return "No SVG!"
+    print("LUA > Can't find " .. filename)
+    return
   end
-  local raw = file:read("*all")
-  xml_data = assert(xml:ParseXmlText(raw))
-  file:close()
-  return "SVG Loaded"
+  print("LUA > Found " .. filename)
 end
 
-function loadJSON(filename)
-  local json = assert(require "json")
-  local file = assert(io.open(filename, "r"))
+function loadXML(filename_xml)
+  require "xml"
+  xml = newParser()
+  checkFile(filename_xml)
+  local file = io.open(filename_xml, "r")
   if not file then
-    return "No JSON sprite_data"
+    return 0
   end
-  --local file = assert(io.open("data_map.json", "r"))
+  local raw = file:read("*all")
+  xml_data = xml:ParseXmlText(raw)
+  file:close()
+  return 1
+end
+
+function loadJSON(filename_json)
+  local json = assert(require "json")
+  checkFile(filename_json)
+  local file = io.open(filename_json, "r")
+  if not file then
+    return 0
+  end
   local raw = file:read("*all")
   file:close()
   sprite_data = json.decode(raw)
-  return "JSON Decoded"
+  return 1
 end

@@ -25,15 +25,18 @@ typedef struct _scene
 
   void (* renderScene)(struct _scene *self);
   void (* updateScene)(struct _scene *self);
-  void (* freeScene)(struct _scene *self);
+  void (* freeScene)  (struct _scene *self);
 
 } scene;
 
-void  loadMapData(scene *self, char* filename);
-void  setMapInfo(scene *s, int x, int y, int xStart, int yStart);
-void  renderScene(scene *self);
-void  updateScene(scene *self);
-void  updateActiveObj(scene *self);
-void  freeSpritesheet();
+void        initScene(scene *self);
+int         loadMapData(scene *self, char* filename);
+void        setMapInfo(scene *s, int x, int y, int xStart, int yStart);
+void        renderScene(scene *self);
+void        updateScene(scene *self);
+void        updateActiveObj(scene *self);
+gameObject* findObject(scene *self, char* npcID);
+void        freeSpritesheet();
+void        checkFile(char* filename);
 
 #endif

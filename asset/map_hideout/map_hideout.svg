@@ -15,8 +15,11 @@
    viewBox="0 0 1200 750"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.2 (unknown)"
-   sodipodi:docname="map_hideout.svg">
+   inkscape:version="0.92.3 (unknown)"
+   sodipodi:docname="map_hideout.svg"
+   inkscape:export-filename="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/map_hideout.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -26,9 +29,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70000001"
-     inkscape:cx="736.36013"
-     inkscape:cy="384.32287"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="388.36084"
+     inkscape:cy="463.16031"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -38,7 +41,9 @@
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      units="px"
-     inkscape:snap-global="false" />
+     inkscape:snap-global="false"
+     inkscape:measure-start="0,0"
+     inkscape:measure-end="0,0" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -47,7 +52,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -66,141 +71,6 @@
        height="64"
        width="64" />
     <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/chaise.png"
-       xlink:href="chaise.png"
-       y="229.74005"
-       x="201.80463"
-       id="image1395"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="94"
-       width="55" />
-    <path
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 717.20936,346.31986 525.27934,-227.28432 -1.0101,-137.38075 -523.25908,5.05076 z"
-       id="path916-6-2"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc" />
-    <path
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 721.73666,345.30983 285.35076,158.43161 V -23.395852 l 435.37574,9.091372 z"
-       id="path916-6"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc" />
-    <path
-       style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
-       d="M -6.0609152,294.42121 286.88332,160.07092 V -21.756538 l -314.157438,5.050762 z"
-       id="path916"
-       inkscape:connector-curvature="0" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/table.png"
-       xlink:href="table.png"
-       y="287.30859"
-       x="-319.02802"
-       id="image1285"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="92"
-       width="135"
-       transform="scale(-1,1)"
-       npcID="scroll_mystere" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/sablier.png"
-       xlink:href="sablier.png"
-       y="63.263939"
-       x="-222.34135"
-       id="image1296"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="25"
-       width="16" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/chandelier.png"
-       xlink:href="chandelier.png"
-       y="443.36084"
-       x="-302.71979"
-       id="image1384"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="120"
-       width="33"
-       transform="scale(-1,1)" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/biblio_dos.png"
-       xlink:href="biblio_dos.png"
-       y="400.94315"
-       x="-251.41881"
-       id="image1600"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="190"
-       width="121"
-       transform="scale(-1,1)" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/biblio_dos.png"
-       xlink:href="biblio_dos.png"
-       transform="scale(-1,1)"
-       width="121"
-       height="190"
-       preserveAspectRatio="none"
-       style="image-rendering:optimizeSpeed"
-       id="image1600-6"
-       x="-152.42389"
-       y="443.36957" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/mur_2.png"
-       xlink:href="mur_2.png"
-       width="156"
-       height="225"
-       preserveAspectRatio="none"
-       style="image-rendering:optimizeSpeed"
-       id="image1340-2-9-1"
-       x="144.73857"
-       y="407.6868" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/mur_2.png"
-       xlink:href="mur_2.png"
-       width="156"
-       height="225"
-       preserveAspectRatio="none"
-       style="image-rendering:optimizeSpeed"
-       id="image1340-2-2"
-       x="22.510231"
-       y="458.19446" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/mur_2.png"
-       xlink:href="mur_2.png"
-       transform="scale(-1,1)"
-       width="156"
-       height="225"
-       preserveAspectRatio="none"
-       style="image-rendering:optimizeSpeed"
-       id="image1340-2-9"
-       x="-477.66327"
-       y="35.175117" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/mur_2.png"
-       xlink:href="mur_2.png"
-       transform="scale(-1,1)"
-       width="156"
-       height="225"
-       preserveAspectRatio="none"
-       style="image-rendering:optimizeSpeed"
-       id="image1340-2"
-       x="-600.24884"
-       y="87.468437" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/mur_2.png"
-       xlink:href="mur_2.png"
-       y="139.99638"
-       x="-724.49768"
-       id="image1340"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="225"
-       width="156"
-       transform="scale(-1,1)" />
-    <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/chandelier.png"
        xlink:href="chandelier.png"
        width="33"
@@ -208,65 +78,140 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1384-7"
-       x="280.48483"
-       y="99.56234" />
+       x="303.79016"
+       y="76.678802" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/chaise.png"
+       xlink:href="chaise.png"
+       y="215.45433"
+       x="234.66177"
+       id="image1395"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="94"
+       width="55" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/chandelier.png"
+       xlink:href="chandelier.png"
+       y="436.93228"
+       x="-343.07693"
+       id="image1384"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="120"
+       width="33"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/new_mur2.png"
+       xlink:href="new_mur2.png"
+       y="415"
+       x="170.5"
+       id="image887-3"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="218"
+       width="153" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/new_mur2.png"
+       xlink:href="new_mur2.png"
+       transform="scale(-1,1)"
+       y="42.080555"
+       x="-479.55087"
+       id="image887-3-6-5"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="218"
+       width="153" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/meuble_objet1.png"
+       xlink:href="meuble_objet1.png"
+       width="97"
+       height="80"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image907-6"
+       x="-412.41736"
+       y="167.30594"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/new_mur2.png"
+       xlink:href="new_mur2.png"
+       transform="scale(-1,1)"
+       y="99.390472"
+       x="-613.24414"
+       id="image887-3-6"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="218"
+       width="153" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/pile_livre_2.png"
        xlink:href="pile_livre_2.png"
-       y="245.20959"
-       x="375.75391"
-       id="image1318"
+       y="233.35713"
+       x="408.78571"
+       id="image1438"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
-       height="57"
-       width="95" />
+       height="45"
+       width="85" />
     <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/meuble_vide.png"
-       xlink:href="meuble_vide.png"
-       width="106"
-       height="86"
-       preserveAspectRatio="none"
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/new_mur2.png"
+       xlink:href="new_mur2.png"
+       y="93.026512"
+       x="862.48761"
+       id="image887-3-6-3"
        style="image-rendering:optimizeSpeed"
-       id="image1671-3"
-       x="290.30585"
-       y="176.94197" />
+       preserveAspectRatio="none"
+       height="218"
+       width="153" />
     <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/livre_minipile.png"
-       xlink:href="livre_minipile.png"
-       y="186.23497"
-       x="349.25308"
-       id="image1362"
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/new_mur2.png"
+       xlink:href="new_mur2.png"
+       y="149.52652"
+       x="728.23761"
+       id="image887-7-5"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
-       height="28"
-       width="34"
-       npcID="book1"
-       npcPortrait="book1.png" />
+       height="218"
+       width="153" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/new_mur2.png"
+       xlink:href="new_mur2.png"
+       transform="scale(-1,1)"
+       y="155.89047"
+       x="-747.49414"
+       id="image887-7"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="218"
+       width="153" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/biblio1_full.png"
        xlink:href="biblio1_full.png"
+       npcID="biblio2"
        width="121"
        height="190"
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1406-6"
-       x="430.43414"
-       y="144.34409" />
+       x="456.29129"
+       y="127.05836" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/biblio1_full.png"
        xlink:href="biblio1_full.png"
-       y="186.7908"
-       x="528.41901"
+       y="169.50508"
+       x="554.27612"
        id="image1406"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
        height="190"
-       width="121" />
+       width="121"
+       npcID="biblio3" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/lantern.png"
        xlink:href="lantern.png"
-       y="171.84659"
-       x="551.12964"
+       y="154.56087"
+       x="576.98676"
        id="image1373"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
@@ -275,23 +220,13 @@
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/pile_livre_1.png"
        xlink:href="pile_livre_1.png"
-       y="288.84918"
-       x="623.50781"
+       y="271.56348"
+       x="649.36493"
        id="image1329"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
        height="97"
        width="48" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/lantern.png"
-       xlink:href="lantern.png"
-       width="18"
-       height="32"
-       preserveAspectRatio="none"
-       style="image-rendering:optimizeSpeed"
-       id="image1373-0"
-       x="73.832512"
-       y="656.71985" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/pile_livre_1.png"
        xlink:href="pile_livre_1.png"
@@ -305,6 +240,7 @@
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/biblio1_full.png"
        xlink:href="biblio1_full.png"
+       npcID="biblio1"
        width="121"
        height="190"
        preserveAspectRatio="none"
@@ -325,32 +261,41 @@
        y="192.8847"
        transform="scale(-1,1)" />
     <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/meuble_vide.png"
-       xlink:href="meuble_vide.png"
-       y="592.3443"
-       x="-219.67517"
-       id="image1671"
-       style="image-rendering:optimizeSpeed"
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/pile_livre_2.png"
+       xlink:href="pile_livre_2.png"
+       width="85"
+       height="45"
        preserveAspectRatio="none"
-       height="86"
-       width="106"
+       style="image-rendering:optimizeSpeed"
+       id="image1438-6"
+       x="-265.30756"
+       y="603.28394"
        transform="scale(-1,1)" />
     <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/pilescroll_2.png"
-       xlink:href="pilescroll_2.png"
-       width="62"
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/new_mur2.png"
+       xlink:href="new_mur2.png"
+       width="153"
+       height="218"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image887"
+       x="36.25"
+       y="471.5" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/lantern.png"
+       xlink:href="lantern.png"
+       width="18"
        height="32"
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
-       id="image1708-2"
-       x="-185.80588"
-       y="602.6767"
-       transform="scale(-1,1)" />
+       id="image1373-0"
+       x="105.97537"
+       y="648.14844" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/pilescroll_2.png"
        xlink:href="pilescroll_2.png"
-       y="198.89752"
-       x="563.10187"
+       y="181.6118"
+       x="588.95898"
        id="image1708"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
@@ -369,16 +314,26 @@
        x="244.71428"
        y="509.92856" />
     <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/meuble_objet1.png"
+       xlink:href="meuble_objet1.png"
+       width="97"
+       height="80"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image907-6-7"
+       x="124.03405"
+       y="596.15582" />
+    <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/pilescroll.png"
        xlink:href="pilescroll.png"
-       npcID="scroll_sable"
+       npcID="scroll_pile2"
        width="44"
        height="31"
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image1682-3"
-       x="169.86185"
-       y="584.99762" />
+       x="162.79079"
+       y="589.03827" />
     <image
        sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/piedestal.png"
        xlink:href="piedestal.png"
@@ -387,64 +342,437 @@
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
        id="image853"
-       x="507.57141"
-       y="467.78571" />
+       x="526.14282"
+       y="439.21426" />
     <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/mur_2.png"
-       xlink:href="mur_2.png"
-       y="36.576527"
-       x="969.70685"
-       id="image1340-2-9-3"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="225"
-       width="156" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/mur_2.png"
-       xlink:href="mur_2.png"
-       y="88.86985"
-       x="847.12128"
-       id="image1340-2-6"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="225"
-       width="156" />
-    <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/mur_2.png"
-       xlink:href="mur_2.png"
-       width="156"
-       height="225"
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/meuble_objet2.png"
+       xlink:href="meuble_objet2.png"
+       width="97"
+       height="80"
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
-       id="image1340-7"
-       x="722.87238"
-       y="141.39781" />
+       id="image896-3"
+       x="871.5"
+       y="249.5" />
     <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/meuble_1.png"
-       xlink:href="meuble_1.png"
-       transform="scale(-1,1)"
-       width="106"
-       height="112"
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/meuble_objet1.png"
+       xlink:href="meuble_objet1.png"
+       y="279.5"
+       x="800.5"
+       id="image907"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="80"
+       width="97" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/tabouret.png"
+       xlink:href="tabouret.png"
+       width="25"
+       height="39"
        preserveAspectRatio="none"
        style="image-rendering:optimizeSpeed"
-       id="image1351-5"
-       x="-910.14282"
-       y="247.57146" />
+       id="image1146-3-5"
+       x="889.0611"
+       y="371.89587" />
     <image
-       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/lantern.png"
-       xlink:href="lantern.png"
-       y="274.55841"
-       x="828.72076"
-       id="image1373-0-5"
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/table_vide.png"
+       xlink:href="table_vide.png"
+       y="274.50003"
+       x="-351.78574"
+       id="image1135"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="91"
+       width="135"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/scroll_aplat.png"
+       xlink:href="scroll_aplat.png"
+       y="284.85715"
+       x="257.71432"
+       id="image963"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="26"
+       width="56"
+       npcID="s_mystere" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/pilescroll_3.png"
+       xlink:href="pilescroll_3.png"
+       y="299.23157"
+       x="-273.99484"
+       id="image1249"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="23"
+       width="43"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/tabouret.png"
+       xlink:href="tabouret.png"
+       y="460.5"
+       x="478.92856"
+       id="image1146"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="39"
+       width="25" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/tabouret.png"
+       xlink:href="tabouret.png"
+       width="25"
+       height="39"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-3"
+       x="568.92853"
+       y="426.21426" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/table_grande.png"
+       xlink:href="table_grande.png"
+       width="172"
+       height="98"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1124-1"
+       x="947.61475"
+       y="350.74747" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/table_grande.png"
+       xlink:href="table_grande.png"
+       y="371"
+       x="-995.99988"
+       id="image1124"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="98"
+       width="172"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/tabouret.png"
+       xlink:href="tabouret.png"
+       width="25"
+       height="39"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-3-6"
+       x="1003.2084"
+       y="412.30197" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/tabouret.png"
+       xlink:href="tabouret.png"
+       width="25"
+       height="39"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-3-7"
+       x="900.67792"
+       y="439.57608" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/scroll_aplat_metal.png"
+       xlink:href="scroll_aplat_metal.png"
+       y="402.57144"
+       x="-910.92853"
+       id="image941"
        style="image-rendering:optimizeSpeed"
        preserveAspectRatio="none"
        height="32"
-       width="18" />
-    <path
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 1234.2927,454.09703 460.51586,767.24431 710.02348,818.7621 1233.2825,813.71134 Z"
-       id="path916-6-2-9"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc" />
+       width="69"
+       transform="scale(-1,1)"
+       npcID="parchemin3" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/livre_minipile.png"
+       xlink:href="livre_minipile.png"
+       width="34"
+       height="28"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1362-3"
+       x="-342.7742"
+       y="264.51132"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/chandelle_mini.png"
+       xlink:href="chandelle_mini.png"
+       y="302.47635"
+       x="261.04791"
+       id="image1238"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="19"
+       width="22" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/sablier.png"
+       xlink:href="sablier.png"
+       y="265.63071"
+       x="301.92822"
+       id="image1275"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="25"
+       width="16" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/pilescroll_2.png"
+       xlink:href="pilescroll_2.png"
+       width="62"
+       height="32"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1708-6"
+       x="-977.76031"
+       y="376.1936"
+       transform="scale(-1,1)" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/chandelle_mini.png"
+       xlink:href="chandelle_mini.png"
+       width="22"
+       height="19"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1238-2"
+       x="898.10712"
+       y="390.67859" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/tabouret.png"
+       xlink:href="tabouret.png"
+       width="25"
+       height="39"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1146-3-9"
+       x="555.35712"
+       y="498.35715" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/pilescroll_3.png"
+       xlink:href="pilescroll_3.png"
+       npcID="scroll_pile1"
+       transform="scale(-1,1)"
+       width="43"
+       height="23"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1249-7"
+       x="-964.47736"
+       y="376.61282" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/pilescroll_3.png"
+       xlink:href="pilescroll_3.png"
+       npcID="scroll_pile2"
+       transform="scale(-1,1)"
+       width="43"
+       height="23"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1249-0"
+       x="-1013.7787"
+       y="357.87555" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/pile_livre_3.png"
+       xlink:href="pile_livre_3.png"
+       width="70"
+       height="42"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1412-3"
+       x="332.35855"
+       y="159.01747"
+       npcID="pile1" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/cube_mini.png"
+       xlink:href="cube_mini.png"
+       y="423.6582"
+       x="533.81647"
+       id="image1036"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="31"
+       width="28"
+       npcID="cube" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/livre_ouvert_bleu.png"
+       xlink:href="livre_ouvert_bleu.png"
+       y="380.29123"
+       x="1020.3768"
+       id="image886"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="29"
+       width="63"
+       npcID="book1" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/livre_ouvert2_bleu.png"
+       xlink:href="livre_ouvert2_bleu.png"
+       y="126.19215"
+       x="1458.5485"
+       id="image897"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="25"
+       width="53" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/new_mur2.png"
+       xlink:href="new_mur2.png"
+       transform="scale(-1,1)"
+       y="104.30595"
+       x="-1224.8414"
+       id="image887-3-6-3-6"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="218"
+       width="153" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/scroll_mural3.png"
+       xlink:href="scroll_mural3.png"
+       y="186.99336"
+       x="-1151.4783"
+       id="image908"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="45"
+       width="28"
+       transform="scale(-1,1)"
+       npcID="guild_post" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/scroll_mural1.png"
+       xlink:href="scroll_mural1.png"
+       y="157.65265"
+       x="-955.22528"
+       id="image930"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="58"
+       width="41"
+       transform="scale(-1,1)"
+       npcID="scroll_fade" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/scroll_aplat_cuivre.png"
+       xlink:href="scroll_aplat_cuivre.png"
+       y="42.048962"
+       x="1484.7543"
+       id="image952"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="31"
+       width="68" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/alchi_3.png"
+       xlink:href="alchi_3.png"
+       y="18.254177"
+       x="1470.3875"
+       id="image974"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="57"
+       width="14" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/alchi_1.png"
+       xlink:href="alchi_1.png"
+       y="206.61203"
+       x="923.6026"
+       id="image996"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="61"
+       width="27"
+       npcID="alchi1" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/scroll_aplat.png"
+       xlink:href="scroll_aplat.png"
+       width="56"
+       height="26"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image963-3"
+       x="122.51273"
+       y="607.7005"
+       npcID="parchemin1" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/scroll_mural1.png"
+       xlink:href="scroll_mural1.png"
+       transform="scale(-1,1)"
+       width="41"
+       height="58"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image930-6"
+       x="-864.43604"
+       y="209.54156"
+       npcID="s_sable" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/scroll_mural2.png"
+       xlink:href="scroll_mural2.png"
+       y="113.90848"
+       x="371.9595"
+       id="image1048"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="60"
+       width="44"
+       npcID="parchemin2" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/livre_ouvert2_bleu.png"
+       xlink:href="livre_ouvert2_bleu.png"
+       width="53"
+       height="25"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image897-7"
+       x="-631.91321"
+       y="464.25372"
+       transform="scale(-1,1)"
+       npcID="book2" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/oeuf_table.png"
+       xlink:href="oeuf_table.png"
+       width="12"
+       height="17"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image1205-6"
+       x="836.71973"
+       y="285.41614" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/chandelle_mini.png"
+       xlink:href="chandelle_mini.png"
+       y="257.11157"
+       x="899.78955"
+       id="image1238-2-7"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="19"
+       width="22" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/chandelle_mini.png"
+       xlink:href="chandelle_mini.png"
+       transform="scale(-1,1)"
+       y="290.22455"
+       x="-845.63849"
+       id="image1238-2-5"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="19"
+       width="22" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/alchi_2.png"
+       xlink:href="alchi_2.png"
+       y="222.61205"
+       x="873.45972"
+       id="image985"
+       style="image-rendering:optimizeSpeed"
+       preserveAspectRatio="none"
+       height="65"
+       width="28"
+       npcID="alchi1" />
+    <image
+       sodipodi:absref="/home/lerabot/___Projets/DC_reaperi_cycle/assets/map_hideout/alchi_3.png"
+       xlink:href="alchi_3.png"
+       npcID="alchi1"
+       width="14"
+       height="57"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeSpeed"
+       id="image944"
+       x="858.63641"
+       y="238.74797" />
   </g>
 </svg>
