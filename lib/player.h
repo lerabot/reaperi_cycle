@@ -31,6 +31,7 @@ void    updateController();
 void    updatePlayer();
 void    updateInventory();
 
+void  toggleMenu();
 void  updateItem();
 void  displayInventory();
 void  addItem(gameObject *target, char *path);

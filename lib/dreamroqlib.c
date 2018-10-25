@@ -1,6 +1,7 @@
 /*
  * Dreamroq by Mike Melanson
  * Audio support by Josh Pearson
+* Updates by lerabot for Reaperi Cycle
  *
  * This is the main playback engine.
  */
@@ -9,80 +10,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "player.h"
 #include "dreamroqlib.h"
 #include "debug_screen.h"
 
-#define RoQ_INFO           0x1001
-#define RoQ_QUAD_CODEBOOK  0x1002
-#define RoQ_QUAD_VQ        0x1011
-#define RoQ_JPEG           0x1012
-#define RoQ_SOUND_MONO     0x1020
-#define RoQ_SOUND_STEREO   0x1021
-#define RoQ_PACKET         0x1030
-#define RoQ_SIGNATURE      0x1084
-
-#define CHUNK_HEADER_SIZE 8
-
-#define LE_16(buf) (*buf | (*(buf+1) << 8))
-#define LE_32(buf) (*buf | (*(buf+1) << 8) | (*(buf+2) << 16) | (*(buf+3) << 24))
-
-#define MAX_BUF_SIZE (64 * 1024)
-
-#define ROQ_CODEBOOK_SIZE 256
-#define SQR_ARRAY_SIZE 256
-
-int video_width = 512;
+int video_width = 512;        //..
 int video_height = 512;
 
-static pvr_ptr_t textures[2];
-static int current_frame = 0;
+roq_video v;
+
+static pvr_ptr_t textures[2]; //Texture assigned for each buffer
+static int current_frame = 0; //Current frame in the buffer (0 | 1)
 
 roq_callbacks_t cbs;
 int video_status = 1;
+float accumulator = 0.0f;
+const float time_step = 1.0 / 30.0f;
+uint64_t frame_time;
 
 int   playROQvideo(char* filename) {
-  cbs.render_cb   = render_cb;
-  cbs.audio_cb    = audio_cb;
-  cbs.quit_cb     = quit_cb;
-  cbs.finish_cb   = finish_cb;
+  int r;
 
-  dreamroq_play(filename, ROQ_RGB565, 0, &cbs);
-
-  return(video_status);
+  if(v.status != ROQ_VIDEO_DONE) {
+    r = dreamroq_play_frame(0);
+  }
+  return(r);
 }
-
-struct roq_audio
-{
-     int pcm_samples;
-     int channels;
-     int position;
-     short snd_sqr_array[SQR_ARRAY_SIZE];
-     unsigned char pcm_sample[MAX_BUF_SIZE];
-} roq_audio;
-
-typedef struct
-{
-    int width;
-    int height;
-    int mb_width;
-    int mb_height;
-    int mb_count;
-    int alpha;
-
-    int current_frame;
-    unsigned char *frame[2];
-    int stride;
-    int texture_height;
-    int colorspace;
-
-    unsigned short cb2x2_rgb565[ROQ_CODEBOOK_SIZE][4];
-    unsigned short cb4x4_rgb565[ROQ_CODEBOOK_SIZE][16];
-
-    unsigned int cb2x2_rgba[ROQ_CODEBOOK_SIZE][4];
-    unsigned int cb4x4_rgba[ROQ_CODEBOOK_SIZE][16];
-} roq_state;
 
 static int roq_unpack_quad_codebook_rgb565(unsigned char *buf, int size,
     int arg, roq_state *state)
@@ -689,6 +644,7 @@ int dreamroq_play(char *filename, int colorspace, int loop,
 {
     FILE *f;
     size_t file_ret;
+    uint64_t frame_time;
     int framerate;
     int chunk_id;
     unsigned int chunk_size;
@@ -699,10 +655,12 @@ int dreamroq_play(char *filename, int colorspace, int loop,
     unsigned char read_buffer[MAX_BUF_SIZE];
     int i, snd_left, snd_right;
 
+    //Opening
     f = fopen(filename, "rb");
     if (!f)
         return ROQ_FILE_OPEN_FAILURE;
 
+    //Trying to read file header
     file_ret = fread(read_buffer, CHUNK_HEADER_SIZE, 1, f);
     if (file_ret != 1)
     {
@@ -721,18 +679,19 @@ int dreamroq_play(char *filename, int colorspace, int loop,
     printf("RoQ file plays at %d frames/sec\n", framerate);
 
     /* Initialize Audio SQRT Look-Up Table */
-    for(i = 0; i < 128; i++)
+    for(int i = 0; i < 128; i++)
     {
-        roq_audio.snd_sqr_array[i] = i * i;
-        roq_audio.snd_sqr_array[i + 128] = -(i * i);
+        //roq_audio.snd_sqr_array[i] = i * i;
+        //roq_audio.snd_sqr_array[i + 128] = -(i * i);
     }
 
     status = ROQ_SUCCESS;
+    //This while loop make everythign goes
     while (!feof(f) && status == ROQ_SUCCESS)
     {
         /* if client program defined a quit callback, check if it's time
          * to quit */
-        if (cbs->quit_cb && cbs->quit_cb())
+        if (v.callback.quit_cb && v.callback.quit_cb())
             break;
 
         file_ret = fread(read_buffer, CHUNK_HEADER_SIZE, 1, f);
@@ -861,18 +820,22 @@ int dreamroq_play(char *filename, int colorspace, int loop,
                 status = roq_unpack_vq_rgba(read_buffer, chunk_size,
                     chunk_arg, &state);
 
-            if (cbs->render_cb)
-                status = cbs->render_cb(state.frame[state.current_frame & 1],
+            //If there is a render callback
+            if (v.callback.render_cb)
+                status = v.callback.render_cb(state.frame[state.current_frame & 1],
                     state.width, state.height, state.stride, state.texture_height,
                     colorspace);
 
+
             state.current_frame++;
+            //status = ROQ_FILE_READ_FAILURE; // THIS IS TO BREAK THE WHILE
             break;
 
         case RoQ_JPEG:
             break;
 
         case RoQ_SOUND_MONO:
+            /*
             roq_audio.channels = 1;
             roq_audio.pcm_samples = chunk_size*2;
             snd_left = chunk_arg;
@@ -882,12 +845,14 @@ int dreamroq_play(char *filename, int colorspace, int loop,
                 roq_audio.pcm_sample[i * 2] = snd_left & 0xff;
                 roq_audio.pcm_sample[i * 2 + 1] = (snd_left & 0xff00) >> 8;
             }
-            if (cbs->audio_cb)
-                status = cbs->audio_cb(roq_audio.pcm_sample, roq_audio.pcm_samples,
+            if (v.callback.audio_cb)
+                status = v.callback.audio_cb(roq_audio.pcm_sample, roq_audio.pcm_samples,
                                    roq_audio.channels);
+            */
             break;
 
         case RoQ_SOUND_STEREO:
+            /*
             roq_audio.channels = 2;
             roq_audio.pcm_samples = chunk_size*2;
             snd_left = (chunk_arg & 0xFF00);
@@ -901,9 +866,10 @@ int dreamroq_play(char *filename, int colorspace, int loop,
                 roq_audio.pcm_sample[i * 2 + 2] =  snd_right & 0xff;
                 roq_audio.pcm_sample[i * 2 + 3] = (snd_right & 0xff00) >> 8;
             }
-            if (cbs->audio_cb)
-                status = cbs->audio_cb( roq_audio.pcm_sample, roq_audio.pcm_samples,
-                                   roq_audio.channels );
+            if (v.callback.audio_cb)
+                status = v.callback.audio_cb( roq_audio.pcm_sample, roq_audio.pcm_samples,
+                                   roq_audio.channels);
+            */
             break;
 
         case RoQ_PACKET:
@@ -919,10 +885,215 @@ int dreamroq_play(char *filename, int colorspace, int loop,
     free(state.frame[1]);
     fclose(f);
 
-    if (cbs->finish_cb)
-        cbs->finish_cb();
+    if (v.callback.finish_cb)
+        v.callback.finish_cb();
 
     return status;
+}
+
+
+int dreamroq_play_frame(int loop) {
+    unsigned char read_buffer[MAX_BUF_SIZE];
+    int colorspace = ROQ_RGB565;
+    // Initialize Audio SQRT Look-Up Table
+    for(int i = 0; i < 128; i++)
+    {
+        //roq_audio.snd_sqr_array[i] = i * i;
+        //roq_audio.snd_sqr_array[i + 128] = -(i * i);
+    }
+    v.status = ROQ_SUCCESS;
+    //This while loop make everythign goes
+    while (!feof(v.f) && v.status == ROQ_SUCCESS)
+    {
+      // if client program defined a quit callback, check if it's time to quit
+      if (v.callback.quit_cb && v.callback.quit_cb())
+          break;
+
+      v.file_ret = fread(read_buffer, CHUNK_HEADER_SIZE, 1, v.f);
+      if (v.file_ret != 1)
+      {
+          // if the read failed but the file is not EOF, there is a deeper problem; don't entertain the idea of looping
+          if (!feof(v.f))
+              break;
+
+          else if (loop)
+          {
+              fclose(v.f);
+              v.f = fopen(v.filename, "rb");
+              if (!v.f)
+                  v.status = ROQ_FILE_OPEN_FAILURE;
+              else
+              {
+                  // skip the signature header
+                  fseek(v.f, 8, SEEK_SET);
+                  continue;
+              }
+          }
+          else
+              v.status = ROQ_VIDEO_DONE;
+      }
+
+      v.chunk_id   = LE_16(&read_buffer[0]);
+      v.chunk_size = LE_32(&read_buffer[2]);
+      v.chunk_arg  = LE_16(&read_buffer[6]);
+
+      if (v.chunk_size > MAX_BUF_SIZE)
+      {
+          fclose(v.f);
+          return ROQ_CHUNK_TOO_LARGE;
+      }
+
+      v.file_ret = fread(read_buffer, v.chunk_size, 1, v.f);
+      if (v.file_ret != 1)
+      {
+          v.status = ROQ_FILE_READ_FAILURE;
+          break;
+      }
+
+      v.state.colorspace = colorspace;
+
+      switch(v.chunk_id)
+      {
+      case RoQ_INFO:
+          if (v.initialized)
+              continue;
+
+          v.state.alpha = v.chunk_arg;
+          v.state.width = LE_16(&read_buffer[0]);
+          v.state.height = LE_16(&read_buffer[2]);
+          //width and height each need to be divisible by 16
+          if ((v.state.width & 0xF) || (v.state.height & 0xF))
+          {
+              v.status = ROQ_INVALID_PIC_SIZE;
+              break;
+          }
+          v.state.mb_width = v.state.width / 16;
+          v.state.mb_height = v.state.height / 16;
+          v.state.mb_count = v.state.mb_width * v.state.mb_height;
+          if (v.state.width < 8 || v.state.width > 1024)
+              v.status = ROQ_INVALID_DIMENSION;
+          else
+          {
+              v.state.stride = 8;
+              while (v.state.stride < v.state.width)
+                  v.state.stride <<= 1;
+          }
+          if (v.state.height < 8 || v.state.height > 1024)
+              v.status = ROQ_INVALID_DIMENSION;
+          else
+          {
+              v.state.texture_height = 8;
+              while (v.state.texture_height < v.state.height)
+                  v.state.texture_height <<= 1;
+          }
+          printf("  RoQ_INFO: dimensions = %dx%d, %dx%d; %d mbs, texture = %dx%d\n",
+              v.state.width, v.state.height, v.state.mb_width, v.state.mb_height,
+              v.state.mb_count, v.state.stride, v.state.texture_height);
+          if (colorspace == ROQ_RGB565)
+          {
+              v.state.frame[0] = (unsigned char*)malloc(v.state.texture_height * v.state.stride * sizeof(unsigned short));
+              v.state.frame[1] = (unsigned char*)malloc(v.state.texture_height * v.state.stride * sizeof(unsigned short));
+          }
+          else
+          {
+              v.state.frame[0] = (unsigned char*)malloc(v.state.texture_height * v.state.stride * sizeof(unsigned int));
+              v.state.frame[1] = (unsigned char*)malloc(v.state.texture_height * v.state.stride * sizeof(unsigned int));
+          }
+          v.state.current_frame = 0;
+          if (!v.state.frame[0] || !v.state.frame[1])
+          {
+              free (v.state.frame[0]);
+              free (v.state.frame[1]);
+              v.status = ROQ_NO_MEMORY;
+              break;
+          }
+          memset(v.state.frame[0], 0, v.state.texture_height * v.state.stride * sizeof(unsigned short));
+          memset(v.state.frame[1], 0, v.state.texture_height * v.state.stride * sizeof(unsigned short));
+
+          // set this flag so that this code is not executed again when looping
+          v.initialized = 1;
+          break;
+
+      case RoQ_QUAD_CODEBOOK:
+          if (colorspace == ROQ_RGB565)
+              v.status = roq_unpack_quad_codebook_rgb565(read_buffer, v.chunk_size,
+                  v.chunk_arg, &v.state);
+          else if (colorspace == ROQ_RGBA)
+              v.status = roq_unpack_quad_codebook_rgba(read_buffer, v.chunk_size,
+                  v.chunk_arg, &v.state);
+          break;
+
+      case RoQ_QUAD_VQ:
+          if (colorspace == ROQ_RGB565)
+              v.status = roq_unpack_vq_rgb565(read_buffer, v.chunk_size,
+                  v.chunk_arg, &v.state);
+          else if (colorspace == ROQ_RGBA)
+              v.status = roq_unpack_vq_rgba(read_buffer, v.chunk_size,
+                  v.chunk_arg, &v.state);
+
+          //If there is a render callback
+          if (v.callback.render_cb)
+              v.status = v.callback.render_cb(v.state.frame[v.state.current_frame & 1],
+                  v.state.width, v.state.height, v.state.stride, v.state.texture_height,
+                  colorspace);
+
+
+          v.state.current_frame++;
+          //status = ROQ_FILE_READ_FAILURE; // THIS IS TO BREAK THE WHILE
+          break;
+
+      case RoQ_JPEG:
+          break;
+
+      case RoQ_PACKET:
+          //
+          break;
+
+      default:
+          break;
+      }
+    }
+
+    //free(v.state.frame[0]);
+    //free(v.state.frame[1]);
+    //fclose(v.f);
+
+    //if (v.callback.finish_cb)
+        //v.callback.finish_cb();
+
+    return v.status;
+}
+
+int dreamroq_load(char* filename) {
+  unsigned char read_buffer[MAX_BUF_SIZE];
+
+  v.filename = filename;
+  v.f = fopen(v.filename, "rb");
+  if (!v.f)
+      return ROQ_FILE_OPEN_FAILURE;
+
+  v.file_ret = fread(read_buffer, CHUNK_HEADER_SIZE, 1, v.f);
+  if (v.file_ret != 1)
+  {
+      fclose(v.f);
+      printf("\nROQ_FILE_READ_FAILURE\n\n");
+      return ROQ_FILE_READ_FAILURE;
+  }
+  v.chunk_id   = LE_16(&read_buffer[0]);
+  v.chunk_size = LE_32(&read_buffer[2]);
+  if (v.chunk_id != RoQ_SIGNATURE || v.chunk_size != 0xFFFFFFFF)
+  {
+      fclose(v.f);
+      return ROQ_FILE_READ_FAILURE;
+  }
+  v.framerate = LE_16(&read_buffer[6]);
+
+  v.callback.render_cb   = render_cb;
+  v.callback.audio_cb    = NULL;
+  v.callback.quit_cb     = quit_cb;
+  v.callback.finish_cb   = finish_cb;
+
+  return ROQ_SUCCESS;
 }
 
 int render_cb(void *buf_ptr, int width, int height, int stride,
@@ -964,9 +1135,6 @@ int render_cb(void *buf_ptr, int width, int height, int stride,
         //br_x = (ratio * stride);
         //ul_y = ((video_height - ratio * height) / 2);
         //br_y = ul_y + ratio * texture_height;
-        video_width = 512;
-        video_height = 512;
-
 
         ratio = video_width / video_height;
         ul_x = 320 - video_width/2;
@@ -1024,25 +1192,22 @@ int render_cb(void *buf_ptr, int width, int height, int stride,
         current_frame = 0;
     else
         current_frame = 1;
-
     return ROQ_SUCCESS;
 }
 
-int audio_cb(unsigned char *buf_rgb565, int samples, int channels)
-{
-    return ROQ_SUCCESS;
+int audio_cb(){
+  return ROQ_SUCCESS;
 }
 
 int quit_cb()
 {
   if(buttonPressed(CONT_A))
-    return(1);
+    return ROQ_VIDEO_DONE;
   else
-    return(0);
+    return ROQ_SUCCESS;
 }
 
 int finish_cb()
 {
     return ROQ_SUCCESS;
 }
-

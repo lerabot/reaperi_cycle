@@ -34,10 +34,10 @@ $KOS_BASE/utils/cdi4dc/cdi4dc ../$PROJECT_NAME.iso ../$PROJECT_NAME.cdi -d > cdi
 
 
 #start the game
-#sudo arp -s 192.168.0.99 00:d0:f1:03:14:02
-#sudo ../dc-tool-ip -t dreamcast -c ./ -x main.elf
+sudo arp -s 192.168.0.99 00:d0:f1:03:14:02
+sudo ../dc-tool-ip -t dreamcast -c ./ -x main.elf
 
 #lxdream ../$PROJECT_NAME.iso
 #reicast ../$PROJECT_NAME.cdi
 #redream ../$PROJECT_NAME.cdi
-../redream ../$PROJECT_NAME.cdi
+#../redream ../$PROJECT_NAME.cdi

@@ -13,34 +13,37 @@ int       displayDelay = 60 * 4.5;
 int       questVolume = 0;
 float     fontAlpha = 1.0;
 
-void     initQuest() {
+void  initQuest() {
   LUA_loadQuestData("/cd/script/quest_data.json");
   //LUA_loadQuestData(findFile("/script/quest_data.json"));
   png_to_gl_texture(&questBox, "/rd/box_small_raw.png");
-  questSound = snd_sfx_load("/rd/pluck_2.wav");
+  questSound = snd_sfx_load("cd/asset/SFX/quest_sfx.wav");
   questVolume = 185;
 }
 
-int updateQuest(int questNumber) {
-  //LUA_addQuest(questNumber);
+int   updateQuest(int questNumber) {
   snd_sfx_play(questSound, questVolume, 128);
-  questBox.w = (strlen(p1.questDesc) * getCellSize() + 50);
-  questBox.h = getCellSize() * 5;
   displayTime = frameCount + (60 * 4.5);
   fontAlpha = 0.85;
+  currentQuest = questNumber;
   return(1);
 }
 
-int     title_anim = 0;
-int     desc_anim = 0;
-int     questInfoActive;
+int   title_anim = 0;
+int   desc_anim = 0;
+int   questInfoActive;
 
-void    renderQuest(){
+void  renderQuest(){
   float cellSize = 10;
+
+  //if (questIsNew() || buttonPressed(CONT_X))
+    //snd_sfx_play(questSound, questVolume, 128);
 
   if (game_state == EXPLORATION && questDescIsValid()) {
     if(frameCount > displayTime && fontAlpha > 0.02)
       fontAlpha -= 0.02;
+    else
+      lastQuest = currentQuest; //animation is done
 
     setFontAlpha(fontAlpha);
     fontColor(0.9, 0.85, 0.5);
@@ -56,27 +59,29 @@ void    renderQuest(){
 
   //QUEST INFO SHOULD BE IN CENTER
   if (game_state == MENU) {
+    int yPos = 240;
 
     fontColor(0.9, 0.85, 0.5);
     char questInfo[200];
     sprintf(questInfo, "Current Quest");
-    writeFont(questInfo, 320 - ((strlen(questInfo) * cellSize) / 2.0f) + title_anim, 430);
+    writeFont(questInfo, 320 - ((strlen(questInfo) * cellSize) / 2.0f) + title_anim, yPos + 10);
     resetFontColor();
-    writeFont(p1.questDesc, 320 - ((strlen(p1.questDesc) * cellSize) / 2.0f) + desc_anim, 410);
+    writeFont(p1.questDesc, 320 - ((strlen(p1.questDesc) * cellSize) / 2.0f) + desc_anim, yPos - 10);
     resetFontScale();
     resetFontColor();
     setFontAlpha(1.0);
   }
 }
 
-int questIsNew() {
-  if(currentQuest != lastQuest)
+int   questIsNew() {
+  if(currentQuest != lastQuest) {
     return(1);
+  }
   else
     return(0);
 }
 
-int questDescIsValid() {
+int   questDescIsValid() {
   if(strlen(p1.questDesc) > 2)
     return(1);
   else {

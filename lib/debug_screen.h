@@ -11,4 +11,6 @@ void setString(int paramIndex, char *text);
 void setInt(int paramIndex, uint32 i);
 void printDir();
 void setFloat(int paramIndex, float i);
+void updateFrameTime(uint64_t new_frame_time);
+
 #endif

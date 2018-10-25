@@ -78,6 +78,7 @@ int         LUA_getQuest() {
   lua_getglobal(L, "getQuest");
   lua_pcall(L, 0, 4, 0);
   if(lua_tonumber(L, 3) != p1.questID && game_state == EXPLORATION) {
+    updateQuest();
     strcpy(p1.questName, lua_tostring(L, 1));
     strcpy(p1.questDesc, lua_tostring(L, 2));
     //p1.questName = lua_tostring(L, 1);
@@ -102,7 +103,7 @@ void        LUA_updatePlayer() {
 
 void        LUA_addQuest(int questNum) {
   const char* questName;
-  int questActive;
+  int         questActive;
   lua_getglobal(L, "addQuest");
   lua_pushnumber(L, questNum);
   lua_pcall(L, 1, 3, 0);

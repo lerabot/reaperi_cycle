@@ -15,6 +15,7 @@ void    renderMenu();
 int     getTime();
 int     getRand(int modulo);
 float   getFrameTime();
+uint64_t getTime_MS();
 void    quitGame();
 void    limitScreen(int width, int height);
 void    quitGame();

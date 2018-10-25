@@ -17,6 +17,7 @@ void initScene(scene *self) {
   self->activeNum = self->objNum = 0;
   self->renderScene = NULL;
   self->updateScene = NULL;
+  self->freeScene = NULL;
 
   setMapInfo(self, 640, 480, 320, 240);
 }
@@ -26,12 +27,12 @@ int loadMapData(scene *self, char* filename) {
   file_t file;
 
   if ((file = fs_open("/rd/spritesheet.dtex", O_RDONLY)) != -1){
-    printf("Opening DTEX version");
+    printf("Opening DTEX version\n");
     setParam(4, "Opened DTEX");
     fs_close(file);
     spritesheet = createObjectDTEX("/rd/spritesheet.dtex", -1000, -1000, 1);
   } else {
-    printf("Opening PNG version");
+    printf("Opening PNG version\n");
     setParam(4, "Opened PNG");
     spritesheet = createObject("/rd/spritesheet.png", -1000, -1000, 1);
   }
@@ -137,8 +138,8 @@ void updateScene(scene *self) {
       if(clicked(self->activeObj[i], CONT_A)) {
         sprintf(png, "/rd/%s.png", self->activeObj[i]->npcID);
         activateNPC(self->activeObj[i]->npcID, png);
+        break;
       }
-      //SOMETHING//////////////////////////////////////
     }
   }
   self->updateScene(self);
@@ -156,15 +157,13 @@ void renderScene(scene *self){
   int renderDistance = 750;
   glLoadIdentity();
   glPushMatrix();
-  glTranslated((int)displayPos[0], (int)displayPos[1], displayPos[2]);
+  glTranslated(displayPos[0], displayPos[1], displayPos[2]);
   if (self != NULL)
   {
     if(render_map == 1) {
       if (self->floorTex != -1)
         drawMap(&self->obj[self->floorTex].t, self->mapSize[0]/2, self->mapSize[1]/2);
-
       drawShadow();
-
       for (int i = 0; i < self->objNum; i++){
         if(distance(p1.obj.x, p1.obj.y, self->obj[i].x, self->obj[i].y) < renderDistance)
           drawObject(&self->obj[i]);

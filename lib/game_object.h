@@ -15,6 +15,7 @@ typedef struct game_object {
   const char    *npcID; //npcID for LUA dialog etc.
   const char    *portraitID;
   float   x, y, z, angle;
+  float   dX, dY, dZ, dA; //delta position. ERASED AFTER EACH FRAME! for animation, etc
   float   emitLight;
   texture t;
 } gameObject;

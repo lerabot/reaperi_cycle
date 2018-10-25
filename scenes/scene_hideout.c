@@ -33,6 +33,7 @@ GLfloat     l_pos[3][4] = {
 
 gameObject  fire_anim;
 
+// load the map
 void  loadHideout(scene* self) {
   int r = 0;
   mount_romdisk("/asset/rd_hideout.img", "/rd");
@@ -58,10 +59,14 @@ void  loadHideout(scene* self) {
   cubeY = cube->y;
 
   b_sound = snd_sfx_load("/rd/bouton.wav");
-  //char *music_path = "";
-  //music_path = findFile("/asset/music/soussol.ogg");
-  //sndoggvorbis_start("/cd/asset/music/hideout_v2.ogg", 1);
-  //sndoggvorbis_volume(255);
+  char *music_path = "";
+  music_path = findFile("/asset/music/hideout_v2.ogg");
+  sndoggvorbis_start(music_path, 1);
+  sndoggvorbis_volume(255);
+
+  int rv;
+  rv = dreamroq_load("/cd/asset/video/hideout_intro_30p.roq");
+  setInt(0, rv);
 
   char p[100];
   //BOUTONS
@@ -84,7 +89,7 @@ void  loadHideout(scene* self) {
   setScale(&bg, 1.3);
 
   LUA_loadDialog("/rd/hideout_dialog.json");
-  LUA_addQuest(89);
+  LUA_addQuest(90);
 
   game_state    = EXPLORATION;
   p1.currentMap = MAP_HIDEOUT;
@@ -312,9 +317,10 @@ void  updateLights(scene *self){
 
 void  updateHideout(scene *self){
   char* m = "";
+  int s;
 
   if(p1.questID == 89) {
-    playROQvideo("/cd/asset/video/hideout_intro_sound.roq");
+    //s = playROQvideo("/cd/asset/video/hideout_intro_sound.roq");
     activateNPC("intro", "/rd/intro.png");
   }
 

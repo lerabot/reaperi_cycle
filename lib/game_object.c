@@ -18,6 +18,8 @@ gameObject createObject(char *path, float x, float y, int visible){
   temp.x = x;
   temp.y = y;
   temp.z = 0;
+  temp.dX = temp.dY = temp.dZ = temp.dA = 0;
+  temp.angle = 0;
   temp.visible = visible;
   temp.t.a = visible;
   temp.size = 1;
@@ -39,6 +41,8 @@ gameObject createObjectDTEX(char *path, float x, float y, int visible){
   temp.x = x;
   temp.y = y;
   temp.z = 0;
+  temp.dX = temp.dY = temp.dZ = temp.dA = 0;
+  temp.angle = 0;
   temp.visible = visible;
   temp.t.a = visible;
   temp.size = 1;
@@ -151,7 +155,22 @@ void moveObject(gameObject *object, float x, float y){
 }
 
 void drawObject(gameObject *object){
-  draw_textured_quad(&object->t, object->x, object->y, object->z);
+  //glLoadIdentity();
+  float x = object->x + object->dX;
+  float y = object->y + object->dY;
+  float z = object->z + object->dZ;
+  float a = object->angle + object->dA;
+
+  glPushMatrix();
+  glTranslatef(x, y, z);
+  glRotatef(a, 0.0f, 0.0f, 1.0f);
+  draw_textured_quad(&object->t, 0, 0, 0);
+  glPopMatrix();
+
+  object->dX = 0;
+  object->dY = 0;
+  object->dZ = 0;
+  object->dA = 0;
 }
 
 void setTexture(gameObject *object, texture *t){

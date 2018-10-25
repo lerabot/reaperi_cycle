@@ -6,14 +6,17 @@
 #include <stdio.h>
 #include "header.h"
 #include "global_var.h"
+#include "lib/debug_screen.h"
 
 extern uint8    romdisk[];
 KOS_INIT_ROMDISK(romdisk);
 maple_device_t  *cont;
 cont_state_t    *state;
-uint64          e_time, s_time;
+uint64_t         end_time = 0;
+uint64_t         start_time = 0;
 int             game_active = 1;
 int             game_state = 0;
+int             l_game_state = 0;
 int             render_map = 1;
 
 scene     *currentScene;
@@ -21,8 +24,8 @@ scene     *tempScene;
 player    p1;
 font      courrier;
 float     displayPos[3] = {0,0,0};
-long      frameCount = 0;
 char      *loadPath = "/cd";
+long      frameCount = 0;
 
 texture t;
 
@@ -43,7 +46,6 @@ int main()
   loadFont("/rd/DFKei.png");
   //loadCycle();
 
-  tempScene = malloc(sizeof(scene));
   currentScene = malloc(sizeof(scene));
   tempScene = currentScene;
   loadHideout(currentScene);
@@ -52,11 +54,14 @@ int main()
 
   while(game_active)
   {
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     if (tempScene != currentScene) {
-      free(tempScene);
       *currentScene = *tempScene;
+      free(tempScene);
     }
+
+    start_time = getTime_MS();
 
     //GAME RENDER
     glEnable(GL_LIGHTING);
@@ -74,13 +79,16 @@ int main()
     renderDialog();
     renderQuest();
     debugScreen();
-    renderMenu();
 
     //END FRAME
-    frameCount++;
-    p1.pstate.buttons &= p1.state->buttons;
     glKosSwapBuffers();
+    p1.pstate.buttons &= p1.state->buttons;
     //game_active = 0;
+    frameCount++;
+    setInt(0, frameCount);
+    end_time = getTime_MS();
+    //updateFrameTime(end_time - start_time); //Crashed the game?
+
   }
   printf("Exiting game.\n");
   return(0);

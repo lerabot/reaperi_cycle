@@ -12,25 +12,27 @@ int     currentItem = 0;
 int     edgeSize = 120;
 float   velocity[2] = {0, 1};
 float   direction[2] = {0, 1};
+float   position[2] = {0, 1}; //save the OG position if you add delta
 char*   posString = "";
 
-sfxhnd_t null_sfx[3];
-sfxhnd_t click_sfx[3];
+//sfxhnd_t null_sfx[3];
+//sfxhnd_t click_sfx;
 
 texture spirit_base;
 texture spirit_outer;
 texture ombre;
+gameObject spirit_core;
 gameObject spirit_particule;
 
 player      initPlayer(int playerNum) {
     player temp;
     //Texture
-    temp.obj = createObject("", 320, 240, 1);
+    temp.obj = createObject("rd/inside_blue_2.png", 320, 240, 1);
     setScale(&temp.obj.t, 0.5);
 
     //VISUAL
     png_to_gl_texture(&ombre, "/rd/ombre.png");
-    png_to_gl_texture(&spirit_base, "/rd/inside_blue.png");
+    png_to_gl_texture(&spirit_base, "/rd/inside_blue_2.png");
     setScale(&spirit_base, 0.5);
 
     spirit_particule = createObject("/rd/spirit_particule.png", -1000, -1000, 1);
@@ -43,9 +45,11 @@ player      initPlayer(int playerNum) {
     spirit_particule.t.a = 0.6;
 
     //SOUND
-    null_sfx[0] = snd_sfx_load("/rd/neg1.wav");
-    null_sfx[1] = snd_sfx_load("/rd/neg2.wav");
-    null_sfx[2] = snd_sfx_load("/rd/neg3.wav");
+    //click_sfx = snd_sfx_load("/rd/neg2.wav");
+
+    //null_sfx[0] = snd_sfx_load("/rd/neg1.wav");
+    //null_sfx[1] = snd_sfx_load("/rd/neg2.wav");
+    //null_sfx[2] = snd_sfx_load("/rd/neg3.wav");
 
     //click_sfx[0] = snd_sfx_load("/rd/goodshit_3.wav");
     //click_sfx[1] = snd_sfx_load("/rd/goodshit_4.wav");
@@ -147,6 +151,11 @@ void        updatePlayer() {
   updateController();
   updateItem();
   movePlayer();
+
+  //GAME ACTION
+  if(buttonPressed(CONT_START))
+    toggleMenu();
+
   toggleDebug(p1.state);
 }
 
@@ -216,9 +225,9 @@ int noClickFlag = 0;
 int noClickDelay = 0;
 int         noClickSound() {
   if(noClickFlag) {
-    noClickDelay = frameCount + 120;
-    snd_sfx_play(null_sfx[rand()%3], 150, 128);
-    noClickFlag = 0;
+    //noClickDelay = frameCount + 120;
+    //snd_sfx_play(null_sfx[rand()%3], 150, 128);
+    //noClickFlag = 0;
   } else {
     if(frameCount > noClickDelay)
     noClickFlag = 1;
@@ -230,7 +239,7 @@ int         clicked(gameObject *target, uint16 key) {
   {
     if (over(target) && !(p1.pstate.buttons & key))
     {
-      snd_sfx_play(null_sfx[1], 150, 128);
+      //snd_sfx_play(click_sfx, 150, 128);
       noClickFlag = 0;
       p1.pstate.buttons |= p1.state->buttons;
       return(1);
@@ -263,6 +272,17 @@ int         buttonPressed(uint16 key) {
     }
   }
   return(0);
+}
+
+void        toggleMenu() {
+  if(game_state == MENU) {
+    game_state = l_game_state;
+  }
+  else {
+    l_game_state = game_state;
+    game_state = MENU;
+  }
+
 }
 
 int         over(gameObject *target) {
@@ -324,18 +344,19 @@ void        showController(){
 void        drawCursor() {
   glLoadIdentity();
   glPushMatrix();
-  glTranslated((int)displayPos[0], (int)displayPos[1], displayPos[2]);
+  glTranslated(displayPos[0], displayPos[1], displayPos[2]);
   if (p1.obj.visible) {
     if(p1.currentItem != NULL) {
-      //sprite updates
+      //particules updates
       nextFrame(&p1.inventory[0], 7);
       moveObject(&spirit_particule, p1.obj.x, p1.obj.y);
       nextFrame(&spirit_particule, 10);
 
-      //sprite drawing
-      //drawObject(&spirit_particule);
-      drawObject(p1.currentItem);
-      draw_textured_quad(&spirit_base, p1.obj.x + sin(frameCount/90.0f) * 4,  p1.obj.y + cos(frameCount/42.0f) * 3, 9);
+      //spirit_core drawing
+      p1.obj.dX += sin(frameCount/80.0f) * 2;
+      p1.obj.dY += cos(frameCount/110.0f) * 5;
+      p1.obj.angle = sin(frameCount/110.0f) * 15;
+      drawObject(&p1.obj);
     }
   }
   glPopMatrix();

@@ -52,6 +52,14 @@ cd: $(TARGET)
 	@$(KOS_BASE)/utils/cdi4dc/cdi4dc ../$(PROJECT_NAME).iso ../$(PROJECT_NAME).cdi -d > cdi4dc.log
 	../redream ../$(PROJECT_NAME).cdi
 
+console: $(TARGET)
+	@sh-elf-objcopy -R .stack -O binary $(TARGET) output.bin
+	@$(KOS_BASE)/utils/scramble/scramble output.bin 1ST_READ.BIN
+	@mkisofs -C 0,11702 -V Reaperi_Cycle -G $(KOS_BASE)/IP.BIN -r -J -l -m '*.o' -x $(DIR).git -o ../$(PROJECT_NAME).iso $(DIR)
+	@$(KOS_BASE)/utils/cdi4dc/cdi4dc ../$(PROJECT_NAME).iso ../$(PROJECT_NAME).cdi -d > cdi4dc.log
+	sudo arp -s 192.168.0.99 00:d0:f1:03:14:02
+	sudo ../dc-tool-ip -t dreamcast -c ./ -x main.elf
+
 dist:
 	rm -f $(OBJS) romdisk.o romdisk.img
 	$(KOS_STRIP) $(TARGET)

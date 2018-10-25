@@ -8,9 +8,7 @@
 #include "header.h"
 #include "vmu.h"
 
-
 time_t  master_time;
-int     l_game_state;
 
 void  initGL() // We call this right after our OpenGL window is created.
 {
@@ -159,6 +157,7 @@ int   loadFile(char *filename) {
       return 0;
 }
 
+/*
 void  toggleMenu() {
   if (buttonPressed(CONT_START)) {
     if(game_state != MENU) {
@@ -170,6 +169,7 @@ void  toggleMenu() {
       game_state = l_game_state;
   }
 }
+*/
 
 int cMenu = 0;
 void  renderMenu() {
@@ -251,16 +251,8 @@ int   getRand(int modulo){
   return rand() % modulo;
 }
 
-clock_t cTime, lTime;
-double  avgTime = 0;
-char    buf[24];
-float getFrameTime() {
-  lTime = cTime;
-  cTime = clock();
-  avgTime = (double) (cTime - lTime) / CLOCKS_PER_SEC;
-  if (frameCount % 60 == 0) {
-    sprintf(buf, "Fr:%.8f", avgTime);
-    setParam(1, buf);
-  }
-  return (float)avgTime/CLOCKS_PER_SEC/60;
+uint64_t getTime_MS() {
+    uint32 s_s, s_ms;
+    timer_ms_gettime(&s_s, &s_ms);
+    return s_s*1000 + s_ms;
 }

@@ -5,7 +5,7 @@
 #include "scene.h"
 #include "scene_desert.h"
 
-sfxhnd_t  desert_sfx[18];
+sfxhnd_t  desert_sfx[4];
 
 void loadDesert(scene *self){
   mount_romdisk("asset/rd_desert.img", "/rd");
@@ -23,8 +23,7 @@ void loadDesert(scene *self){
   //music_path = findFile("/asset/music/soussol.ogg");
   //sndoggvorbis_start("/cd/asset/music/soussol.ogg", 1);
   //sndoggvorbis_volume(255);
-
-
+  
   desert_sfx[0] = snd_sfx_load("cd/asset/SFX/desert/choir_1.wav");
   desert_sfx[1] = snd_sfx_load("cd/asset/SFX/desert/choir_2.wav");
   desert_sfx[2] = snd_sfx_load("cd/asset/SFX/desert/orgue_3.wav");
